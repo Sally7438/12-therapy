@@ -1,0 +1,3747 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="font-standard">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>十二學派情緒諮商實務引導手冊｜互動式電子書</title>
+  <!-- 載入 Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 載入 Google Fonts: Noto Serif TC & Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#2B5342',
+              greenDark: '#1E3C2F',
+              greenLight: '#EBF1EE',
+              sand: '#EFECE6',
+              sandDark: '#E3DDD2',
+              paper: '#FAF8F5',
+              ink: '#2C2E2D',
+              muted: '#666967',
+              alertBg: '#F9ECEA',
+              alertIcon: '#B94A3E',
+              infoBg: '#EDF2F0',
+              border: '#D5D2C8'
+            }
+          },
+          fontFamily: {
+            sans: ['"Noto Sans TC"', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['"Noto Serif TC"', 'Georgia', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 出版級電子書基礎質感與溫潤米白紙張背景 */
+    body {
+      background-color: #FAF8F5;
+      color: #2C2E2D;
+      font-family: 'Noto Sans TC', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 紙張頁面陰影與比例 */
+    .book-page {
+      background-color: #FFFFFF;
+      box-shadow: 0 10px 30px -5px rgba(43, 83, 66, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+      border: 1px solid #E6E2D8;
+    }
+
+    /* 字體縮放控制 */
+    html.font-large {
+      font-size: 18px;
+    }
+    html.font-standard {
+      font-size: 16px;
+    }
+
+    /* 頂部 12 學派選單：可視化墨綠水平滑軌 (6px) */
+    .school-scrollbar {
+      scrollbar-width: thin;
+      scrollbar-color: #2B5342 #E3DDD2;
+    }
+    .school-scrollbar::-webkit-scrollbar {
+      height: 6px;
+    }
+    .school-scrollbar::-webkit-scrollbar-track {
+      background: #E3DDD2;
+      border-radius: 9999px;
+      margin: 0 4px;
+    }
+    .school-scrollbar::-webkit-scrollbar-thumb {
+      background: #2B5342;
+      border-radius: 9999px;
+    }
+    .school-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #1E3C2F;
+    }
+
+    /* 情緒標籤列隱藏捲軸但保留平滑滑動 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* 膠囊標籤微互動 */
+    .pill-tag {
+      transition: all 0.18s ease;
+    }
+    .pill-tag:hover {
+      background-color: #2B5342;
+      color: #FFFFFF;
+      border-color: #2B5342;
+    }
+
+    /* 列印友善樣式 */
+    @media print {
+      body {
+        background-color: #FFFFFF !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .book-page {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- 頂部出版工具列 (Fixed Header) -->
+  <header class="no-print sticky top-0 z-40 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#DCD7CC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+      <!-- 書名與副標 -->
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-brand-green text-white flex items-center justify-center font-serif font-bold text-lg shadow-sm shrink-0">
+          冊
+        </div>
+        <div>
+          <h1 class="font-serif font-bold text-brand-green text-base sm:text-lg tracking-wide leading-tight">
+            十二學派情緒諮商實務引導手冊
+          </h1>
+          <p class="text-xs text-brand-muted hidden sm:block">
+            60 個臨床情緒議題・階段問答圖表・中立引導語句庫・督導歷程紀錄表
+          </p>
+        </div>
+      </div>
+
+      <!-- 搜尋與功能控制按鈕群 -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <!-- 即時搜尋框 -->
+        <div class="relative">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="搜尋情緒、問句或關鍵字..."
+            class="w-40 sm:w-56 pl-8 pr-7 py-1.5 text-xs sm:text-sm bg-white border border-brand-border rounded-lg focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green transition"
+          />
+          <svg class="w-4 h-4 text-brand-muted absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+          </svg>
+          <button id="clearSearchBtn" class="hidden absolute right-2 top-2 text-xs text-brand-muted hover:text-brand-green">✕</button>
+        </div>
+
+        <!-- 閱讀模式切換：完整手冊書頁 / 精簡問答卡片 -->
+        <button
+          id="toggleModeBtn"
+          title="切換完整手冊書頁或精簡問答卡片模式"
+          class="px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg border border-brand-border bg-white text-brand-ink hover:bg-brand-sand transition flex items-center gap-1.5"
+        >
+          <span id="modeIcon">📖</span>
+          <span id="modeLabel">手冊書頁</span>
+        </button>
+
+        <!-- 中立引導語句速查抽屜按鈕 -->
+        <button
+          id="openPhrasesBtn"
+          class="px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg bg-brand-green text-white hover:bg-brand-greenDark transition flex items-center gap-1.5 shadow-sm"
+        >
+          <span>💬</span>
+          <span class="hidden md:inline">中立引導語句</span>
+          <span class="md:hidden">語句庫</span>
+        </button>
+
+        <!-- 字體大小切換 -->
+        <button
+          id="toggleFontBtn"
+          title="切換標準或放大閱讀字級"
+          class="px-2.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg border border-brand-border bg-white text-brand-ink hover:bg-brand-sand transition"
+        >
+          A/A+
+        </button>
+
+        <!-- 列印按鈕 -->
+        <button
+          onclick="window.print()"
+          title="列印或另存為 PDF"
+          class="hidden sm:flex px-2.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg border border-brand-border bg-white text-brand-ink hover:bg-brand-sand transition items-center gap-1"
+        >
+          🖨️
+        </button>
+      </div>
+    </div>
+
+    <!-- 12 大治療學派分頁導覽列（支援可視化墨綠水平滑軌 + 左右快速捲動鈕 + 展開全覽切換） -->
+    <div class="bg-[#F4F1EA] border-t border-[#E3DDD2]">
+      <div class="max-w-7xl mx-auto px-2 sm:px-6 py-2">
+        <div class="flex items-center gap-1.5">
+          <!-- 左側快速捲動鈕 -->
+          <button
+            id="scrollLeftSchoolBtn"
+            title="向左捲動學派選單"
+            class="shrink-0 w-7 h-7 rounded-full bg-white border border-brand-border text-brand-green hover:bg-brand-green hover:text-white flex items-center justify-center text-xs font-bold shadow-xs transition"
+          >
+            ◀
+          </button>
+
+          <!-- 12 學派選單容器（單行水平滑動模式 / 多排展開全覽網格模式） -->
+          <div
+            id="schoolTabs"
+            class="flex-1 flex items-center gap-1.5 overflow-x-auto school-scrollbar pb-1.5 pt-0.5 scroll-smooth"
+          >
+            <!-- 由 JS 動態生成 12 個學派分頁按鈕 -->
+          </div>
+
+          <!-- 右側快速捲動鈕 -->
+          <button
+            id="scrollRightSchoolBtn"
+            title="向右捲動檢視第 10～12 學派"
+            class="shrink-0 w-7 h-7 rounded-full bg-white border border-brand-border text-brand-green hover:bg-brand-green hover:text-white flex items-center justify-center text-xs font-bold shadow-xs transition"
+          >
+            ▶
+          </button>
+
+          <!-- 展開全覽 / 單行滑動 一鍵切換鈕 -->
+          <button
+            id="toggleExpandSchoolsBtn"
+            title="切換全部 12 學派展開網格或單行水平滑軌"
+            class="shrink-0 px-2.5 py-1.5 rounded-lg text-xs font-medium bg-white border border-brand-green/40 text-brand-green hover:bg-brand-green hover:text-white transition flex items-center gap-1 shadow-xs"
+          >
+            <span id="expandSchoolsIcon">⊞</span>
+            <span id="expandSchoolsLabel">展開全覽</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 情緒標籤快速篩選列 -->
+    <div class="bg-white border-t border-[#ECE8DF]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center gap-2 overflow-x-auto no-scrollbar text-xs">
+        <span class="text-brand-muted font-medium shrink-0">情緒脈絡篩選：</span>
+        <div id="emotionFilters" class="flex items-center gap-1.5 shrink-0">
+          <!-- 由 JS 動態生成情緒篩選膠囊 -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主內容工作區 -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 sm:py-8 flex flex-col lg:flex-row gap-6">
+
+    <!-- 左側：學派概覽與該學派 5 大主題目錄側邊欄 -->
+    <aside class="no-print lg:w-80 shrink-0 flex flex-col gap-4">
+      <!-- 學派理論核心小卡 -->
+      <div id="schoolOverviewCard" class="bg-white rounded-xl p-5 border border-[#E3DDD2] shadow-sm">
+        <!-- JS 動態填入當前學派核心定位 -->
+      </div>
+
+      <!-- 當前學派 5 個情緒主題目錄 -->
+      <div class="bg-white rounded-xl p-4 border border-[#E3DDD2] shadow-sm">
+        <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-brand-green/30">
+          <h2 class="text-sm font-bold text-brand-green tracking-wider flex items-center gap-1.5">
+            <span>📑</span>
+            <span id="sidebarListTitle">本學派情緒議題（5則）</span>
+          </h2>
+          <span id="topicProgressBadge" class="text-xs px-2 py-0.5 rounded-full bg-brand-sand text-brand-ink font-medium">
+            1 / 5
+          </span>
+        </div>
+        <div id="topicNavList" class="flex flex-col gap-2">
+          <!-- JS 動態生成 5 個主題切換按鈕 -->
+        </div>
+      </div>
+
+      <!-- 督導與筆記資料管理小工具 -->
+      <div class="bg-white rounded-xl p-4 border border-[#E3DDD2] text-xs text-brand-muted space-y-2.5 shadow-sm">
+        <div class="font-bold text-brand-green flex items-center justify-between">
+          <span>🗂️ 實務紀錄本地儲存庫</span>
+          <span id="savedCountBadge" class="bg-brand-green/10 text-brand-green px-2 py-0.5 rounded-full">0 筆筆記</span>
+        </div>
+        <p class="leading-relaxed">所有會談歷程位置表與督導演練省思皆自動儲存於瀏覽器本地端，離線亦可隨時開啟。</p>
+        <div class="flex gap-2 pt-1">
+          <button id="exportNotesBtn" class="flex-1 py-1.5 px-2.5 bg-brand-sand/70 border border-brand-border rounded-lg text-brand-ink font-medium hover:bg-brand-sand transition">
+            匯出全部筆記 (.txt)
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 右側：電子書主頁面渲染區 -->
+    <section class="flex-1 min-w-0">
+      <!-- 搜尋結果橫幅（僅在搜尋或情緒篩選啟用時顯示） -->
+      <div id="filterStatusBanner" class="hidden no-print mb-4 bg-brand-green text-white px-4 py-3 rounded-xl flex items-center justify-between shadow-sm">
+        <div class="text-sm flex items-center gap-2">
+          <span>🔍</span>
+          <span id="filterStatusText">篩選結果</span>
+        </div>
+        <button id="resetAllFiltersBtn" class="text-xs bg-white/20 hover:bg-white/30 px-3 py-1 rounded-lg transition">
+          清除篩選條件
+        </button>
+      </div>
+
+      <!-- 書頁內容容器 -->
+      <div id="ebookContentArea">
+        <!-- 由 JS 動態渲染精緻出版級書頁或精簡問答卡片 -->
+      </div>
+
+      <!-- 底部翻頁導覽列 (Book Pagination) -->
+      <div id="bookPaginationBar" class="no-print mt-6 flex items-center justify-between bg-white px-5 py-3.5 rounded-xl border border-[#E3DDD2] shadow-sm">
+        <button id="prevTopicBtn" class="flex items-center gap-2 text-sm font-medium text-brand-green hover:text-brand-greenDark disabled:opacity-40 disabled:pointer-events-none transition px-3 py-1.5 rounded-lg hover:bg-brand-sand/60">
+          <span>←</span>
+          <span id="prevTopicLabel">上一頁</span>
+        </button>
+
+        <div class="text-xs text-brand-muted font-medium tracking-widest" id="pageNumberIndicator">
+          PAGE 01 / 60
+        </div>
+
+        <button id="nextTopicBtn" class="flex items-center gap-2 text-sm font-medium text-brand-green hover:text-brand-greenDark disabled:opacity-40 disabled:pointer-events-none transition px-3 py-1.5 rounded-lg hover:bg-brand-sand/60">
+          <span id="nextTopicLabel">下一頁</span>
+          <span>→</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- 中立引導語句速查抽屜 (Slide-over Drawer，含少用／改用對照表) -->
+  <div id="phrasesDrawer" class="fixed inset-0 z-50 hidden">
+    <div id="phrasesBackdrop" class="absolute inset-0 bg-black/40 backdrop-blur-xs transition-opacity"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-full max-w-2xl bg-[#FAF8F5] shadow-2xl border-l border-[#DCD7CC] flex flex-col overflow-hidden">
+      <!-- 抽屜標頭 -->
+      <div class="px-6 py-5 bg-white border-b border-brand-green/30 flex items-start justify-between">
+        <div>
+          <h2 class="font-serif text-xl font-bold text-brand-green">中立引導語句參考</h2>
+          <p class="text-xs text-brand-muted mt-1">邀請、確認當下感受、暫停與收尾時可以怎麼說（點擊語句即可一鍵複製）</p>
+        </div>
+        <button id="closePhrasesBtn" class="p-2 rounded-lg text-brand-muted hover:bg-brand-sand hover:text-brand-ink transition">
+          ✕
+        </button>
+      </div>
+
+      <!-- 抽屜內容捲動區 -->
+      <div class="p-6 overflow-y-auto space-y-6 text-sm leading-relaxed">
+        <!-- 暖沙色導言盒 -->
+        <div class="bg-brand-sand rounded-xl p-4 text-brand-ink text-xs leading-relaxed">
+          這份參考整理了諮商會談中各個時刻可用的中立短句，從邀請探索、確認身心感受、調整步調，到安全暫停與結束整合。每一句都盡量是開放的邀請或問句，不替案主下結論，也不強迫揭露。最後附一張「少用／改用」對照表。挑順口的用，再改成你自己的說話方式。
+        </div>
+
+        <!-- 區塊一 -->
+        <div>
+          <h3 class="font-bold text-brand-green text-base pb-1.5 mb-3 border-b border-brand-green/40">
+            邀請與徵求同意
+          </h3>
+          <p class="text-xs text-brand-muted mb-2.5">邀請探索深層情緒或位置時，把「可以拒絕或停下來」說在前面。</p>
+          <ul class="space-y-2" id="phraseGroup1"></ul>
+        </div>
+
+        <!-- 區塊二 -->
+        <div>
+          <h3 class="font-bold text-brand-green text-base pb-1.5 mb-3 border-b border-brand-green/40">
+            確認當下的感受與身心錨定
+          </h3>
+          <p class="text-xs text-brand-muted mb-2.5">問的是此刻、這裡、身體上的感覺，少問「為什麼會這樣」。一次問一句就好。</p>
+          <ul class="space-y-2" id="phraseGroup2"></ul>
+        </div>
+
+        <!-- 區塊三 -->
+        <div>
+          <h3 class="font-bold text-brand-green text-base pb-1.5 mb-3 border-b border-brand-green/40">
+            暫停、減壓與安全收尾
+          </h3>
+          <p class="text-xs text-brand-muted mb-2.5">當案主情緒過載或接近會談尾聲時，協助回到當下與日常。</p>
+          <ul class="space-y-2" id="phraseGroup3"></ul>
+        </div>
+
+        <!-- 區塊四：少用／改用對照表 -->
+        <div>
+          <h3 class="font-bold text-brand-green text-base pb-1.5 mb-3 border-b border-brand-green/40">
+            引導語言「少用／改用」對照表
+          </h3>
+          <div class="rounded-xl overflow-hidden border border-[#DCD7CC] bg-white text-xs">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-brand-green text-white">
+                  <th class="py-2.5 px-3.5 w-1/2">少用（易帶預設或說教）</th>
+                  <th class="py-2.5 px-3.5 w-1/2">改用（開放、中立、邀請覺察）</th>
+                </tr>
+              </thead>
+              <tbody id="phraseCompareTable" class="divide-y divide-[#E6E2D8]">
+                <!-- 由 JS 動態填入 -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 輕量提示氣泡 (Toast Notification) -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-brand-green text-white text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 flex items-center gap-2">
+    <span>✓</span>
+    <span id="toastMsg">已複製到剪貼簿</span>
+  </div>
+
+  <!-- 完整 12 學派 × 5 主題 = 60 筆諮商實務資料庫與互動引擎 -->
+  <script>
+    // =========================================================================
+    // 1. 完整 12 大諮商治療學派與 60 個情緒議題資料庫（嚴格對齊指定目錄）
+    // =========================================================================
+    const COUNSELING_DATA = [
+      // -----------------------------------------------------------------------
+      // 學派 01：精神分析及動力取向治療
+      // -----------------------------------------------------------------------
+      {
+        id: 'psychoanalytic',
+        shortName: '01 精神分析動力',
+        fullName: '精神分析及動力取向治療',
+        engName: 'Psychoanalytic & Psychodynamic Therapy',
+        coreFocus: '探索潛意識衝突、早期客體關係內化、防衛機轉與移情／反移情動力，協助案主將無意識的重複強迫轉化為有意識的領悟與內在整合。',
+        keyConcepts: ['潛意識衝突', '防衛機轉', '移情與反移情', '早期客體關係', '自由聯想'],
+        topics: [
+          {
+            code: '01-1',
+            title: '01 莫名空虛與憂鬱感',
+            emotionTag: '憂鬱與空虛',
+            context: '案主說不出明確的重大打擊，卻長期處於低能量、自我貶低與莫名空虛中，對生活提不起勁。動力取向常發現這背後藏著「未被哀悼的早期失落」或「對重要客體的矛盾怒氣轉向攻擊自我」。',
+            stages: [
+              {
+                stage: '第一階段：區分悲傷與自我攻擊',
+                question: '「當你罵自己『真是個沒用的人』時，這個嚴厲批評的語氣和用詞，聽起來像不像你成長過程中的哪一個人？」',
+                reaction: '案主往往先愣住，隨後驚覺那是父親、母親或早年重要照顧者的口吻，眼眶泛紅。',
+                intent: '將「自我厭惡」外化為「內化的嚴厲超我聲音」，減輕自我認同的沉重負荷。'
+              },
+              {
+                stage: '第二階段：探詢未完成的哀悼',
+                question: '「如果心裡這份沉重的空虛是一種沒有流出來的眼淚，它其實是在為你生命中失去的哪一樣渴望而哭？」',
+                reaction: '案主回憶起童年情感忽視、未被回應的依附需求，或某段無疾而終的重要連結。',
+                intent: '提供穩定抱持（Holding）與鏡映，陪伴案主觸碰被凍結的哀傷而非急於振作。'
+              },
+              {
+                stage: '第三階段：整合愛與恨的矛盾情感',
+                question: '「有沒有可能，你心裡同時很愛他、渴望靠近他，但也對他當年的缺席或冷漠感到非常生氣與失望？」',
+                reaction: '案主鬆一口氣，理解矛盾情感是人之常情，不再透過憂鬱與自我懲罰來保護對父母的美好想像。',
+                intent: '協助案主從偏執分裂位態邁向憂鬱位態（Depressive Position）的成熟整合。'
+              }
+            ],
+            focusPills: ['攻擊轉向自我', '未完成的哀悼', '內化客體', '嚴厲超我', '情感剝奪'],
+            observations: [
+              '案主在敘述令人心酸的童年經驗時，是否帶著微笑或替大人找理由（情感隔離防衛）。',
+              '語速緩慢、眼神向下，但在提到某個早年分離細節時出現短暫的呼吸停頓。',
+              '諮商師在反移情中是否感受到一股「想用力拉他一把卻無能為力」的沉重感。'
+            ],
+            closingReminders: [
+              '肯定案主今天願意停下來聽見內在的哀傷，提醒「允許自己哀悼」正是生命力復甦的起點。',
+              '確認案主今晚回家後的作息與基本自我照顧安排，協助從童年記憶回到今日現實。'
+            ],
+            pauseAlert: '若案主出現嚴重自殺意念、具體輕生計畫、連續數日無法進食睡眠或精神病性症狀，需立即啟動危機介入與精神科醫療轉介。',
+            practicalTip: '治療師需覺察自身「想拯救案主」的反移情焦慮，過度積極給建議反而會讓案主感到內在的苦痛不被理解。'
+          },
+          {
+            code: '01-2',
+            title: '02 反覆關係焦慮與被拋棄恐懼',
+            emotionTag: '焦慮與恐懼',
+            context: '案主在親密關係中極度敏感，伴侶晚回訊息或需要獨處時便引發強烈的被拋棄恐慌，進而出現不斷查勤、情緒勒索或先發制人提分手的行為，陷入「越怕被丟下、越把人推開」的循環。',
+            stages: [
+              {
+                stage: '第一階段：辨識潛意識重複強迫腳本',
+                question: '「當你忍不住追問伴侶行蹤或先說出『乾脆分手算了』時，你心裡最想確認的答案是什麼？而通常得到的結果又是什麼？」',
+                reaction: '案主發現自己的焦慮反應反而一次次製造出最害怕的疏離結局，感到沮喪與無奈。',
+                intent: '以不批判的好奇心描繪出「重複強迫（Repetition Compulsion）」的關係閉環。'
+              },
+              {
+                stage: '第二階段：追溯早期依附創傷與分離記憶',
+                question: '「這種『只要對方一轉身，我就會徹底被遺忘』的恐慌，最早是在你幾歲、面對誰離開的時候出現過？」',
+                reaction: '浮現童年被寄養、父母爭吵離家或照顧者情緒陰晴不定的早期無助畫面。',
+                intent: '協助案主區分「過去無力挽留照顧者的嬰孩」與「現在擁有選擇權的成年人」。'
+              },
+              {
+                stage: '第三階段：修通移情與建立客體恆常性',
+                question: '「每次快到我們會談結束的最後五分鐘，或當我因為休假必須停談一週時，你心裡會浮現什麼樣的感覺？」',
+                reaction: '案主坦承會覺得「老師是不是覺得我很煩、不想理我了」，隨後在穩定回應中獲得安撫。',
+                intent: '利用諮商室的分離界線作為微縮實驗室，建立穩固的內在客體恆常性。'
+              }
+            ],
+            focusPills: ['重複強迫', '分離焦慮', '投射性認同', '客體恆常性', '移情線索'],
+            observations: [
+              '案主描述伴侶行為時，是否將「自己的恐懼猜測」當成「客觀事實」陳述。',
+              '在會談時間快結束時，案主是否特別容易丟出重大議題以延長連結（分離焦慮重現）。',
+              '對治療師是否會試探「其他案主是不是比我更優秀、更受你喜歡」。'
+            ],
+            closingReminders: [
+              '重申諮商室穩定且可預測的會談時間框架，提供安全客體的經驗。',
+              '鼓勵案主下次焦慮湧上時，先試著區分「眼前的事實」與「過去的恐慌腳本」。'
+            ],
+            pauseAlert: '若關係中涉及跟蹤騷擾、暴力威脅或以自殘脅迫伴侶留下，需優先進行人身安全與法律界線評估。',
+            practicalTip: '穩定且準時的會談架構本身，就是對不安全依附案主「客體恆常性」最好的無聲修復。'
+          },
+          {
+            code: '01-3',
+            title: '03 壓抑的憤怒與被動攻擊',
+            emotionTag: '憤怒與衝突',
+            context: '案主表面上溫和順從、從不與人正面起衝突，卻常透過忘記答應的事、拖延進度、冷戰沉默或反諷語氣來表達不滿，事後又常因莫名的胃痛或人際疏離感到委屈。',
+            stages: [
+              {
+                stage: '第一階段：溫和照見被動攻擊的保護功能',
+                question: '「當你口頭上答應了主管或伴侶的要求，轉身卻『剛好忘記』或拖到最後一刻時，這份拖延是不是在幫你說出嘴巴不敢說的『我不要』？」',
+                reaction: '案主先是驚訝，隨後苦笑承認「因為我直接拒絕的話，怕當場會被罵或被討厭」。',
+                intent: '去道德化地揭示「被動攻擊（Passive-Aggression）」作為間接表達怒意的防衛功能。'
+              },
+              {
+                stage: '第二階段：探索表達直接憤怒的早期禁忌',
+                question: '「在你的原生家庭裡，如果有人直接表現出『我很生氣、我不同意』，通常會發生什麼可怕的後果？」',
+                reaction: '憶起童年一旦反駁就會遭到嚴厲懲罰或長達數天的冷暴力孤立。',
+                intent: '理解「直接生氣＝毀滅關係」的潛意識恐懼起源。'
+              },
+              {
+                stage: '第三階段：在諮商關係中試探健康的自我主張',
+                question: '「如果今天你對我的某個提議或安排感到不耐煩，你願意試著直接告訴我，看看我們之間會發生什麼事嗎？」',
+                reaction: '案主試探性地表達微小不滿，發現治療師不但沒生氣，反而感謝他的坦誠。',
+                intent: '提供「直接表達不同意見並不會摧毀關係」的矯正性情緒體驗。'
+              }
+            ],
+            focusPills: ['被動攻擊', '壓抑與反向形成', '權威恐懼', '間接表達', '攻擊性整合'],
+            observations: [
+              '案主是否常在諮商中遲到、忘記繳費或對作業敷衍，卻滿口道歉（移情中的被動抵抗）。',
+              '說話時嘴角微笑但雙手緊握、咬緊牙關等被抑制的身體張力。',
+              '治療師在反移情中是否容易感到莫名煩躁或被暗中阻撓。'
+            ],
+            closingReminders: [
+              '肯定案主今天願意看見自己「繞遠路表達生氣」的習慣，這需要極大的自我覺察。',
+              '提醒案主：真實的怒氣不是毒藥，它是保護自我界線的重要生命能量。'
+            ],
+            pauseAlert: '若被動攻擊演變為危及他人安全的職場破壞或自傷行為，需立即建立明確的現實責任與安全評估。',
+            practicalTip: '面對被動攻擊的案主，治療師切忌落入「抓把柄指責他」的權力對立，而要好奇地與他一起探索「直接說不的難處」。'
+          },
+          {
+            code: '01-4',
+            title: '04 過度內疚與嚴厲超我自我懲罰',
+            emotionTag: '內疚與羞愧',
+            context: '案主無論在工作或家庭中只要有一點小失誤，或僅僅只是為自己多著想一點，便陷入強烈的罪惡感與自我苛責，甚至在即將成功或快樂時無意識地搞砸一切（潛意識自我懲罰）。',
+            stages: [
+              {
+                stage: '第一階段：辨識「嚴厲超我」的內在審判法庭',
+                question: '「你心裡似乎住著一位永不妥協的法官，只要你稍微放鬆或犯一點小錯，它就會立刻判你重刑。這位法官平常都用哪些罪名起訴你？」',
+                reaction: '案主列出「自私、不夠努力、都是你害大家不開心」等嚴苛指控。',
+                intent: '具象化超我的殘酷性，讓案主看見自己如何被內在審判官折磨。'
+              },
+              {
+                stage: '第二階段：探索過度內疚背後的「全能幻想」與防禦',
+                question: '「有時候人會寧願相信『一切都是我的錯』，因為這樣至少覺得自己還有能力控制局面，而不用面對『有些事我無能為力』的恐懼，對你來說是這樣嗎？」',
+                reaction: '案主深受觸動，意識到自我責備其實是在掩飾對失控與無助的恐懼。',
+                intent: '揭示「道德防衛」與潛意識全能感（Omnipotence）的心理動力。'
+              },
+              {
+                stage: '第三階段：鬆動超我嚴苛度，發展慈悲的自我功能',
+                question: '「如果把這位法官的權力交還給現在成熟的你，你會怎麼重新審理這件小失誤，給自己一個公平且有人性的判決？」',
+                reaction: '案主語氣放軟，開始允許自己作為一個有限度的普通人而存在。',
+                intent: '強化自我（Ego）的現實檢驗與自我慈悲能力，平衡超我壓迫。'
+              }
+            ],
+            focusPills: ['嚴厲超我', '道德防衛', '潛意識自我懲罰', '全能責任幻想', '自我功能強化'],
+            observations: [
+              '案主是否頻繁說「對不起、都是我的問題」，甚至連治療室冷氣太冷都覺得是自己造成的。',
+              '觀察案主在好事發生後是否立刻出現「樂極生悲」的焦慮或自我破壞行為。'
+            ],
+            closingReminders: [
+              '提醒案主：真正的責任是從經驗中學習，而不是無止盡地把自己釘在十字架上。',
+              '肯定案主今天對內在審判官提出質疑的勇氣。'
+            ],
+            pauseAlert: '若罪惡感伴隨嚴重自我傷害行為、自殘懲罰或精神病性自罪妄想，需立即轉介精神科進行安全評估。',
+            practicalTip: '心理動力取向區分「迫害性內疚（來自嚴厲超我，只想懲罰自己）」與「修復性內疚（來自愛與關懷，想修補關係）」。'
+          },
+          {
+            code: '01-5',
+            title: '05 親密恐懼與情感隔離',
+            emotionTag: '孤獨與麻木',
+            context: '案主在關係一旦要進一步承諾或深入交心時，便突然覺得對方很煩、沒感覺了，或用「工作太忙」抽離；平時遇到傷心事也像「隔著一層毛玻璃看世界」，理性冷靜卻深感孤獨。',
+            stages: [
+              {
+                stage: '第一階段：尊重情感隔離防禦的生存意義',
+                question: '「這層隔開所有濃烈情緒的毛玻璃，在過去是不是曾經幫你擋掉過一些太痛、太讓人窒息的風暴？」',
+                reaction: '案主點頭，感受到自己的冷靜與抽離不是「冷血」，而是曾經的求生保護。',
+                intent: '去病理化防衛機轉，肯定「情感隔離（Isolation of Affect）」在早年創傷中的保護作用。'
+              },
+              {
+                stage: '第二階段：探索「一旦靠近就會被吞沒或受傷」的潛意識恐懼',
+                question: '「當關係變得越來越親近時，你內心最深處擔心一旦把心門完全打開，接下來會發生什麼可怕的事？」',
+                reaction: '浮現「怕失去自我控制權」、「怕對方看穿我的脆弱後轉身離開」的深層恐懼。',
+                intent: '觸碰親密恐懼背後的吞沒焦慮與遺棄創傷。'
+              },
+              {
+                stage: '第三階段：在安全距離中練習當下情感連結',
+                question: '「當我現在這樣專注地聽你說著這份孤單時，你心裡有什麼細微的感覺？會不會也有一點點想往後退？」',
+                reaction: '案主在安全的諮商關係中覺察並停留於微小的溫暖連結，不再立刻斷電。',
+                intent: '以治療關係作為安全過渡空間，逐步解凍真實自體的情感流動。'
+              }
+            ],
+            focusPills: ['情感隔離', '理智化防禦', '親密與吞沒焦慮', '真實自體凍結', '依附退縮'],
+            observations: [
+              '案主是否能用極其精準、分析性的語言談論自己的創傷，卻沒有任何臉部表情或語氣起伏。',
+              '治療師在反移情中是否容易感到睏倦、無聊或彷彿隔著一道厚牆。'
+            ],
+            closingReminders: [
+              '肯定案主即使在麻木與防備中仍願意前來尋求連結，這本身就是內在渴望的證明。',
+              '結束前進行簡單的感官著陸，確保案主平穩銜接日常。'
+            ],
+            pauseAlert: '若情感麻木伴隨嚴重的記憶斷片、身份混淆或長期解離障礙，需轉介創傷專科與精神科進行整合評估。',
+            practicalTip: '面對高度理智化與隔離的案主，治療師切忌跟著進行「純頭腦的哲學辯論」，要溫柔地把焦點帶回此時此地的關係與身體感受。'
+          }
+        ]
+      },
+
+      // -----------------------------------------------------------------------
+      // 學派 02：阿德勒學派治療
+      // -----------------------------------------------------------------------
+      {
+        id: 'adlerian',
+        shortName: '02 阿德勒學派',
+        fullName: '阿德勒學派治療',
+        engName: 'Adlerian Therapy (Individual Psychology)',
+        coreFocus: '以目的論與整體觀看待人，探索自卑感與補償策略、私人邏輯、家庭星座與早期記憶，透過鼓勵與重新定向培養社會情懷與生命勇氣。',
+        keyConcepts: ['自卑情結與補償', '私人邏輯', '家庭星座', '早期記憶', '社會情懷與鼓勵'],
+        topics: [
+          {
+            code: '02-1',
+            title: '01 深層自卑感與過度補償焦慮',
+            emotionTag: '自卑與焦慮',
+            context: '案主總在社群或職場與他人比較，覺得自己永遠落後、不夠格，因此陷入無止盡的加班、進修或追求外在光環，一旦停下來便感到深深的恐慌與無價值感。',
+            stages: [
+              {
+                stage: '第一階段：解碼私人邏輯（Private Logic）的條件句',
+                question: '「在你的內心規則裡，你必須做到什麼程度、贏過多少人，才覺得自己有資格安心地休息一天？」',
+                reaction: '案主說出「我必須比身邊的人都優秀，否則就會被看不起、沒有存在價值」。',
+                intent: '具象化案主的「人生條件句」，讓無意識的過度補償邏輯浮上檯面。'
+              },
+              {
+                stage: '第二階段：探索家庭星座中的垂直比較起源',
+                question: '「在你小時候的家裡，大家最常誇獎誰？你當時覺得自己要做些什麼才能爭取到一席之地？」',
+                reaction: '發現自己從小扮演「不能輸的第一名」或「必須追趕優秀手足」的角色。',
+                intent: '連結童年家庭星座的生存決策與現在成年生活的代價。'
+              },
+              {
+                stage: '第三階段：從「追求個人優越」轉向「社會情懷」',
+                question: '「如果不看輸贏和排名，做哪一件小事會讓你覺得自己跟身邊的人有溫暖的連結與貢獻？」',
+                reaction: '案主開始思考分享、合作或單純享受過程的經驗，焦慮大幅下降。',
+                intent: '運用「鼓勵（Encouragement）」肯定案主的存在價值而非僅僅表現。'
+              }
+            ],
+            focusPills: ['自卑感與過度補償', '私人邏輯', '家庭星座', '垂直比較', '存在價值'],
+            observations: [
+              '案主敘述生活時是否頻繁使用「第一、贏、輸、落後、標準」等競爭性詞彙。',
+              '對於休息或純粹玩樂是否帶有強烈的罪惡感，認為那是「浪費生命」。',
+              '談及同儕或手足成就時，身體是否不自覺前傾或緊繃。'
+            ],
+            closingReminders: [
+              '給予具體的「鼓勵」（肯定勇氣與投入的過程），而非空泛的「讚美」（評價結果）。',
+              '邀請案主本週練習一次「不帶任何生產力目的」的純粹休息。'
+            ],
+            pauseAlert: '若焦慮伴隨嚴重失眠、心悸恐慌發作或極端過勞症狀，應建議同步進行身心科或家醫科生理評估。',
+            practicalTip: '阿德勒認為「每個人都有自卑感，這是人類追求進步的動力；但若陷入『只關注自己優劣』的比較，就會變成病態的自卑情結。」'
+          },
+          {
+            code: '02-2',
+            title: '02 討好型人格與害怕被拒絕',
+            emotionTag: '委屈與焦慮',
+            context: '案主總是「有求必應」、不敢拒絕任何人的請託，把別人的需求放在自己前面，內心卻累積了巨大的委屈、疲憊與「為什麼沒有人這樣對我」的怨懟。',
+            stages: [
+              {
+                stage: '第一階段：看見討好背後的「條件式歸屬」交易',
+                question: '「在你的私人邏輯裡，如果你今天不幫忙、不當那個配合度最高的好人，別人還有什麼理由留下你？」',
+                reaction: '案主驚覺自己把「被利用」誤認為「被需要與被愛」，感到心酸與清醒。',
+                intent: '溫柔揭示「用自我犧牲購買歸屬感」的潛在交易。'
+              },
+              {
+                stage: '第二階段：檢視家庭星座中的「乖巧照顧者」角色',
+                question: '「小時候在家裡，是不是只要你夠懂事、不添麻煩，大人就會鬆一口氣並誇獎你？當時你的需求擺在哪裡？」',
+                reaction: '憶起童年必須察言觀色、壓抑自己渴望才能維持家庭和平的經歷。',
+                intent: '肯定童年策略曾幫助家庭運作，但現在已造成成年自我的過度耗損。'
+              },
+              {
+                stage: '第三階段：練習平等互惠與「安全拒絕」實驗',
+                question: '「這週如果遇到一個你其實不想答應的小請求，我們可以怎麼用既溫和又堅定的方式說『不』？甚至現在你可以先練習拒絕我一個小提議嗎？」',
+                reaction: '在安全的諮商關係中練習拒絕，體驗說出真實意願的輕鬆感。',
+                intent: '區分「健康的社會情懷（平等愛人與愛己）」與「病態的自我犧牲」。'
+              }
+            ],
+            focusPills: ['討好者生活風格', '歸屬感迷思', '親職化兒童', '課題分離', '安全拒絕實驗'],
+            observations: [
+              '案主在會談中是否頻繁詢問「這樣說可以嗎？」「你會不會覺得我很煩？」。',
+              '談論自己受委屈時，語氣卻依然保持微笑與禮貌。',
+              '案主對別人的喜好瞭若指掌，卻很難說出「我想要什麼」。'
+            ],
+            closingReminders: [
+              '肯定案主這週「哪怕只有一次把自己的感受放在前面」的勇敢嘗試。',
+              '提醒案主：真正愛你的人，不會因為你設下界線而離開；會離開的，原本就只是喜歡你的順從。'
+            ],
+            pauseAlert: '若長期討好導致嚴重身心耗竭、自律神經失調或憂鬱傾向，需結合醫療照護與生活減壓調整。',
+            practicalTip: '治療師需留意不要無意間指派過多作業給討好型案主，否則他會為了討好治療師而硬撐完成。'
+          },
+          {
+            code: '02-3',
+            title: '03 完美主義與拖延背後的恐懼',
+            emotionTag: '恐懼與羞愧',
+            context: '案主對工作或學業有極高標準，常因為害怕「做不到一百分」而遲遲不敢動手，口頭上說很想開始，卻對所有建議都回應「是的，但是⋯」，陷入拖延與自我貶低。',
+            stages: [
+              {
+                stage: '第一階段：探索拖延行為的「目的論」保護功能',
+                question: '「如果我們把『拖延與沒動力』看成是一個保護你的盾牌，它現在正幫你擋掉哪一種可怕的失敗羞辱？」',
+                reaction: '案主頓悟「只要我不全力以赴開始，就永遠可以說『我只是沒時間做』，而不會證明自己真的不行」。',
+                intent: '不指責案主懶惰，而是點出自我設限背後的保護目的。'
+              },
+              {
+                stage: '第二階段：運用「問題問句」與早期記憶找回勇氣',
+                question: '「如果沒有這個對失敗的恐懼，你現在人生中最必須去面對的挑戰是什麼？回想八歲以前，你有沒有哪一次遇到困難但想辦法跨過去的經驗？」',
+                reaction: '案主辨識出逃避的人生任務，並從早期記憶中重新連結曾經的解決問題力量。',
+                intent: '運用阿德勒「問題問句（The Question）」與早期記憶資源技術。'
+              },
+              {
+                stage: '第三階段：建立「不完美的勇氣」五分鐘行動',
+                question: '「阿德勒說我們需要『不完美的勇氣』。如果允許自己先當個笨拙的初學者，這週你願意承擔哪一個『就算寫得很爛也沒關係』的五分鐘啟動？」',
+                reaction: '案主卸下全能包袱，願意跨出微小且無壓力的第一步。',
+                intent: '打破「全有或全無」的僵化生活風格，鼓勵漸進式嘗試。'
+              }
+            ],
+            focusPills: ['目的論', '自我設限盾牌', '不完美的勇氣', '阿德勒問題問句', '早期記憶資源'],
+            observations: [
+              '當談到具體行動時，案主是否立刻提出外部環境限制（「是的，但是⋯」遊戲）。',
+              '觀察案主是否將「一次表現不完美」過度類化為「我整個人是個失敗者」。'
+            ],
+            closingReminders: [
+              '確認本週的行動步驟小到「幾乎不可能失敗」，確保案主累積成功經驗。',
+              '提醒案主：完成永遠比完美更真實、更有生命力。'
+            ],
+            pauseAlert: '若拖延伴隨重度憂鬱症核心症狀或注意力缺陷過動症（ADHD）生理困擾，需轉介精神科進行完整鑑別評估。',
+            practicalTip: '當案主說「是的，但是⋯」時，諮商師應立刻停止給建議，轉而好奇探索「是什麼阻止你跨出那一步」。'
+          },
+          {
+            code: '02-4',
+            title: '04 手足競爭與家庭星座失落感',
+            emotionTag: '嫉妒與委屈',
+            context: '案主在成長過程中常覺得父母偏心兄妹，成年後只要看到手足獲得父母肯定或資源，就立刻湧現強烈的嫉妒、憤怒與「我永遠不被重視」的失落感。',
+            stages: [
+              {
+                stage: '第一階段：解讀「家庭星座（Family Constellation）」的角色心理位置',
+                question: '「在你們家的兄弟姊妹排行裡，每個人分別搶佔了什麼位置（例如：會讀書的老大、會撒嬌的老么）？你當時選擇了哪一種生存位置？」',
+                reaction: '案主看見手足各自在家庭系統中的求生策略，理解「心理排行」比實際出生順序更影響性格。',
+                intent: '從家庭星座視角理解手足競爭與分工的起源。'
+              },
+              {
+                stage: '第二階段：修正「父母的愛是有限大餅」的私人邏輯',
+                question: '「小時候你似乎認為父母的愛只有一塊餅，分給他就沒你的份了。但現在長大後的你，真的還需要靠父母的這塊餅來決定自己的價值嗎？」',
+                reaction: '案主從童年匱乏感中清醒，意識到成年後自己有能力創造多元的愛與成就。',
+                intent: '更新兒時對愛與資源的零和博弈認知。'
+              },
+              {
+                stage: '第三階段：建立成年手足的平等合作關係',
+                question: '「如果不再把手足當成競爭對手，你希望如何定義你們成年後的相處界線與互動方式？」',
+                reaction: '案主放下比較心態，重獲內在平靜與自主權。',
+                intent: '將垂直競爭轉化為水平尊重與課題分離。'
+              }
+            ],
+            focusPills: ['家庭星座', '心理出生順序', '零和競爭迷思', '早期手足記憶', '水平關係'],
+            observations: [
+              '阿德勒特別重視「心理排行」：例如老大突然失去獨生子地位的「被廢黜感（Dethronement）」，或老二永遠在追趕的焦慮。',
+              '當案主停止與手足比較時，嫉妒感會迅速轉化為對自身人生任務的專注。'
+            ],
+            closingReminders: [
+              '肯定案主坦誠面對嫉妒與失落感的真誠，這需要極大的勇氣。',
+              '鼓勵案主把原本用來關注手足的能量，轉向灌溉自己熱愛的生活領域。'
+            ],
+            pauseAlert: '若家庭中涉及遺產分配、父母重病照顧責任不均等現實法律與財務衝突，建議結合家庭會議協商或法律諮詢資源。',
+            practicalTip: '詢問「小時候你和手足之間印象最深的一件事」往往能直接照見整個家庭星座的互動腳本。'
+          },
+          {
+            code: '02-5',
+            title: '05 生命意義迷惘與社交退縮',
+            emotionTag: '孤獨與迷惘',
+            context: '案主覺得自己與同儕、社會格格不入，認為「沒有人能真正理解我」，因此主動築起高牆、退出社交與工作挑戰，內心卻感到深沉的孤立與人生無意義感。',
+            stages: [
+              {
+                stage: '第一階段：看見「孤立防禦」背後的保護意圖',
+                question: '「當你覺得『我跟大家都不一樣、沒人懂我』的時候，這份疏離感是不是也在幫你省去『試著靠近卻被拒絕』的風險？」',
+                reaction: '案主點頭，意識到社交退縮是一種先發制人的自我保護策略。',
+                intent: '同理孤獨的痛楚，同時照見退縮背後的保護目的。'
+              },
+              {
+                stage: '第二階段：連結人類共通性與三大人生任務',
+                question: '「阿德勒說人生有三大任務：工作貢獻、友誼歸屬、親密之愛。在這三個領域裡，哪一個是你現在最想搭起一座小小橋樑的地方？」',
+                reaction: '案主在具體架構中看見方向，不再覺得人生是一片無邊際的迷霧。',
+                intent: '以三大人生任務為羅盤，將抽象迷惘具象化。'
+              },
+              {
+                stage: '第三階段：啟動微小的「社會情懷貢獻」行動',
+                question: '「如果不需要立刻交到知心好友，這週你可以用哪一種低壓力的方式，為身邊的環境或某個人帶來一點點溫暖？」',
+                reaction: '案主願意從問候鄰居、參與小型興趣聚會或志工服務開始踏出第一步。',
+                intent: '引導案主從「被動等待被理解」轉向「主動釋出善意與貢獻」。'
+              }
+            ],
+            focusPills: ['社會情懷', '三大人生任務', '孤立防禦', '貢獻感重建', '彷彿（Acting As If）技術'],
+            observations: [
+              '案主是否設下極高的「被理解標準」（例如：我不說你也要全懂），導致人際互動必然失望。',
+              '觀察案主在談及助人或被需要的經驗時，眼神是否重新出現光彩。'
+            ],
+            closingReminders: [
+              '真誠表達治療師今天在會談中與案主同在的感受，強化連結體驗。',
+              '鼓勵案主記錄本週任何一個微小的「人際善意瞬間」。'
+            ],
+            pauseAlert: '若長期社會孤立伴隨嚴重被害妄想、幻聽或完全喪失現實社交功能，需轉介精神科與社區心理衛生資源。',
+            practicalTip: '培養「社會情懷」不是要案主變成外向的社交達人，而是讓他感受到「我是人類共同體的一份子，我有價值也能有所貢獻」。'
+          }
+        ]
+      },
+
+      // -----------------------------------------------------------------------
+      // 學派 03：當事人中心治療
+      // -----------------------------------------------------------------------
+      {
+        id: 'person-centered',
+        shortName: '03 當事人中心',
+        fullName: '當事人中心治療',
+        engName: 'Person-Centered Therapy (Carl Rogers)',
+        coreFocus: '堅信人具有內在的自我實現傾向，透過治療師的「真誠一致、無條件正向關懷、深度同理心」三大核心態度，消融價值條件化，促進真實自我的整合。',
+        keyConcepts: ['無條件正向關懷', '深度同理心', '真誠一致', '價值條件化', '實現傾向'],
+        topics: [
+          {
+            code: '03-1',
+            title: '01 價值條件化下的自我否定與羞恥',
+            emotionTag: '羞愧與自我懷疑',
+            context: '案主習慣用外界的評價、父母的期待或社會標準來衡量自己，一旦達不到標準就陷入深深的自我否定與羞恥感，完全聽不見自己內在真實的聲音。',
+            stages: [
+              {
+                stage: '第一階段：提供無條件正向關懷的安全空間',
+                question: '「聽起來你一直很努力想符合所有人的期待，但心裡其實非常疲憊。在這裡，你不需要成為任何人，只需要做現在的你。」',
+                reaction: '案主肩膀明顯放鬆，眼眶濕潤，感受到久違的喘息與接納。',
+                intent: '建立無評價的安全心理氣候，軟化防衛。'
+              },
+              {
+                stage: '第二階段：辨識「價值條件化（Conditions of Worth）」',
+                question: '「當你說『我應該要更成功、更懂事才配被愛』的時候，這句話裡的『應該』，是誰的聲音？你自己的心裡其實怎麼想？」',
+                reaction: '案主開始覺察自己活在外界灌輸的標準裡，產生內在不一致的清醒感。',
+                intent: '協助案主區分「外界價值條件」與「內在有機體評價過程」。'
+              },
+              {
+                stage: '第三階段：信任並連結內在有機體智慧',
+                question: '「如果把外面所有的掌聲和批評聲都關成靜音，你心裡那個真實的聲音現在想對你說什麼？」',
+                reaction: '案主說出自己真正渴望的生活步調與價值選擇，自我概念趨於一致。',
+                intent: '信任案主的實現傾向（Actualizing Tendency），支持其做自己的主人。'
+              }
+            ],
+            focusPills: ['價值條件化', '自我概念不一致', '無條件正向關懷', '有機體評價過程', '真實自我'],
+            observations: [
+              '案主是否頻繁尋求治療師的認同或標準答案（「老師你覺得我這樣做對嗎？」）。',
+              '觀察案主從「談論別人怎麼看我」轉向「談論我自己的感受」的關鍵轉折點。',
+              '當觸及真實自我時，案主的聲音通常會變得更低沉、真摯且有力量。'
+            ],
+            closingReminders: [
+              '感謝案主今天對治療師的信任與真誠分享。',
+              '肯定案主內在已經擁有的力量與清晰度，陪伴其帶著這份感受回到生活。'
+            ],
+            pauseAlert: '若案主處於急性危機、強烈自殺風險或無法自我照顧的混亂期，需暫時採取更具結構性與保護性的危機評估介入。',
+            practicalTip: '當事人中心治療的精髓不在「技巧」，而在於治療師是否真正「如其所是地與案主同在（Being With）」。'
+          },
+          {
+            code: '03-2',
+            title: '02 情緒麻木與真實感受疏離',
+            emotionTag: '麻木與疏離',
+            context: '案主在家庭或職場中長期扮演「理性、懂事、情緒穩定」的角色，久而久之變得不知道自己真正是快樂、難過還是生氣，感到內在乾涸、與自己斷了線。',
+            stages: [
+              {
+                stage: '第一階段：無條件接納當下的「沒感覺」狀態',
+                question: '「你不需要為了在這裡而勉強擠出什麼情緒。如果現在心裡就是一片安靜或空空的，我們就一起先陪著這個安靜待一會兒。」',
+                reaction: '案主卸下「必須表現出進步或情緒」的壓力，身體逐漸放鬆。',
+                intent: '解除次級焦慮，接納案主此刻真實的經驗流。'
+              },
+              {
+                stage: '第二階段：貼近微小的經驗邊緣（Experiencing Edge）',
+                question: '「當你說起這件事『好像沒什麼感覺』時，我注意到你的眉頭輕輕皺了一下，胸口也有點悶悶的。如果那個悶悶的感覺會說話，它想表達什麼？」',
+                reaction: '案主順著身體微感覺往下探索，慢慢觸碰到被壓抑已久的委屈與酸楚。',
+                intent: '運用精準的情感反映與軀體線索鏡映，協助經驗符號化（Symbolization）。'
+              },
+              {
+                stage: '第三階段：接納所有情緒都是真實自我的有機部分',
+                question: '「這份剛剛冒出來的難過和疲憊，其實是你心裡最真實的溫度。當你允許它存在時，你覺得自己變得更脆弱，還是更完整了？」',
+                reaction: '案主感受到與自己重新連線的踏實感，恢復情感流動。',
+                intent: '促進經驗與自我概念的整合（Congruence）。'
+              }
+            ],
+            focusPills: ['經驗符號化', '真誠一致', '經驗邊緣探索', '情緒允許', '自我重新連線'],
+            observations: [
+              '案主在訴苦時是否習慣加上「其實也沒什麼啦、比我辛苦的人很多」來自我否定。',
+              '觀察案主是否連在諮商中都在照顧治療師的感受。'
+            ],
+            closingReminders: [
+              '肯定案主今天願意放慢腳步、重新傾聽自己內在細微聲音的溫柔。',
+              '提醒案主：每一種情緒都是生命給你的真實訊息，沒有好壞對錯之分。'
+            ],
+            pauseAlert: '若情緒麻木源於嚴重解離創傷或伴隨自傷行為，需依創傷知情原則謹慎控制探索深度並確保安全感。',
+            practicalTip: '治療師無需急著「挖出案主的情緒」，只要穩定提供溫暖專注的同在，案主被凍結的經驗自然會慢慢解凍。'
+          },
+          {
+            code: '03-3',
+            title: '03 重大失落後的深層悲傷與無助',
+            emotionTag: '悲傷與無助',
+            context: '案主剛經歷親人離世、分手或重大變故，身邊親友不斷勸他「要看開、要往前看」，反而讓案主感到極度孤單，覺得自己的悲傷不被允許存在。',
+            stages: [
+              {
+                stage: '第一階段：允許悲傷如其所是地存在',
+                question: '「在外面大家都要你趕快好起來，但在這裡，如果你想哭、想難過，或者什麼都不想說，都是完全可以的。」',
+                reaction: '案主壓抑已久的眼淚終於決堤，釋放出深層的哀痛與無助。',
+                intent: '打破社會對悲傷的催促，給予悲傷充分的心理空間。'
+              },
+              {
+                stage: '第二階段：深度同理悲傷背後的愛與意義',
+                question: '「這份痛這麼深，是因為那段關係或那個夢想對你來說曾經那麼真實、那麼重要，對嗎？」',
+                reaction: '案主在淚水中點頭，感受到自己與這份情感被深深理解與見證。',
+                intent: '使用貼近案主隱喻的深度同理反映，陪伴走過失落幽谷。'
+              },
+              {
+                stage: '第三階段：在接納中自然萌發新的生命力',
+                question: '「帶著這份思念與痛楚，現在的你最想怎麼溫柔地照顧自己，陪自己度過今晚？」',
+                reaction: '案主在悲傷中逐漸穩定，主動思考微小的自我照顧行動。',
+                intent: '尊重悲傷的有機節奏，相信自我療癒的實現傾向。'
+              }
+            ],
+            focusPills: ['哀傷陪伴', '去評價空間', '深度情感反映', '有機療癒歷程', '真誠同在'],
+            observations: [
+              '案主哭泣後是否立刻道歉（「對不起我失態了」），顯示平時脆弱被壓抑。',
+              '當悲傷被真正接住時，案主通常會出現一聲深長的嘆息，緊繃肩膀隨之放鬆。'
+            ],
+            closingReminders: [
+              '溫柔提醒案主哭泣後多喝水，今晚允許自己早點休息、放慢步調。',
+              '重申下週同一時間治療師依然會在這裡陪伴。'
+            ],
+            pauseAlert: '若喪慟反應出現強烈追隨逝者念頭、嚴重自傷行為或長達數月完全無法維持基本生存功能，需評估複雜性哀傷並轉介醫療。',
+            practicalTip: '面紙盒放在案主伸手可及之處即可，哭泣時急著遞面紙有時會被案主解讀為「希望他趕快停止哭泣」。'
+          },
+          {
+            code: '03-4',
+            title: '04 外在評價焦慮與失去自我信任',
+            emotionTag: '焦慮與自我懷疑',
+            context: '案主做任何事都極度在意別人怎麼看、有沒有得罪人，只要收到一點負面回饋或冷淡表情就陷入整晚失眠與自我懷疑，完全失去了內在的評價重心。',
+            stages: [
+              {
+                stage: '第一階段：同理在他人眼光中求生的疲憊',
+                question: '「每天都要像雷達一樣偵測別人的臉色，一定讓你覺得非常緊繃、非常累，好像自己的好壞全交在別人手裡一樣？」',
+                reaction: '案主深感被說中，訴說長期討好與害怕被批判的煎熬。',
+                intent: '反映「外控評價locus of evaluation」帶來的心理耗竭。'
+              },
+              {
+                stage: '第二階段：將評價重心從「外界」慢慢移回「內在」',
+                question: '「當你做完這件事時，先不管主管或朋友打幾分，你自己的心裡對自己的投入有什麼真實的感覺？」',
+                reaction: '案主開始練習傾聽自己的內在感受，發現自己其實很滿意自己的真誠努力。',
+                intent: '培養「內在評價重心（Internal Locus of Evaluation）」。'
+              },
+              {
+                stage: '第三階段：接納不完美與建立自我信任',
+                question: '「如果這個世界上沒有任何人能保證百分百喜歡你，你願意成為那個無條件站在自己這一邊、信任自己的人嗎？」',
+                reaction: '案主感受到內在生出一股穩定的自我支持力量。',
+                intent: '促進無條件自我接納（Unconditional Self-Regard）。'
+              }
+            ],
+            focusPills: ['內在評價重心', '無條件自我接納', '外控焦慮', '自我信任', '真誠一致'],
+            observations: [
+              '案主在會談中是否不斷確認治療師對他的看法。',
+              '治療師保持穩定、不隨意給予好壞評價的態度，能幫助案主逐步長出內在標準。'
+            ],
+            closingReminders: [
+              '肯定案主今天在對話中展現出的誠實與自我覺察。',
+              '鼓勵案主本週練習在睡前問自己：「今天我對自己有什麼欣賞的地方？」'
+            ],
+            pauseAlert: '若評價焦慮伴隨嚴重社交恐懼症或急性恐慌發作，可結合呼吸放鬆訓練與醫療資源評估。',
+            practicalTip: '當案主問「你覺得我這樣做對不對？」時，溫柔反映他的猶豫並將問題交還：「你似乎很希望有個確定的答案，你自己心裡的感覺是什麼？」'
+          },
+          {
+            code: '03-5',
+            title: '05 矛盾掙扎與難以做決定的焦慮',
+            emotionTag: '迷惘與焦慮',
+            context: '案主面臨轉職、分手或人生方向選擇，問遍了身邊所有人的意見卻越問越混亂，因為害怕選錯後悔而陷入嚴重的焦慮與癱瘓。',
+            stages: [
+              {
+                stage: '第一階段：卸除外部建議的噪音',
+                question: '「你聽了這麼多人的分析，但現在當你一個人安靜下來時，你的心感覺最混亂、最卡住的地方是什麼？」',
+                reaction: '案主停下利弊計算，開始觸碰自己對失去安全感或害怕承擔的真實恐懼。',
+                intent: '保持完全的非指導性中立，讓案主回到自己的經驗中心。'
+              },
+              {
+                stage: '第二階段：雙向同理內在衝突的兩端',
+                question: '「一邊是渴望自由與突破的你，另一邊是渴望安穩與保護關係的你，這兩個部分其實都在為你著想，對嗎？」',
+                reaction: '案主不再自我批判「我真優柔寡斷」，而是理解內在拉扯的合理性。',
+                intent: '雙向同理（Empathy for Both Sides），整合內在分裂聲音。'
+              },
+              {
+                stage: '第三階段：經驗性試探與內在定向',
+                question: '「如果我們把時間往後推一年，想像你選了 A 路線，現在你的呼吸和心情是什麼感覺？那選 B 路線呢？」',
+                reaction: '案主透過有機體直覺感受到哪一條路更貼近真實的自己，迷霧逐漸散開。',
+                intent: '相信案主的內在智慧終將找到屬於自己的方向。'
+              }
+            ],
+            focusPills: ['內在衝突整合', '雙向同理', '非指導性支持', '有機體直覺', '自主抉擇'],
+            observations: [
+              '觀察案主提到某個選項時，眼神是否突然發亮或呼吸變深（身體直覺線索）。',
+              '治療師需克制「幫案主分析哪個比較划算」的衝動。'
+            ],
+            closingReminders: [
+              '提醒案主：不需要在諮商室裡立刻交出答案，給自己一點時間讓內在沉澱。',
+              '肯定案主願意誠實面對內心拉扯的成熟態度。'
+            ],
+            pauseAlert: '若迷惘伴隨嚴重衝動行為或自我毀滅念頭，需優先協助建立現實緩衝與安全評估。',
+            practicalTip: '當案主說「老師如果是你會怎麼選？」時，溫和回應：「我的選擇是基於我的人生，但我更在乎哪一條路能讓你活出真實的自己。」'
+          }
+        ]
+      },
+
+      // -----------------------------------------------------------------------
+      // 學派 04：存在主義治療
+      // -----------------------------------------------------------------------
+      {
+        id: 'existential',
+        shortName: '04 存在主義治療',
+        fullName: '存在主義治療',
+        engName: 'Existential Therapy (Yalom, Frankl)',
+        coreFocus: '直面人生四大終極關懷（死亡、自由與責任、存在孤獨、無意義感），將存在焦慮轉化為創造生命意義與真實活在當下的勇氣。',
+        keyConcepts: ['四大終極關懷', '存在焦慮', '自由與責任', '存在孤獨', '意義追尋'],
+        topics: [
+          {
+            code: '04-1',
+            title: '01 死亡焦慮與時間流逝的恐慌',
+            emotionTag: '恐懼與焦慮',
+            context: '案主因親人重病、自己健康亮紅燈或年齡增長，突然對「生命有限、一切終將消逝」產生強烈的恐慌與失眠，無法像從前一樣輕鬆過日子。',
+            stages: [
+              {
+                stage: '第一階段：直面死亡焦慮而非逃避',
+                question: '「當你想到生命有限、時間一直在往前走時，腦海裡最讓你感到恐慌或遺憾的那個畫面是什麼？」',
+                reaction: '案主說出害怕痛苦、害怕留下未竟之事或害怕沒有真正活過的恐懼。',
+                intent: '不給廉價安慰（「別想太多」），而是提供安全空間真誠直視終極關懷。'
+              },
+              {
+                stage: '第二階段：亞隆「喚醒經驗（Awakening Experience）」轉化',
+                question: '「亞隆說『雖然死亡的肉體會摧毀我們，但死亡的觀念能拯救我們』。這份有限感，讓你看清了哪些瑣事與別人眼光其實不再重要？」',
+                reaction: '案主開始放下無謂的執著，重新排列人生的優先順序。',
+                intent: '將死亡的限制轉化為「喚醒當下生命熱情」的催化劑。'
+              },
+              {
+                stage: '第三階段：啟動未竟之事與當下真實投入',
+                question: '「如果生命是一份有限的禮物，現在的你最想向誰表達愛，或完成哪一件能讓你無悔的心願？」',
+                reaction: '案主感受到內在的踏實與平靜，恐慌轉化為珍惜當下的行動力。',
+                intent: '協助案主在有限性中活出生命的深度與本真性（Authenticity）。'
+              }
+            ],
+            focusPills: ['死亡焦慮', '喚醒經驗', '生命有限性', '未竟事宜', '本真生活'],
+            observations: [
+              '案主是否用過度忙碌、狂熱養生或麻痺娛樂來逃避面對時間的流逝。',
+              '當允許案主直接談論死亡恐懼後，其呼吸與焦慮張力往往會逐漸平穩。'
+            ],
+            closingReminders: [
+              '陪伴案主進行一次深長的呼吸，感受此刻心臟跳動與活著的真實感。',
+              '肯定案主面對終極議題的坦誠，這份覺醒將成為往後生命最珍貴的指引。'
+            ],
+            pauseAlert: '若焦慮引發急性恐慌發作、嚴重慮病傾向或因絕症產生自殺計畫，需結合身心科與安寧緩和專業團隊共同照護。',
+            practicalTip: '面對存在焦慮，「共在（Presence）」比任何技巧都重要——讓案主知道在面對生命有限性時，他並不孤單。'
+          },
+          {
+            code: '04-2',
+            title: '02 選擇自由帶來的存在性焦慮與逃避',
+            emotionTag: '焦慮與無力',
+            context: '案主長期處於不滿意的婚姻或工作中，口頭上抱怨「我沒有選擇、都是環境逼我的」，內心卻承受著巨大的壓抑與自我背叛感，害怕一旦行使自由就要承擔一切後果。',
+            stages: [
+              {
+                stage: '第一階段：揭示「不選擇本身也是一種選擇」',
+                question: '「當你說『我沒得選，只能繼續忍耐』的時候，如果我們誠實地看，『繼續留下來』其實也是你目前做出的選擇，對嗎？」',
+                reaction: '案主先是抗拒，隨後意識到自己並非完全被動，重獲主體性。',
+                intent: '溫和打破「自欺（Bad Faith）」與受害者無助感，照見選擇自由。'
+              },
+              {
+                stage: '第二階段：面對「自由的眩暈（Dizziness of Freedom）」',
+                question: '「如果承認你其實可以離開或改變，接下來最讓你感到害怕、甚至有點頭暈的責任是什麼？你最捨不得放棄哪一項安全網？」',
+                reaction: '案主說出害怕經濟不穩、害怕傷透父母的心或害怕失敗沒人可以怪。',
+                intent: '正常化「選擇焦慮」，陪伴案主哀悼每種選擇背後必然的放棄。'
+              },
+              {
+                stage: '第三階段：邁向本真選擇與生命作者承擔',
+                question: '「不管你最後決定留下來重新投入，還是轉身離開，哪一種選擇能讓你抬起頭對自己說『這是我自己選的』？」',
+                reaction: '案主從「被迫忍受」轉變為「主動承擔」，無力感大幅消退。',
+                intent: '賦權案主成為自己生命的作者（Author of Life）。'
+              }
+            ],
+            focusPills: ['自由與責任', '自欺（Bad Faith）', '自由的眩暈', '選擇的代價', '生命作者'],
+            observations: [
+              '案主語言中是否充滿被動語態（「害我、逼我、沒辦法、只能」）。',
+              '一旦案主開始說「我決定⋯」，其坐姿與眼神通常會變得更加堅定。'
+            ],
+            closingReminders: [
+              '肯定案主今天敢於直視自己手上的選擇權，這是真正成熟的標誌。',
+              '提醒案主：自由不是沒有恐懼，而是帶著恐懼依然決定自己的人生方向。'
+            ],
+            pauseAlert: '若案主處於受暴、人身受限或法律監護等真實缺乏外在自由的情境，切勿空談「內在自由」，應優先協助現實脫困與安全資源介入。',
+            practicalTip: '治療師需區分「現實外在限制」與「心理自我設限」，在接納現實限制的同時，喚醒案主在限制中依然擁有的態度自由。'
+          },
+          {
+            code: '04-3',
+            title: '03 存在孤獨感與人際疏離',
+            emotionTag: '孤獨與悲傷',
+            context: '案主即使身處熱鬧的聚會或親密伴侶身旁，仍常感到一陣突如其來的深層孤獨，覺得「每個靈魂終究是單獨來到世上、單獨離開」，因此對親密關係感到失望。',
+            stages: [
+              {
+                stage: '第一階段：區分人際孤獨、心理孤獨與存在孤獨',
+                question: '「有沒有可能，你感到的這份孤單，並不是因為伴侶不夠愛你，而是因為人與人之間本來就有一道無法完全融合的界線？」',
+                reaction: '案主停止苛責伴侶「為什麼不能完全懂我」，關係張力反而下降。',
+                intent: '幫助案主理解「存在孤獨」是人類共同的處境，而非個人社交失敗。'
+              },
+              {
+                stage: '第二階段：從「融合幻想」走向「兩個孤獨靈魂的相遇」',
+                question: '「如果親密關係不是兩個人融化成一個人，而是兩座比鄰而居的島嶼彼此守望、守護對方的孤獨，你覺得這樣的愛是什麼樣子？」',
+                reaction: '案主體會到尊重彼此獨立空間的愛反而更深沉、更自由。',
+                intent: '破除「透過融合消滅孤獨」的幻想，重新定義成熟之愛。'
+              },
+              {
+                stage: '第三階段：在真實對話（I-Thou）中經驗當下連結',
+                question: '「就在剛剛我們一起面對這份孤獨感的這一刻，你覺得自己還像剛進來時那麼孤單嗎？」',
+                reaction: '案主感受到被另一個真實靈魂深刻理解與陪伴的溫暖。',
+                intent: '建立馬丁布伯「我與你（I-Thou）」的深度存在相遇。'
+              }
+            ],
+            focusPills: ['存在孤獨', '融合幻想破滅', '我與你（I-Thou）關係', '獨立與連結', '存在勇氣'],
+            observations: [
+              '案主是否常因為伴侶無法讀心而暴怒或冷戰（企圖透過融合來消滅存在孤獨）。',
+              '在會談的安靜片刻中，案主能否逐漸體會「安靜的同在」而非尷尬。'
+            ],
+            closingReminders: [
+              '鼓勵案主本週練習十五分鐘不滑手機的安靜獨處，感受與自己同在的平靜。',
+              '提醒案主：你並不孤單，因為全人類都在同一個星空下經驗著這份孤獨。'
+            ],
+            pauseAlert: '若孤獨感伴隨嚴重自傷衝動或長期的解離疏離，需優先建立現實支持網絡與專業醫療照護。',
+            practicalTip: '治療師在會談中不要害怕「沉默」，高品質的靜默同在往往比滔滔不絕更能療癒存在孤獨。'
+          },
+          {
+            code: '04-4',
+            title: '04 無意義感與中年／人生轉折虛無',
+            emotionTag: '迷惘與空虛',
+            context: '案主生活看似順遂無虞，卻在中年或某個深夜感到巨大的空虛與虛無感，覺得每天都在重複機械化的日常，過去追求的頭銜與成就瞬間失去了溫度。',
+            stages: [
+              {
+                stage: '第一階段：將「存在真空」重新框架為靈魂的覺醒',
+                question: '「這份空空的感覺，會不會其實是你的內在在提醒你：過去那些別人幫你設定的目標，已經滿足不了現在的你了？」',
+                reaction: '案主眼睛一亮，不再把虛無感視為生病，而是開始好奇內在的召喚。',
+                intent: '去病理化存在真空（Existential Vacuum），轉化為成長轉機。'
+              },
+              {
+                stage: '第二階段：透過弗蘭克爾三大意義途徑探索',
+                question: '「從『創造與投入、體驗與愛、面對苦難的態度』這三個方向來看，過去生命中哪一個瞬間曾讓你覺得『有我在這裡真好』？」',
+                reaction: '案主憶起投入某項創作、陪伴家人或在大自然中被觸動的真實時刻。',
+                intent: '引導案主從具體體驗中發現意義，而非抽象哲學空想。'
+              },
+              {
+                stage: '第三階段：承擔自我創造意義的自由',
+                question: '「意義不是等著在路邊被撿到的石頭，而是由你親手賦予的。如果人生是一張白紙，今天你想在上面畫下的第一個小記號是什麼？」',
+                reaction: '案主感受到創造生命意義的主動權，重新燃起熱情。',
+                intent: '激發自我超越（Self-Transcendence）與具體行動。'
+              }
+            ],
+            focusPills: ['存在真空', '意義治療', '三大意義途徑', '自我超越', '價值創造'],
+            observations: [
+              '案主是否常用「都沒差、隨便、反正最後都一樣」等虛無語氣掩飾存在焦慮。',
+              '區分「存在虛無」與「重度憂鬱症」的生理症狀差異。'
+            ],
+            closingReminders: [
+              '肯定案主願意停下來思考生命本質的深度與勇氣。',
+              '邀請案主本週留心觀察生活中任何一個「微小的意義火花」。'
+            ],
+            pauseAlert: '若無意義感伴隨強烈自殺意念或具體輕生計畫，必須立即切換至危機安全評估與醫療轉介。',
+            practicalTip: '治療師不要直接給案主「人生意義的標準答案」，因為借來的意義無法支撐一個人的靈魂。'
+          },
+          {
+            code: '04-5',
+            title: '05 面對不可逆失落的悲慟與接納',
+            emotionTag: '悲傷與無助',
+            context: '案主遭遇不可逆的重大失落（如至親驟逝、慢性重症確診或青春夢想徹底破滅），陷入「為什麼偏偏是我」的憤怒、抗拒與深沉悲慟中無法動彈。',
+            stages: [
+              {
+                stage: '第一階段：如實見證苦難與不可逆的現實',
+                question: '「面對這樣無法挽回的失去，心裡的痛與不甘心一定非常巨大。在這裡，你不需要假裝堅強，我們一起看看這份失落帶走了什麼。」',
+                reaction: '案主放下對抗與強顏歡笑，在安全的陪伴中釋放深沉的悲慟。',
+                intent: '真誠共在，見證人類面對命運限制時的脆弱與真實。'
+              },
+              {
+                stage: '第二階段：在不可改變的命運中尋找「態度的自由」',
+                question: '「弗蘭克爾說：『當我們再也無法改變一個處境時，我們就被挑戰去改變自己面對它的態度。』這份苦難雖然殘酷，但你希望自己以什麼樣的姿態走過它？」',
+                reaction: '案主從「被動受害者」轉向思考「我依然保有選擇回應態度的尊嚴」。',
+                intent: '喚醒人類最後也是最崇高的自由——選擇態度的自由。'
+              },
+              {
+                stage: '第三階段：將悲慟轉化為深層的愛與生命智慧',
+                question: '「經歷過這場失去之後，你對生命、對身邊還愛著你的人，有了哪些以前從未體會過的珍惜？」',
+                reaction: '案主在淚水中展現出溫柔而堅韌的生命厚度。',
+                intent: '協助案主在接納限制的同時，與更廣闊的生命價值重新連結。'
+              }
+            ],
+            focusPills: ['不可逆失落', '態度的自由', '苦難中的意義', '存在接納', '悲慟見證'],
+            observations: [
+              '不可過早向處於急性悲慟中的案主談「苦難的意義」，必須先充分陪伴悲傷與憤怒，等案主準備好時再自然引導態度自由。'
+            ],
+            closingReminders: [
+              '向案主在巨變中依然努力呼吸、尋求支持的勇氣致敬。',
+              '提醒案主：接納不是認輸，而是停止與無法改變的過去對抗，把能量留給此刻還活著的自己。'
+            ],
+            pauseAlert: '若悲慟伴隨強烈自殺企圖或嚴重身心崩潰，需立即啟動危機保護與精神醫療支持。',
+            practicalTip: '存在主義治療師在面對不可逆苦難時，不扮演全能拯救者，而是作為一位誠實、溫暖、不離不棄的同路人。'
+          }
+        ]
+      },
+
+      // -----------------------------------------------------------------------
+      // 學派 05：認知行為治療 (CBT)
+      // -----------------------------------------------------------------------
+      {
+        id: 'cbt',
+        shortName: '05 認知行為治療',
+        fullName: '認知行為治療 (CBT)',
+        engName: 'Cognitive Behavioral Therapy (Aaron Beck)',
+        coreFocus: '透過合作經驗主義與蘇格拉底式提問，辨識情境、自動化思考、情緒與行為的互動循環，檢驗認知扭曲並透過行為實驗建立彈性適應的新信念。',
+        keyConcepts: ['自動化思考', '認知扭曲', '核心信念', '蘇格拉底式提問', '行為實驗與暴露'],
+        topics: [
+          {
+            code: '05-1',
+            title: '01 災難化思維與廣泛性焦慮',
+            emotionTag: '焦慮與恐懼',
+            context: '案主大腦像一台停不下來的警報器，只要遇到一點不確定性（如老闆沒回訊息、身體微恙），就會立刻聯想到「被開除、重病、破產」等最壞結局，導致長期失眠與肌肉緊繃。',
+            stages: [
+              {
+                stage: '第一階段：捕捉熱思考（Hot Thoughts）與災難化鏈條',
+                question: '「就在你心跳加速、焦慮飆到 90 分的那一秒，你腦袋裡閃過最可怕的那句預測是什麼？」',
+                reaction: '案主捕捉到「他沒回訊息＝我一定做錯大事要被炒魷魚了」。',
+                intent: '使用思想紀錄表（Thought Record）結構化釐清「情境 → 想法 → 情緒」。'
+              },
+              {
+                stage: '第二階段：蘇格拉底式證據檢驗（Evidence Testing）',
+                question: '「有哪些客觀事實支持『你一定會被開除』？又有哪些過去的經驗是不支持這個想法的？」',
+                reaction: '案主發現過去類似情況有 95% 只是對方在開會或忙碌，想法只是猜測而非事實。',
+                intent: '保持合作偵探的好奇態度，修正「高估風險」的認知扭曲。'
+              },
+              {
+                stage: '第三階段：去災難化（Decatastrophizing）與行為實驗',
+                question: '「退一萬步說，就算最壞的情況真的發生了，你手上有哪些資源可以一步步處理？現在焦慮分數從 90 分降到幾分？」',
+                reaction: '焦慮降為 40 分，並願意進行「忍住不立刻確認 30 分鐘」的行為實驗。',
+                intent: '破除「低估自身因應能力」的迷思，量化情緒改善。'
+              }
+            ],
+            focusPills: ['災難化思維', '高估風險與低估因應', '蘇格拉底式提問', '去災難化', '行為實驗'],
+            observations: [
+              '案主語言中是否充滿「萬一、一定、完蛋了、絕對」等極端預測詞彙。',
+              '行為層面是否出現反覆確認、尋求保證（Reassurance-seeking）等安全行為。'
+            ],
+            closingReminders: [
+              '共同總結今天寫下的「平衡替代句」，建議案主抄在隨身卡片或手機備忘錄上。',
+              '指派具體且可執行的本週家庭作業（如每日記錄一次焦慮思想表）。'
+            ],
+            pauseAlert: '若焦慮伴隨嚴重恐慌發作、胸痛呼吸困難或無法工作的廣泛性焦慮障礙，建議轉介精神科評估藥物輔助治療。',
+            practicalTip: 'CBT 強調「合作經驗主義」，治療師與案主是並肩作戰的科學家，一起在實驗中驗證想法，而非老師教訓學生。'
+          },
+          {
+            code: '05-2',
+            title: '02 全有全無思維與憂鬱無望感',
+            emotionTag: '憂鬱與無力',
+            context: '案主陷入低潮，用「要嘛一百分、要嘛零分」的標準看待自己，只要有一點沒做到便全盤否定自己，整天躺在床上不動，形成「越不動越沒能量、越沒能量越自責」的惡性循環。',
+            stages: [
+              {
+                stage: '第一階段：繪製憂鬱惰性循環並導入「行為活化」',
+                question: '「當你整天躺在床上反覆想著『我真沒用』時，晚上睡前你的憂鬱分數通常會上升還是下降？如果我們先不靠動力，只設計一個 5 分鐘微行動實驗呢？」',
+                reaction: '案主理解「行動帶來動力」，願意先從拉開窗簾、去樓下散步五分鐘開始。',
+                intent: '行為活化（Behavioral Activation）：打破「低活動量 → 缺乏掌控感與愉悅感」的循環。'
+              },
+              {
+                stage: '第二階段：挑戰「全有全無」與「心理過濾」認知偏誤',
+                question: '「你今天雖然沒能完成整份報告，但你準時來到了諮商室還洗了澡。如果只用『全有或全無』打分數，把中間的 60 分全當成 0 分，對自己公平嗎？」',
+                reaction: '案主開始看見被憂鬱濾鏡過濾掉的微小努力，自我攻擊減弱。',
+                intent: '引入「灰色光譜思維」，修正極端二元評價。'
+              },
+              {
+                stage: '第三階段：重組負向認知三元組（自己、世界、未來）',
+                question: '「把『我永遠不會好起來』改寫成『我現在正經歷低潮，但我正在一步步練習照顧自己』，這兩句話帶給你的感受有什麼不同？」',
+                reaction: '案主從絕望無助轉向具體的自我照顧行動。',
+                intent: '從人格貶低轉向客觀狀態描述，減輕次級羞愧感。'
+              }
+            ],
+            focusPills: ['全有全無思維', '行為活化', '負向認知三元組', '灰色光譜', '掌控感與愉悅感'],
+            observations: [
+              '觀察案主是否陷入長達數小時的「反芻思維（Rumination）」，反覆咀嚼過去的失敗。',
+              '記錄案主完成微行動後的實際情緒分數變化，用數據打破「做了也沒用」的預測。'
+            ],
+            closingReminders: [
+              '確認明天要執行的「一件 5 分鐘掌控感小事」與「一件 5 分鐘愉悅感小事」。',
+              '提醒案主：只要跨出這微小的五分鐘，就已經贏過了昨天的慣性。'
+            ],
+            pauseAlert: '若案主出現明確自殺意念、絕望感極高或無法維持基本飲水進食，需立即制定安全計畫並轉介精神科急診或門診。',
+            practicalTip: '對重度無力的案主，認知辯論往往太耗腦力，CBT 實務上應優先從「行為活化」切入，能量回升後再進行深層認知重組。'
+          },
+          {
+            code: '05-3',
+            title: '03 社交恐懼與讀心術認知扭曲',
+            emotionTag: '恐懼與羞愧',
+            context: '案主在會議發言、聚餐或上台前極度緊張，深信「大家一定都在看我出糗、覺得我很蠢」（聚光燈效應與讀心術），因此逃避社交或依賴大量安全行為。',
+            stages: [
+              {
+                stage: '第一階段：繪製社交焦慮維持循環與辨識安全行為',
+                question: '「當你把全部注意力都放在監控『我現在臉有沒有紅、聲音有沒有抖』，還事前背逐字稿時，這對你自然與人互動有什麼影響？」',
+                reaction: '案主發現過度自我專注與安全行為反而讓自己更僵硬、更無法專心聽別人說話。',
+                intent: '揭示「自我專注」與「安全行為」如何維持社交焦慮。'
+              },
+              {
+                stage: '第二階段：檢驗「讀心術」與「圓餅圖替代歸因」',
+                question: '「當你覺得同事表情冷淡、一定是在嫌棄你時，除了『嫌棄你』之外，他表情冷淡還有哪五種可能的原因？」',
+                reaction: '案主列出「他沒睡飽、他在想自己的專案、他天生撲克臉」等替代解釋。',
+                intent: '打破「情緒推理（我覺得尷尬＝別人真的在嘲笑我）」與讀心術偏誤。'
+              },
+              {
+                stage: '第三階段：放下安全行為的階梯式暴露實驗',
+                question: '「我們來設計一個『刻意犯錯實驗』：在這裡你故意停頓三秒或講錯一個詞，看看我會不會因此看不起你？接著本週我們挑一個 4 級社交任務不帶安全行為上場。」',
+                reaction: '案主在現場與現實實驗中驗證「大家其實很友善，根本沒人苛責我」。',
+                intent: '透過真實暴露與注意力外移訓練（Attention Shifting）改寫核心恐懼。'
+              }
+            ],
+            focusPills: ['讀心術偏誤', '聚光燈效應', '安全行為戒除', '注意力外移', '階梯式暴露'],
+            observations: [
+              '留意案主隱蔽的安全行為（如低頭滑手機、緊握水杯、避免眼神接觸、事後反芻檢討）。'
+            ],
+            closingReminders: [
+              '共同確認本週的「4 級社交暴露任務」與預計拿掉的一項安全行為。',
+              '提醒案主：暴露的目標不是「完全不緊張」，而是「帶著緊張依然完成互動」。'
+            ],
+            pauseAlert: '若社交恐懼伴隨嚴重酒精依賴（靠喝酒才能出門社交）或全面拒學／足不出戶，需整合醫療與系統支持。',
+            practicalTip: '暴露練習若沒有「拿掉安全行為」，案主會把成功歸功於「還好我有背稿」，導致核心恐懼信念無法修正。'
+          },
+          {
+            code: '05-4',
+            title: '04 急性恐慌發作與身體感覺誤解',
+            emotionTag: '恐慌與恐懼',
+            context: '案主曾有過突然心跳狂跳、胸悶、頭暈、喘不過氣的恐慌發作經驗，從此對任何輕微的身體變化極度敏感，深信「我心臟病要發作了／我快要死掉或發瘋了」，不敢搭捷運或去人多的地方。',
+            stages: [
+              {
+                stage: '第一階段：繪製恐慌惡性循環圖（Clark 認知模型）',
+                question: '「當你感覺心跳加快一點點時，腦袋立刻跳出『我要心臟病發了！』這個災難解釋，這個想法是不是瞬間讓腎上腺素暴衝，心跳變得更快？」',
+                reaction: '案主恍然大悟：「原來不是心臟壞掉，是我的大腦把正常的生理反應誤判成死亡警報！」',
+                intent: '心理教育：拆解「身體感覺 → 災難化誤解 → 恐慌加劇」的惡性循環。'
+              },
+              {
+                stage: '第二階段：內感暴露（Interoceptive Exposure）驗證安全性',
+                question: '「在這裡有我陪著你，我們來做個 30 秒原地快步走或透過吸管呼吸的小實驗，刻意誘發一點心跳加快，親眼驗證這股感覺會自然達到頂峰然後降下來，不會傷害你。」',
+                reaction: '案主親身體驗到心悸與頭暈只是暫時的自律神經反應，恐懼感大幅消退。',
+                intent: '透過安全的內感暴露破除「身體感覺＝生命危險」的連結。'
+              },
+              {
+                stage: '第三階段：戒除逃避行為與空間暴露訓練',
+                question: '「既然我們已經證明這只是虛驚一場的假警報，這週你願意試著搭一站捷運，在恐慌感來襲時留在車廂裡陪伴它退潮嗎？」',
+                reaction: '案主重獲行動自由，不再被恐慌限制生活半徑。',
+                intent: '打破「逃離現場才能保命」的維持機制。'
+              }
+            ],
+            focusPills: ['恐慌認知模型', '身體感覺災難化', '內感暴露', '假警報心理教育', '空間暴露'],
+            observations: [
+              '進行恐慌認知工作前，務必先確認案主已完成心臟科或家醫科檢查，排除器質性心律不整或甲狀腺問題。'
+            ],
+            closingReminders: [
+              '將「恐慌假警報應對卡」交給案主：1. 這只是腎上腺素假警報 2. 它很不舒服但完全安全 3. 我不需要逃跑，只需放慢吐氣等浪潮過去。',
+              '肯定案主面對恐慌時展現的勇氣。'
+            ],
+            pauseAlert: '首次出現劇烈胸痛、左臂麻木或昏厥時，必須優先急診就醫排除急性心血管疾病，切勿直接當作心理性恐慌處理。',
+            practicalTip: '恐慌發作時教導「延長吐氣（吸 4 秒、吐 6 秒）」比「拼命大口深吸氣」更有效，因為大口吸氣反而容易加重過度換氣頭暈。'
+          },
+          {
+            code: '05-5',
+            title: '05 憤怒爆發與「應該」僵化信念',
+            emotionTag: '憤怒與衝動',
+            context: '案主在開車、職場配合或家庭互動中，只要他人不守規矩或未達標準，便立刻產生「他怎麼可以這樣、他應該要⋯」的念頭，隨即爆發強烈怒火與攻擊性言語。',
+            stages: [
+              {
+                stage: '第一階段：辨識「暴君式的應該（Shoulds）」信念',
+                question: '「當他遲到五分鐘時，是『五分鐘』直接讓你爆炸，還是你腦袋裡『他應該要尊重我的時間，不準遲到』這條鐵律點燃了引信？」',
+                reaction: '案主意識到是自己內在僵化的規則製造了劇烈的情緒落差。',
+                intent: '運用 ABC 模式（事件 → 信念 → 情緒後果）釐清怒氣來源。'
+              },
+              {
+                stage: '第二階段：建立生理降溫與時間暫停（Time-Out）',
+                question: '「在怒氣從 30 分飆升到 90 分的這幾秒鐘裡，你的身體會發出哪三個早期黃燈警訊（如握拳、臉發熱、語速變快）？出現時你打算怎麼離開降溫？」',
+                reaction: '案主學會辨識身體黃燈警訊，建立離開現場冷靜 20 分鐘的煞車計畫。',
+                intent: '在杏仁核劫持前設置行為煞車，避免說出後悔的話。'
+              },
+              {
+                stage: '第三階段：將「絕對命令」改寫為「偏好與具體溝通」',
+                question: '「如果把『他應該要主動幫我』改成『我希望他能幫忙，但如果他沒做，我也能平靜地提出請求或自己處理』，怒氣會降到幾分？」',
+                reaction: '案主感受到從無力暴怒轉向理性解決問題的掌控感。',
+                intent: '挑戰低挫折容忍度，演練非暴力事實陳述與具體請求。'
+              }
+            ],
+            focusPills: ['ABC 情緒模式', '應該陳述（Shoulds）', '低挫折容忍度', '生理降溫暫停', '非暴力溝通腳本'],
+            observations: [
+              '案主敘述衝突時是否頻繁使用「應該、必須、憑什麼、太過分」等道德審判詞彙。',
+              '檢視案主發完脾氣後的認知扭曲（如合理化攻擊行為、全盤否定他人）。'
+            ],
+            closingReminders: [
+              '確認案主已將「怒氣黃燈警訊與暫停口訣」存入手機備忘錄。',
+              '肯定案主願意為自己的情緒反應負起責任的成熟態度。'
+            ],
+            pauseAlert: '若憤怒伴隨家庭暴力、虐待兒童、酒駕衝動或具體傷人風險，必須優先執行安全通報、保護令諮詢與危機介入。',
+            practicalTip: '生理研究顯示腎上腺素消退至少需要 20 分鐘，教導案主在暫停期間「不要在腦海裡繼續罵對方」，否則怒火會持續燃燒。'
+          }
+        ]
+      },
+
+      // -----------------------------------------------------------------------
+      // 學派 06：完形治療
+      // -----------------------------------------------------------------------
+      {
+        id: 'gestalt',
+        shortName: '06 完形治療',
+        fullName: '完形治療',
+        engName: 'Gestalt Therapy (Fritz Perls)',
+        coreFocus: '聚焦「此時此地（Here and Now）」的身心覺察，透過空椅對話、身體工作與接觸界線實驗，整合內在兩極衝突並完成「未竟事宜（Unfinished Business）」。',
+        keyConcepts: ['此時此地覺察', '未竟事宜', '空椅技術', '內在兩極對話', '接觸與抗拒界線'],
+        topics: [
+          {
+            code: '06-1',
+            title: '01 未竟事宜與積壓的悲傷／怨恨',
+            emotionTag: '悲傷與憤怒',
+            context: '案主對已故親人、前任伴侶或疏遠的父母，心裡一直卡著許多「沒來得及說的道歉、憤怒或感謝」，這些未完成的完形持續消耗案主當下的能量，使其無法投入新生活。',
+            stages: [
+              {
+                stage: '第一階段：將「關於過去」帶入「此時此地」',
+                question: '「當你說起這段遺憾時，現在這一刻你的胸口和喉嚨有什麼感覺？如果那些沒說出口的話有重量，它現在壓在哪裡？」',
+                reaction: '案主停止理性敘事，眼眶泛紅，觸碰到當下的真實情緒與身體重量。',
+                intent: '從第三人稱的「談論（Aboutism）」拉回「此時此地（Here and Now）」的直接體驗。'
+              },
+              {
+                stage: '第二階段：空椅技術（Empty Chair）直接對話',
+                question: '「如果那個人現在就坐在對面這張空椅子上，看著你的眼睛，你最想對他說的第一句話是什麼？請不要看我，直接對著椅子說。」',
+                reaction: '案主起初有些猶豫，隨後情緒湧現，完整說出壓抑多年的怨恨與思念。',
+                intent: '透過第一人稱直接對話，讓被阻斷的情感得以完整表達。'
+              },
+              {
+                stage: '第三階段：角色互換與完形閉合（Closure）',
+                question: '「現在請坐到對面椅子扮演他，聽完剛才那些話你想怎麼回應？最後回到你自己的位置，你想跟他說什麼道別的話？」',
+                reaction: '案主獲得深層釋懷，長吐一口氣，感受到未竟事宜的鬆動與閉合。',
+                intent: '引導完成「表達憤怒 → 表達感謝／愛 → 說再見」的完整情感循環。'
+              }
+            ],
+            focusPills: ['未竟事宜', '空椅技術', '此時此地', '完形閉合', '身體覺察'],
+            observations: [
+              '案主在對話中是否不斷轉頭看治療師（逃避與空椅子的直接接觸）。',
+              '當情感完整流露後，案主臉部與肩膀通常會出現明顯的鬆弛與平靜。'
+            ],
+            closingReminders: [
+              '空椅實驗的情感強度極高，結束前務必邀請案主站起來走動、喝水，正式離開角色回到自己。',
+              '肯定案主今天完成了一段深層的情感整理，今晚允許自己好好休息。'
+            ],
+            pauseAlert: '若案主有嚴重創傷後解離傾向、精神病性幻覺（分不清現實與想像）或強烈自傷風險，不宜進行高強度空椅技術。',
+            practicalTip: '完形實驗的原則是「邀請而非強迫」——若案主對空椅子感到抗拒，可先探索「抗拒本身在保護什麼」，抗拒也是有價值的接觸。'
+          },
+          {
+            code: '06-2',
+            title: '02 內攝父母聲音與自我苛責分裂',
+            emotionTag: '內疚與焦慮',
+            context: '案主未經消化地吞下了父母或權威的嚴苛規條（內攝 Introjection），內在總有一個「勝利者監工」不斷鞭策自己，與另一個疲憊反抗的「失敗者小孩」激烈內戰，導致嚴重內耗。',
+            stages: [
+              {
+                stage: '第一階段：覺察「內攝（Introjection）」的異物感',
+                question: '「當你罵自己『不準休息、這樣太自私』時，這句話像是你自己真正消化認同的價值，還是像一顆沒咬碎就吞下去、卡在胃裡的硬石頭？」',
+                reaction: '案主會心一笑，辨識出那是父母從小灌輸的聲音，而非真實的自己。',
+                intent: '具象化「內攝」機制，協助案主把吞下的異物吐出來檢視。'
+              },
+              {
+                stage: '第二階段：雙椅對話（Two-Chair Dialogue）讓兩極相遇',
+                question: '「請先坐在左邊椅子扮演那個嚴厲的監工，對右邊椅子說出你最氣他什麼；接著換到右邊椅子，說出你為什麼動不了。」',
+                reaction: '監工發現自己其實是「害怕失敗被淘汰」，疲憊部分則是「太累了需要喘息」。',
+                intent: '促進內在勝利者（Top Dog）與失敗者（Underdog）之間的真實傾聽。'
+              },
+              {
+                stage: '第三階段：細細咀嚼與內在兩極整合',
+                question: '「現在站在兩張椅子中間，這兩個聲音都在用笨拙的方式保護你。你願意保留哪一部分的謹慎，吐掉哪一部分的苛責，讓自己重新整合？」',
+                reaction: '案主內在衝突平息，感受到前所未有的平靜與自主力量。',
+                intent: '在接觸中達成有機整合，消除內耗。'
+              }
+            ],
+            focusPills: ['內攝（Introjection）', '勝利者與失敗者', '雙椅對話', '兩極整合', '消除內耗'],
+            observations: [
+              '坐上「勝利者」椅子時身體通常前傾、語氣強硬；坐上「失敗者」椅子時肩膀垮下、眼神迴避。',
+              '對話進行幾輪後，兩邊的語氣會逐漸趨於柔和與靠近。'
+            ],
+            closingReminders: [
+              '協助案主收回兩張椅子的角色，用一個深呼吸整合今天的體會。',
+              '提醒案主：下次內戰又開打時，試著先當個好奇的調解人，而不是加入戰局。'
+            ],
+            pauseAlert: '若內在聲音呈現非自我意願的命令式幻聽（精神病性症狀），需立即轉介精神科評估，不可當作一般兩極對話處理。',
+            practicalTip: '雙椅對話的關鍵是「一定要真正起身換椅子」，身體空間的移動能幫助大腦切換不同的神經情緒狀態。'
+          },
+          {
+            code: '06-3',
+            title: '03 投射心理與對他人的過度猜疑焦慮',
+            emotionTag: '焦慮與恐懼',
+            context: '案主在職場或社交中常覺得「大家都在背後議論我、討厭我、想害我」，對周遭充滿防備與焦慮，其實是把自己內在無法接納的批判與不安全感「投射（Projection）」到了他人身上。',
+            stages: [
+              {
+                stage: '第一階段：覺察環境中的「投射螢幕」',
+                question: '「當你看到同事在茶水間小聲說話，立刻覺得『他們一定在笑我能力差』時，這句台詞其實是不是你平常最常在心裡罵自己的話？」',
+                reaction: '案主停頓下來，驚覺自己把內在對自己的嚴苛批判投射到了同事臉上。',
+                intent: '溫和照見「投射（Projection）」機制——把不承認的自己丟到外界。'
+              },
+              {
+                stage: '第二階段：收回投射（Owning the Projection）實驗',
+                question: '「我們來做個實驗：試著扮演那個在茶水間批評你的同事，用他的口氣對自己說出那些批評；說完後再換成第一人稱說：『其實是我自己很擔心我不夠好。』感覺有什麼不同？」',
+                reaction: '案主體驗到收回投射後的清醒與掌控感，不再覺得外界處處是敵人。',
+                intent: '完形經典「收回投射」技術，將外在威脅轉化為內在可處理的議題。'
+              },
+              {
+                stage: '第三階段：用五官接觸客觀現實而非腦補幻想',
+                question: '「現在用你的眼睛和耳朵去接觸眼前真實的世界，把『我看到的客觀事實』和『我腦袋編出來的劇本』分開來，你注意到什麼？」',
+                reaction: '案主呼吸平穩下來，恢復與現實環境的真實接觸。',
+                intent: '強化感官現實檢驗，減少妄想式猜疑。'
+              }
+            ],
+            focusPills: ['投射（Projection）', '收回投射實驗', '現實接觸界線', '感官檢驗', '內在批判外移'],
+            observations: [
+              '當案主指責別人「太自私、太愛批判、太冷漠」時，往往正是案主自己最壓抑或最害怕承認的特質。'
+            ],
+            closingReminders: [
+              '肯定案主願意把目光收回到自己身上、誠實面對內在不安的勇氣。',
+              '提醒案主本週練習區分「我親眼看到的事實」與「我猜測別人的想法」。'
+            ],
+            pauseAlert: '若猜疑已達到堅信不移、伴隨幻聽或系統性被害妄想的程度，屬於精神病性症狀，需立即轉介精神科醫療，不可進行一般心理投射實驗。',
+            practicalTip: '進行「收回投射」時語氣要充滿好奇與幽默，避免讓案主覺得治療師在指責他「都是你自己在幻想」。'
+          },
+          {
+            code: '06-4',
+            title: '04 迴避接觸與情緒麻痺／身體緊繃',
+            emotionTag: '麻木與悲傷',
+            context: '案主每次講到最心痛、最脆弱的話題時，就會突然講笑話、轉移話題、看天花板或全身變得僵硬麻木（偏轉 Deflection 與去敏感化 Desensitization），阻斷了與自己及他人的真實接觸。',
+            stages: [
+              {
+                stage: '第一階段：當下溫柔捕捉「偏轉」動作',
+                question: '「我注意到剛剛你眼眶剛紅了一秒，下一秒就馬上笑了出來還轉移話題。那一秒鐘裡，是什麼讓你覺得太燙、必須趕快縮手？」',
+                reaction: '案主停下笑聲，沉默幾秒後承認「因為再講下去我怕我會當場崩潰」。',
+                intent: '此時此地的精準過程觀察（Process Observation），照見逃避接觸的瞬間。'
+              },
+              {
+                stage: '第二階段：尊重保護功能並調整接觸劑量',
+                question: '「這個笑話就像一副隔熱手套，幫你擋掉了太燙的痛。如果今天我們不拿掉手套，只是隔著手套靠近那份難過一點點，可以嗎？」',
+                reaction: '案主感到安全與被尊重，願意停留在情緒邊緣多待一會兒。',
+                intent: '調整接觸劑量（Titration），避免情緒過載引發解離。'
+              },
+              {
+                stage: '第三階段：直接眼神接觸與真實情感停留',
+                question: '「現在試著不要笑、也不要急著解釋，看著我，把剛才那句心酸的話再慢慢說一遍，我們一起待在這個感覺裡十秒鐘。」',
+                reaction: '案主真誠地流下眼淚，經驗到「停留在脆弱中並不會毀滅」的釋放感。',
+                intent: '完成真實接觸（Contact），軟化情緒麻痺。'
+              }
+            ],
+            focusPills: ['偏轉（Deflection）', '去敏感化', '過程觀察', '接觸劑量調整', '脆弱停留'],
+            observations: [
+              '觀察「微笑與悲傷內容不一致」的瞬間，這是最典型的偏轉線索。',
+              '治療師需警覺自己不要被案主的幽默逗笑而跟著一起逃避痛苦話題。'
+            ],
+            closingReminders: [
+              '肯定案主今天放下「開心果面具」、展現真實一面所需要的巨大勇氣。',
+              '結束前確認案主呼吸平穩，帶著踏實感走出諮商室。'
+            ],
+            pauseAlert: '若情緒麻痺背後隱藏嚴重未處理的急性創傷，需依創傷知情原則謹慎控制暴露節奏。',
+            practicalTip: '當案主講完沉重創傷卻哈哈大笑時，治療師保持溫柔而認真、不跟著笑的表情，往往就能讓案主自然接觸到真實感受。'
+          },
+          {
+            code: '06-5',
+            title: '05 迴射作用與把對外憤怒轉向自我傷害／自責',
+            emotionTag: '憤怒與自責',
+            context: '案主遇到不公平對待或委屈時不敢向外表達，反而把能量轉向攻擊自己（回射 Retroflection），表現為嚴重自我苛責、咬指甲、抓傷皮膚、暴食或長期的肩頸胃部劇痛。',
+            stages: [
+              {
+                stage: '第一階段：聚焦身體緊繃並放大「回射」動作覺察',
+                question: '「我看到你說起這件委屈時，雙手正用力掐著自己的手臂。試著誇大一點點這個用力的動作，感受一下你正在對自己做什麼？」',
+                reaction: '案主驚覺自己正在用身體懲罰自己，湧現一陣心疼與憤怒。',
+                intent: '完形「誇大技術（Exaggeration）」，喚醒被凍結的身體回射覺察。'
+              },
+              {
+                stage: '第二階段：替緊繃的身體部位發聲',
+                question: '「這雙用力掐住自己的手，其實原本是想推開誰、或對誰喊出什麼話？如果讓你的雙手替你說話，它最想說什麼？」',
+                reaction: '案主脫口而出「不要再逼我了！我很生氣！」，釋放被壓抑的向外能量。',
+                intent: '將自我攻擊重新翻譯為未被表達的對外怒氣與界線需求。'
+              },
+              {
+                stage: '第三階段：透過安全的肢體實驗向外釋放能量',
+                question: '「這顆抱枕現在代表那個讓你喘不過氣的要求，試著用雙手慢慢把它推開到讓你覺得舒服的距離，感受一下呼吸的變化。」',
+                reaction: '案主雙手做出「向外推開」的動作，胸口頓時感到寬敞順暢，停止自我傷害衝動。',
+                intent: '解除「回射（Retroflection）」，讓動作循環得以健康地向外完成。'
+              }
+            ],
+            focusPills: ['回射（Retroflection）', '誇大技術', '身體對話', '界線推開實驗', '停止自我攻擊'],
+            observations: [
+              '完形定義「回射」是：對自己做原本想對別人做的事，或對自己做希望別人對自己做的事（例如緊緊抱住自己）。',
+              '當回射解除時，案主常會出現打哈欠、流淚或手腳變暖等副交感神經放鬆反應。'
+            ],
+            closingReminders: [
+              '邀請案主溫柔撫摸剛剛被掐紅的手臂，練習自我照顧而非自我懲罰。',
+              '提醒案主平日身體一緊繃時，就先問自己：「我現在又把哪句對外的不滿轉向攻擊自己了？」'
+            ],
+            pauseAlert: '若自我傷害已達割腕、撞牆、吞藥等明確自傷或自殺危機，必須立即停止身體實驗，啟動最高規格安全評估與醫療介入！',
+            practicalTip: '進行身體推抱枕實驗時，治療師要穩穩在旁守護安全，確保案主在可控、安全的範圍內體驗力量感。'
+          }
+        ]
+      },
+
+      // -----------------------------------------------------------------------
+      // 學派 07：接受與承諾治療 (ACT)
+      // -----------------------------------------------------------------------
+      {
+        id: 'act',
+        shortName: '07 接受與承諾(ACT)',
+        fullName: '接受與承諾治療 (ACT)',
+        engName: 'Acceptance and Commitment Therapy (Steven Hayes)',
+        coreFocus: '透過心理靈活性六大核心歷程（接納、認知解離、活在當下、以己為景、價值觀、承諾行動），停止與痛苦情緒無效拔河，帶著情緒朝向有價值的生活前行。',
+        keyConcepts: ['心理靈活性', '認知解離', '接納與擴展', '價值觀羅盤', '承諾行動'],
+        topics: [
+          {
+            code: '07-1',
+            title: '01 認知融合：被「我不夠好」念頭綁架',
+            emotionTag: '羞愧與憂鬱',
+            context: '案主深陷「我是個失敗者、我不夠好、我永遠沒救了」等負向念頭中，把大腦說的每一個字都當成絕對真理，導致情緒癱瘓、自我封閉。',
+            stages: [
+              {
+                stage: '第一階段：辨識「認知融合（Cognitive Fusion）」的遮蔽效應',
+                question: '「當『我不夠好』這句話出現時，感覺起來是不是就像一塊黑布直接貼在你的眼球上，讓你除了這幾個字之外什麼都看不見？」',
+                reaction: '案主點頭，體會到自己與負向念頭完全黏在一起的窒息感。',
+                intent: '具象化「認知融合」的狀態，建立觀察距離。'
+              },
+              {
+                stage: '第二階段：認知解離（Cognitive Defusion）語言轉換練習',
+                question: '「我們來做個小練習：把『我不夠好』改成『我注意到我的大腦正在播放〈我不夠好〉這首老歌』，再用卡通人物的聲音念一遍，感覺有什麼不同？」',
+                reaction: '案主嘴角微揚，感受到念頭的威脅性與殺傷力瞬間減弱了一大半。',
+                intent: '將念頭還原為「大腦產生的一串聲音或文字」，打破字面控制力。'
+              },
+              {
+                stage: '第三階段：連結「以己為景（Self-as-Context）」的觀察者自我',
+                question: '「念頭像天上的烏雲一樣來來去去，但那個從小到大一直靜靜看著這些烏雲飄過的『天空』，它有被烏雲弄壞過嗎？」',
+                reaction: '案主體會到內在深處有一個穩定、不受念頭動搖的安穩空間。',
+                intent: '穩固「以己為景」的觀察者自我，建立心理靈活性。'
+              }
+            ],
+            focusPills: ['認知融合與解離', '老歌播放練習', '天空與天氣隱喻', '以己為景', '可行性檢驗'],
+            observations: [
+              'CBT 問「這個想法符合事實嗎？」，而 ACT 問「緊抓著這個想法，對你活出有意義的人生『行得通（Workable）』嗎？」。',
+              '觀察案主在進行解離練習時，是否出現一絲幽默感或輕鬆感，這正是解離成功的標誌。'
+            ],
+            closingReminders: [
+              '邀請案主幫自己最常出現的負向故事取一個可愛的名字（例如：「又來了，完美主義老爺爺廣播」）。',
+              '提醒案主：解離的目的不是讓念頭消失，而是讓它不再決定你的行動。'
+            ],
+            pauseAlert: '若案主處於急性自殺危機中，應優先使用直接的安全承諾與危機處遇，而非使用幽默式的認知解離技巧，以免讓案主覺得痛苦被輕視。',
+            practicalTip: '使用認知解離時，治療師務必先充分同理案主的痛苦，確保案主感受到被理解後再導入解離練習。'
+          },
+          {
+            code: '07-2',
+            title: '02 經驗性迴避：用忙碌或成癮逃避痛苦',
+            emotionTag: '焦慮與空虛',
+            context: '案主為了不要感覺到孤單、焦慮或悲傷，用瘋狂加班、無止盡滑手機、暴食或購物來麻痺自己，結果越想逃避痛苦，內在的空洞與焦慮反而越龐大。',
+            stages: [
+              {
+                stage: '第一階段：創造性無助（Creative Hopelessness）與拔河隱喻',
+                question: '「你過去花了這麼多力氣用忙碌或滑手機想把痛苦趕走，短期內好像有點麻痺效果，但長期下來，你的生活變得更寬廣了，還是越來越空虛？如果這是一場跟痛苦怪獸的拔河，你要不要試著放下繩子？」',
+                reaction: '案主頓悟「原來『拼命逃避痛苦』本身才是讓我這麼耗竭的原因」。',
+                intent: '檢視經驗性迴避的長期代價，引導放下無效的控制策略。'
+              },
+              {
+                stage: '第二階段：身體擴展（Expansion）為情緒騰出空間',
+                question: '「現在停下忙碌，去看看那團原本想逃避的焦慮或孤單在你胸口的大小與形狀，並用深長的呼吸在它周圍騰出一點空間，像接待客人一樣給它一張椅子坐。」',
+                reaction: '當案主停止抗拒後，情緒的張力反而自然平穩下來，不再需要靠成癮麻痺。',
+                intent: '培養「接納（Willingness）」——主動為不適感騰出空間而非無奈忍受。'
+              },
+              {
+                stage: '第三階段：價值觀導向的承諾行動',
+                question: '「如果不靠滑手機或加班逃避，今晚這多出來的一小時，你想用來實踐哪一個對你真正重要的生活價值（如健康、親密陪伴）？」',
+                reaction: '案主規劃了具體且滋養身心的行動，重拾生活掌控感。',
+                intent: '將逃避行為轉化為朝向價值觀的承諾行動。'
+              }
+            ],
+            focusPills: ['經驗性迴避', '創造性無助', '拔河怪獸隱喻', '接納與擴展', '承諾行動'],
+            observations: [
+              '區分「接納（Willingness，主動騰出空間）」與「無奈忍受（Resignation，咬牙苦撐）」。',
+              '觀察案主停止抵抗情緒後，呼吸從胸式淺呼吸轉為腹式深長呼吸的轉折。'
+            ],
+            closingReminders: [
+              '提醒案主：痛苦（Pain）是人生不可避免的，但受苦（Suffering）往往來自我們拒絕接受痛苦的存在。',
+              '確認本週一項「帶著不適感依然執行的價值小行動」。'
+            ],
+            pauseAlert: '若成癮逃避已涉及嚴重酒精／藥物依賴、病態性賭博或危及生命的飲食障礙，必須轉介成癮戒治專科或身心科。',
+            practicalTip: '接納是指接納「內在私密經驗（情緒、念頭）」，絕非要求案主接納外在的暴力、虐待或危險環境！'
+          },
+          {
+            code: '07-3',
+            title: '03 情緒風暴中的當下抽離與恐慌',
+            emotionTag: '恐慌與焦慮',
+            context: '案主一遇到突發衝突或壓力事件，大腦立刻被過去的創傷記憶或未來的災難幻想捲走，整個人陷入恐慌、腦袋一片空白或情緒大爆發，完全無法專注在眼前。',
+            stages: [
+              {
+                stage: '第一階段：啟動「拋錨技術（Dropping Anchor）」ACE 三步驟',
+                question: '「現在想像一場情緒龍捲風正在吹，我們先不試著停下龍捲風，而是做 ACE 三步驟：1. 承認並命名心裡的感受（A）；2. 連接身體——雙腳用力踩地、伸展雙手（C）；3. 投入當下——說出眼前看到的五樣東西（E）。」',
+                reaction: '案主感受到身體重新找回重心，恐慌龍捲風的拉扯力瞬間減弱。',
+                intent: 'ACT 經典「拋錨技術」，在情緒風暴中穩定神經系統並活在當下。'
+              },
+              {
+                stage: '第二階段：覺察「選擇點（Choice Point）」',
+                question: '「當你穩住身體後，你站在一個 Y 字路口的選擇點上：往左走是被恐慌捲走而逃避或吼叫（遠離價值），往右走是符合你心中『冷靜、尊重』的樣子（朝向價值），你想往哪邊走？」',
+                reaction: '案主清晰看見在刺激與反應之間自己依然擁有選擇自由。',
+                intent: '繪製「選擇點」路徑圖，拉開衝動與行動之間的覺察空間。'
+              },
+              {
+                stage: '第三階段：帶著情緒風暴依然執行價值回應',
+                question: '「拋錨並不是讓風暴消失，而是讓你的船在風暴中穩穩停在港灣裡。現在船穩住了，你打算怎麼回應眼前這件事？」',
+                reaction: '案主平靜而清晰地做出建設性回應，建立強大的自我效能感。',
+                intent: '將正念當下覺察轉化為有效行動。'
+              }
+            ],
+            focusPills: ['拋錨技術（ACE）', '活在當下', '選擇點（Choice Point）', '朝向與遠離行動', '五感著陸'],
+            observations: [
+              '「拋錨技術」非常適合在會談中即時操作，特別是當案主在諮商室裡突然情緒激動或解離時，能立刻穩定狀態。'
+            ],
+            closingReminders: [
+              '現場帶領案主完整演練一次「30 秒拋錨練習」，加深身體肌肉記憶。',
+              '將「選擇點」小圖交給案主，作為日常風暴來襲時的隨身指南。'
+            ],
+            pauseAlert: '若恐慌伴隨嚴重胸痛暈厥或急性自殺危機，需優先進行醫療與緊急安全處遇。',
+            practicalTip: '練習拋錨時，治療師要用沉穩、緩慢的語調同步示範雙腳踩地與伸展，透過鏡像神經元帶動案主穩定下來。'
+          },
+          {
+            code: '07-4',
+            title: '04 害怕受傷而放棄親密關係價值',
+            emotionTag: '恐懼與孤獨',
+            context: '案主曾受過情傷或背叛，深信「只要不愛、不投入，就永遠不會再受傷」，因此關閉心門、拒絕所有社交與親密機會，表面安全卻深感孤寂與生命枯萎。',
+            stages: [
+              {
+                stage: '第一階段：看見「在我們最痛的地方，就藏著最珍貴的價值」',
+                question: '「你現在這麼害怕受傷，正因為你心裡非常珍視『深度的愛與真誠連結』。痛苦與價值就像同一張紙的正面與背面——為了避免正面（受傷），你是不是也把背面（愛與親密）一起丟掉了？」',
+                reaction: '案主眼眶濕潤，理解自己之所以封閉是因為曾經太真心去愛。',
+                intent: 'ACT 核心洞察：痛苦與價值觀是一體兩面。'
+              },
+              {
+                stage: '第二階段：檢視「安全堡壘」的長期可行性',
+                question: '「躲在『絕不付出真心』的堡壘裡確實不會受傷，但代價是永遠孤單。這座堡壘幫你活出了你八十歲時回頭看會驕傲的人生嗎？」',
+                reaction: '案主誠實面對躲避帶來的生命萎縮，產生重新打開窗戶的渴望。',
+                intent: '透過八十歲壽宴價值觀練習喚醒長期生命方向。'
+              },
+              {
+                stage: '第三階段：帶著脆弱的「願意（Willingness）」跨出微小連結',
+                question: '「如果願意承受『可能會有一點失望』的風險，只為了活出『溫暖、真誠去連結』的價值，這週你願意跨出哪一個小小的友善互動？」',
+                reaction: '案主決定先從主動與朋友聚會、真誠分享近況開始，不再等「保證不受傷」才行動。',
+                intent: '將「願意（Willingness）」落實為具體的關係承諾行動。'
+              }
+            ],
+            focusPills: ['痛苦與價值一體兩面', '願意（Willingness）', '親密關係價值', '安全堡壘代價', '承諾行動'],
+            observations: [
+              '強調「願意（Willingness）」不是「喜歡受傷」，而是「為了追尋我深愛的價值，我願意承擔隨之而來的脆弱風險」。'
+            ],
+            closingReminders: [
+              '肯定案主在受傷後依然保有一顆渴望真誠連結的心。',
+              '提醒案主：你可以左手牽著對受傷的恐懼，右手牽著對愛與連結的渴望，一起往前走。'
+            ],
+            pauseAlert: '若案主過去經歷嚴重親密關係暴力或性創傷，需依創傷知情原則先建立嚴格的安全界線辨識能力，切勿鼓勵盲目信任危險對象。',
+            practicalTip: 'ACT 區分「目標」與「價值觀」：找到完美伴侶是一個「目標」（可能受外在限制），但「成為一個溫暖、真誠、懂得愛人的人」是一個「價值觀」，隨時隨地都能活出來。'
+          },
+          {
+            code: '07-5',
+            title: '05 挫折後的自我概念僵化與停滯',
+            emotionTag: '無力與自卑',
+            context: '案主在經歷中年失業、離婚或創業失敗後，把「失敗者、過氣的人」當成自己唯一的身份標籤（概念化自我 Conceptualized Self），因此不敢嘗試任何新事物，人生陷入全面停滯。',
+            stages: [
+              {
+                stage: '第一階段：解構「概念化自我（Conceptualized Self）」標籤',
+                question: '「『我是個失敗者』這句話，只是你大腦在挫折後寫下的一份簡短履歷摘要。但你整個人生幾十年來的豐富體驗，難道能被這五個字全部裝下嗎？」',
+                reaction: '案主開始鬆動對單一失敗標籤的認同，看見自己遠比這個標籤更立體。',
+                intent: '區分「故事裡的標籤（以己為念）」與「裝載所有故事的容器（以己為景）」。'
+              },
+              {
+                stage: '第二階段：重新校準核心價值羅盤（不依賴過去頭銜）',
+                question: '「如果把過去所有的頭銜、薪資和成敗都拿掉，此時此刻你希望在生活裡活出哪三種品質（例如：好奇心、堅韌、助人）？」',
+                reaction: '案主重新定義自己的人生方向，發現價值觀不需要任何頭銜也能實踐。',
+                intent: '建立不隨外在成敗動搖的內在價值羅盤。'
+              },
+              {
+                stage: '第三階段：設定「探索者」身份的微承諾行動',
+                question: '「如果不再當『必須證明自己很厲害的專家』，而是改當一個『對世界充滿好奇的初學者』，這週你想嘗試哪一件從沒做過的小事？」',
+                reaction: '案主臉上露出久違的笑容與活力，打破停滯狀態。',
+                intent: '以心理靈活性啟動全新的生命實驗。'
+              }
+            ],
+            focusPills: ['概念化自我', '以己為景', '價值觀羅盤', '初學者心態', '心理靈活性'],
+            observations: [
+              '當一個人過度認同正向標籤（如「我是永遠的常勝軍」）時，一旦遇到挫折就會崩潰；因此無論正向或負向的「概念化自我」都需要透過「以己為景」來鬆綁。'
+            ],
+            closingReminders: [
+              '讓案主寫下 1～2 個此刻最想實踐的核心價值詞彙作為本週燈塔。',
+              '肯定案主在低谷中重新定義自我的勇氣。'
+            ],
+            pauseAlert: '若挫折停滯伴隨重度憂鬱症或嚴重自殺念頭，需優先進行安全評估與精神科醫療轉介。',
+            practicalTip: 'ACT 的核心目標不是「提高自尊（因為自尊依然是一種評價標籤）」，而是培養「自我接納與心理靈活性」。'
+          }
+        ]
+      },
+
+      // -----------------------------------------------------------------------
+      // 學派 08：現實治療學派 (選擇理論)
+      // -----------------------------------------------------------------------
+      {
+        id: 'reality',
+        shortName: '08 現實治療學派',
+        fullName: '現實治療學派 (選擇理論)',
+        engName: 'Reality Therapy & Choice Theory (William Glasser)',
+        coreFocus: '基於選擇理論，聚焦當下行為與責任，透過 WDEP 系統（渴望、行動、自我評估、計畫）檢視案主如何滿足五大基本需求（生存、愛與隸屬、權力、自由、樂趣），建立優質世界。',
+        keyConcepts: ['選擇理論', '五大基本需求', '優質世界圖片', '全行為汽車', 'WDEP 系統'],
+        topics: [
+          {
+            code: '08-1',
+            title: '01 關係控制欲與伴侶衝突的無力感',
+            emotionTag: '憤怒與無力',
+            context: '案主非常在乎伴侶，卻總是忍不住用嘮叨、批評、威脅或冷戰來督促對方改變，結果關係越來越僵、對方越來越逃避，案主感到既生氣又無力。',
+            stages: [
+              {
+                stage: '第一階段：探索「優質世界（Quality World）」的渴望（W）',
+                question: '「在你的『優質世界』相簿裡，你放了這段關係的畫面。在這張畫面中，你最渴望從他身上獲得的『愛與隸屬』是什麼？如果有一台攝影機拍下你們理想相處的樣子，畫面裡你們在做什麼？」',
+                reaction: '案主從數落缺點轉向清晰描繪「下班一起散步、彼此傾聽」的連結渴望。',
+                intent: 'W（Wants）：釐清核心需求與正向關係畫面。'
+              },
+              {
+                stage: '第二階段：對照「七大致命習慣」進行自我評估（D & E）',
+                question: '「過去一個月裡，你用了批評、嘮叨或冷戰想讓他改變。誠實地問自己：你現在做的這些事，有幫你得到你想要的親密與快樂嗎？」',
+                reaction: '案主誠實評估：「完全沒有，反而把他越推越遠，我自己也氣得半死。」',
+                intent: 'D（Doing）與 E（Evaluation）：讓案主自己看清外部控制心理學的無效。'
+              },
+              {
+                stage: '第三階段：捨棄外部控制，制定「七大關懷習慣」計畫（P）',
+                question: '「既然我們唯一能控制的人就是自己，這週如果我們暫停『批評與嘮叨』七天，改選『傾聽與鼓勵』這兩個關懷習慣，你打算怎麼在日常小事上執行？」',
+                reaction: '案主設計出具體的互動改變，重獲掌握關係氛圍的主動權。',
+                intent: 'P（Planning）：建立符合 SAMIC3 原則的可控行動計畫。'
+              }
+            ],
+            focusPills: ['七大致命習慣', '七大關懷習慣', '外部控制破除', 'WDEP 系統', '愛與隸屬需求'],
+            observations: [
+              '現實治療堅持「不批判、不放棄、不接受藉口」的三不原則，並透過核心問句「你現在做的事，對你有幫助嗎？」引導自我評估。'
+            ],
+            closingReminders: [
+              '共同確認本週的「關懷習慣行動計畫」並取得案主的具體承諾。',
+              '提醒案主：沒有成功也沒有失敗，只有「計畫行得通」或「需要修正計畫」。'
+            ],
+            pauseAlert: '若關係中存在嚴重家庭暴力、精神虐待或成癮危害，不可單純要求受害方用「關懷習慣」忍讓，必須優先確保安全與界線。',
+            practicalTip: 'Glasser 認為幾乎所有心理困擾都源於「當下缺乏一段令人滿意的親密關係」，因此停止外部控制、修復連結是第一優先。'
+          },
+          {
+            code: '08-2',
+            title: '02 職場倦怠與「愛與隸屬」需求落空',
+            emotionTag: '孤獨與無力',
+            context: '案主在職場上長期單打獨鬥、覺得同事冷漠、主管只看績效不關心人，每天上班都像在冰冷的機器裡運轉，感到深深的職業倦怠、孤立與情緒低落。',
+            stages: [
+              {
+                stage: '第一階段：盤點五大基本需求的飢餓指數（W）',
+                question: '「在『生存、愛與隸屬、權力（成就）、自由、樂趣』這五個需求裡，這份工作雖然滿足了你的『生存』，但你最飢餓的『愛與隸屬（團隊連結）』現在只剩幾分？」',
+                reaction: '案主精準定位出倦怠的核心不是工作量太大，而是缺乏人際歸屬與情感支持。',
+                intent: '運用五大需求量表精準診斷倦怠根源。'
+              },
+              {
+                stage: '第二階段：檢視孤立應對行為的有效性（D & E）',
+                question: '「因為覺得同事冷漠，你這幾個月每天中午都自己躲在位子上吃飯、不跟任何人說話。這樣做有讓你的孤單感好一點嗎？」',
+                reaction: '案主意識到自己的退縮雖然安全，但也徹底切斷了建立連結的可能。',
+                intent: '評估退縮行為對需求滿足的實際效果。'
+              },
+              {
+                stage: '第三階段：主動打造職場內外的歸屬支持網（P）',
+                question: '「如果職場環境暫時無法大幅改變，這週你願意嘗試哪兩個小行動來餵飽你的『愛與隸屬需求』（例如：午休主動找一位友善同事聊五分鐘、下班參加興趣社群）？」',
+                reaction: '案主規劃了具體的社交微行動，重新感受到與人的連結溫度。',
+                intent: '拓展多元的需求滿足管道，不把所有歸屬感寄託在單一環境。'
+              }
+            ],
+            focusPills: ['愛與隸屬需求', '五大需求盤點', '職場倦怠轉化', '全行為汽車', 'SAMIC3 計畫'],
+            observations: [
+              '選擇理論指出，當某個環境無法滿足特定需求時，健康的人會主動尋找替代管道，而非留在原地枯萎。'
+            ],
+            closingReminders: [
+              '確認本週兩項具體的「歸屬感灌溉行動」的時間與對象。',
+              '肯定案主主動為自己創造溫暖連結的務實行動力。'
+            ],
+            pauseAlert: '若職場倦怠已引發嚴重重度憂鬱症、長期失眠或自律神經崩潰，需建議就醫評估並適度申請休養調整。',
+            practicalTip: '現實治療師要像一位溫暖務實的教練，幫案主把模糊的「上班好累」拆解成具體的「哪個需求餓了、怎麼餵飽它」。'
+          },
+          {
+            code: '08-3',
+            title: '03 沉溺抱怨與拒絕為情緒選擇負責',
+            emotionTag: '憤怒與無力',
+            context: '案主習慣把所有的不快樂都歸咎於「父母害我、老闆不公平、社會太殘酷」，整天抱怨連連卻不採取任何改變行動，深信自己是環境的無辜受害者。',
+            stages: [
+              {
+                stage: '第一階段：導入「全行為四輪汽車」理解情緒控制權（W & D）',
+                question: '「選擇理論說我們開著一台『全行為四輪汽車』：前輪是『行動』與『思考』，後輪是『感受』與『生理』。我們無法直接轉動後輪（命令自己立刻快樂），但只要轉動前輪，後輪就會跟著走。你現在正選擇用哪一種行動和思考在開車？」',
+                reaction: '案主被全行為汽車隱喻深深吸引，從「被動受苦」轉向看見方向盤在自己手裡。',
+                intent: '透過全行為汽車模型建立情緒責任感，避免說教衝突。'
+              },
+              {
+                stage: '第二階段：誠實評估「抱怨」的投資報酬率（E）',
+                question: '「過去半年你花了很多時間向朋友抱怨這些不公平，這件事除了讓你暫時發洩一下之外，有幫你真正解決問題、或讓你的人生變得更好嗎？」',
+                reaction: '案主承認：「沒有，抱怨完回到家問題還是一樣，我反而更生氣。」',
+                intent: '引導案主自己評估抱怨行為的無效性。'
+              },
+              {
+                stage: '第三階段：將方向盤轉向「我能控制的第一步」（P）',
+                question: '「既然過去無法改寫、別人也無法控制，從今天離開這扇門開始，在你能 100% 掌控的範圍內，你決定做哪一件具體行動來改善現況？」',
+                reaction: '案主停止抱怨，提出具體可執行的解決方案並做出承諾。',
+                intent: '落實「聚焦當下、承擔責任、規劃可行行動」的現實治療核心。'
+              }
+            ],
+            focusPills: ['全行為四輪汽車', '選擇理論責任', '停止抱怨循環', '可控前輪轉向', 'SAMIC3 承諾'],
+            observations: [
+              '現實治療將情緒動詞化（如「正在憂鬱 Depressing」、「正在發怒 Angering」），提醒案主情緒是全行為的一部分。'
+            ],
+            closingReminders: [
+              '讚許案主放下受害者角色、重新握緊人生方向盤的勇氣。',
+              '約定下次會談一起檢核本週「轉動前輪」的具體成果。'
+            ],
+            pauseAlert: '若案主正處於真實的法律侵害、職場違法霸凌或家暴處境，切勿將現實不公簡化為「個人選擇」，應優先協助現實維權與安全保護。',
+            practicalTip: '當案主不斷抱怨過去創傷時，現實治療師會溫和地說：「我知道那段過去非常辛苦，但我們無法回到過去改變它；我更關心的是，今天的你打算怎麼讓明天過得更好？」'
+          },
+          {
+            code: '08-4',
+            title: '04 學業／職涯挫敗後的「權力與價值感」失落',
+            emotionTag: '自卑與憂鬱',
+            context: '案主在重要考試落榜、專案失敗或被降職後，覺得自己一無是處、在親友面前抬不起頭，整天待在家裡逃避社交，核心的「權力需求（成就感、被尊重與自我價值）」嚴重受挫。',
+            stages: [
+              {
+                stage: '第一階段：看見「權力需求（Power）」的合理渴望（W）',
+                question: '「這次挫敗讓你這麼難受，是因為你心裡對『成就感、專業肯定與尊嚴』的需求非常看重。如果把理想的成就畫面放進你的『優質世界』，那張照片裡你正在做什麼？」',
+                reaction: '案主釐清自己渴望的不是虛榮，而是透過努力獲得勝任感與尊重。',
+                intent: '肯定「權力需求（成就與自我價值）」是人類健康的五大基本需求之一。'
+              },
+              {
+                stage: '第二階段：評估退縮逃避的有效性（D & E）',
+                question: '「因為害怕再次失敗，你這幾週拒絕見朋友、也不敢打開履歷表。這樣躲起來有幫你找回自信與價值感嗎？」',
+                reaction: '案主意識到退縮只會讓權力需求更加飢餓，決定重新面對現實。',
+                intent: '打破逃避行為與自我貶低的惡性循環。'
+              },
+              {
+                stage: '第三階段：規劃累積「微小勝任感」的階梯計畫（P）',
+                question: '「不需要一次就登上山頂，這週你可以完成哪三個小到一定能做到的專業或生活任務，來重新為你的『權力需求』充電？」',
+                reaction: '案主列出具體的每日微任務（如整理筆記、運動 30 分鐘、完成一項作品），重燃信心。',
+                intent: '透過可達成的成功經驗重建自我效能與價值感。'
+              }
+            ],
+            focusPills: ['權力需求（成就與尊嚴）', '優質世界重構', '勝任感重建', 'WDEP 系統', '微任務計畫'],
+            observations: [
+              'Glasser 所謂的「權力（Power）」並非支配別人，而是「感受到自己有能力、有價值、被聽見與自我實現」。'
+            ],
+            closingReminders: [
+              '確認本週三個「微小勝任感任務」的具體執行時間。',
+              '提醒案主：一次的挫敗只是地圖上的一個路障，它並不能定義你整個人生的價值。'
+            ],
+            pauseAlert: '若挫敗感引發強烈自殺意念或嚴重憂鬱絕望，需立即啟動安全防護與精神科醫療轉介。',
+            practicalTip: '當案主沒有完成上週計畫時，現實治療師「絕不接受藉口，也不責備」，只平靜地問：「上週的計畫沒有成功，我們來看看需要怎麼修改，或是換一個更適合你的計畫？」'
+          },
+          {
+            code: '08-5',
+            title: '05 過度壓抑自由需求導致的悶悶不樂與叛逆',
+            emotionTag: '委屈與憤怒',
+            context: '案主在家庭或職場中長期背負沉重責任，每分每秒都被規矩、期待與待辦事項填滿，完全沒有自己的時間與選擇權（「自由需求 Freedom」長期窒息），因此常出現莫名的悶悶不樂、暴躁或突發性叛逆。',
+            stages: [
+              {
+                stage: '第一階段：辨識「自由需求（Freedom）」的長期窒息（W）',
+                question: '「在『生存、愛、權力、自由、樂趣』這五個需求裡，你有多久沒有體會過『這段時間完全由我自己做主、沒有任何人可以管我』的自由感了？」',
+                reaction: '案主眼眶一熱，發現自己長年當個模範生與好支柱，卻把內在的「自由需求」關在地下室快悶壞了。',
+                intent: '精準點出「自由與樂趣需求」匱乏是情緒悶燥的主因。'
+              },
+              {
+                stage: '第二階段：檢視消極叛逆或暴躁的代價（D & E）',
+                question: '「因為白天太沒有自由，你晚上只好用報復性熬夜、或突然對家人發脾氣來抗議。這套抗議方式有幫你爭取到真正的健康自由嗎？」',
+                reaction: '案主發現報復性熬夜只換來隔天更累，並沒有帶來真正的自主空間。',
+                intent: '評估無效抗議行為，引導尋找建設性的自由出口。'
+              },
+              {
+                stage: '第三階段：合法規劃專屬的「健康自由與樂趣時光」（P）',
+                question: '「這週我們一起在你的行事曆上，像排重要會議一樣畫出兩段『誰也不能打擾的專屬自由時間』，這段時間你最想做什麼？」',
+                reaction: '案主興奮地規劃了「週三晚上獨自去看電影、週六早上睡到自然醒去咖啡廳」，情緒瞬間亮了起來。',
+                intent: '將自由與樂趣合法納入生活結構，消除內在壓抑與叛逆。'
+              }
+            ],
+            focusPills: ['自由基本需求', '樂趣基本需求', '報復性熬夜轉化', '健康自主空間', 'SAMIC3 計畫'],
+            observations: [
+              '許多表面上的「易怒或憂鬱」，在選擇理論看來其實是「自由與樂趣需求長期飢餓」的生理心理抗議。'
+            ],
+            closingReminders: [
+              '讓案主在手機行事曆上當場設定好這兩段「專屬自由時間」的提醒。',
+              '肯定案主照顧自己自由需求的智慧：唯有先讓自己呼吸，才能走更長遠的路。'
+            ],
+            pauseAlert: '若案主處於高壓控制或家庭暴力環境，爭取自由空間可能引發伴侶／家人暴力反彈，需優先進行人身安全評估！',
+            practicalTip: '計畫必須符合 SAMIC3 原則（簡單、可達成、可測量、即時、可控、承諾），切忌定下太宏大卻做不到的目標。'
+          }
+        ]
+      },
+
+      // -----------------------------------------------------------------------
+      // 學派 09：人際歷程取向治療 (IPT)
+      // -----------------------------------------------------------------------
+      {
+        id: 'interpersonal',
+        shortName: '09 人際歷程取向',
+        fullName: '人際歷程取向治療 (IPT)',
+        engName: 'Interpersonal Process & Interpersonal Therapy (Teyber, Klerman & Weissman)',
+        coreFocus: '聚焦四大核心人際問題領域（哀傷、角色轉換、人際衝突、人際敏感／缺損），並關注案主如何在此時此地的諮商關係中重現依附模式，透過歷程評論與矯正性情緒體驗改寫關係劇本。',
+        keyConcepts: ['四大焦點領域', '歷程評論（Process Comments）', '矯正性情緒體驗', '溝通分析', '角色轉換適應'],
+        topics: [
+          {
+            code: '09-1',
+            title: '01 哀傷與喪親後的複雜性悲痛',
+            emotionTag: '悲傷與孤獨',
+            context: '案主在至親或重要伴侶離世後，長期陷入無力、失眠、社交退縮與未竟的悔恨中，覺得生活失去了所有連結支點，無法完成正常的哀悼過渡。',
+            stages: [
+              {
+                stage: '第一階段：正常化哀傷反應並重建失落記憶全貌',
+                question: '「失去這麼重要的人，心裡的痛是真實的。我們一起慢慢回顧這段關係——除了最後生病或離開的畫面之外，你們相處過程中哪些溫暖與不完美的真實片段最讓你難忘？」',
+                reaction: '案主從單一的創傷死亡畫面中鬆動，開始完整回憶兩人之間立體的愛與遺憾。',
+                intent: 'IPT 哀傷焦點核心：協助案主整合對逝者的真實記憶，完成未竟的情感表達。'
+              },
+              {
+                stage: '第二階段：處理哀傷中的悔恨、憤怒與罪惡感',
+                question: '「在失去他的同時，心裡會不會也藏著一點點對他離開的生氣，或是對自己當時沒能多做些什麼的懊悔？」',
+                reaction: '案主說出不敢對親友承認的矛盾情緒，獲得深度接納與釋放。',
+                intent: '破除「只能懷念美好、不能有怨懟」的哀傷禁忌，疏通複雜性悲痛。'
+              },
+              {
+                stage: '第三階段：重建新的人際連結與支持網絡',
+                question: '「帶著對他的思念，現在的生活裡有哪一兩位親友或支持團體，是你願意試著重新走出去跟他們說說話、建立新連結的？」',
+                reaction: '案主逐步走出孤立，在現存的人際網絡中重新找到歸屬與支撐。',
+                intent: '協助案主將情感能量重新投入當下的人際關係中。'
+              }
+            ],
+            focusPills: ['複雜性哀傷', '關係記憶重建', '矛盾情緒疏通', '支持網絡重建', '去孤立化'],
+            observations: [
+              'IPT 將哀傷視為重大的人際連結斷裂，治療重點在於「完成對舊關係的情感整理」並「建立新的人際支持」。'
+            ],
+            closingReminders: [
+              '肯定案主今天勇敢說出思念與遺憾的真誠。',
+              '確認本週與一位信任親友見面或通話的具體時間。'
+            ],
+            pauseAlert: '若喪親後出現強烈自殺企圖、嚴重精神運動遲滯或長達半年以上完全喪失生活功能，需轉介精神科評估重度憂鬱與複雜性哀傷治療。',
+            practicalTip: '在 IPT 中繪製「人際關係圓圈圖（Interpersonal Inventory）」，能一目了然看出案主失去逝者後支持系統的缺口在哪裡。'
+          },
+          {
+            code: '09-2',
+            title: '02 角色轉換（新手父母／退休／離職）的適應焦慮',
+            emotionTag: '焦慮與迷惘',
+            context: '案主剛成為新手父母、面臨退休、畢業入職或搬遷離婚，在舊角色結束與新角色開始的過渡期中感到極度焦慮、自我認同混亂與人際孤立。',
+            stages: [
+              {
+                stage: '第一階段：哀悼「舊角色」的失去與告別',
+                question: '「成為新手父母（或退休／轉職）雖然是人生新階段，但同時也意味著失去了過去的自由、熟悉感或舊有成就。舊角色裡最讓你捨不得的是什麼？」',
+                reaction: '案主眼眶泛紅，第一次被允許哀悼「失去自由單身／失去職場舞台」的失落，不再覺得自己不知足。',
+                intent: 'IPT 角色轉換第一要務：先充分哀悼舊角色的失落，才能騰出空間擁抱新角色。'
+              },
+              {
+                stage: '第二階段：檢視對「新角色」的不切實際期待與恐懼',
+                question: '「對於這個新角色，你是不是給自己設下了『必須立刻上手、不能出錯』的超高標準？新角色裡最讓你感到陌生和害怕的是哪一塊？」',
+                reaction: '案主卸下完美新手的包袱，看清自己真正需要學習的新人際技能。',
+                intent: '現實化新角色期待，減輕適應焦慮。'
+              },
+              {
+                stage: '第三階段：連結新角色的人際同盟與資源',
+                question: '「在這個新階段裡，誰正在經歷跟你類似的角色轉換（例如同梯新人、新手爸媽社群）？你可以怎麼向他們尋求經驗交流與支持？」',
+                reaction: '案主找到同溫層支持與新的自我定位，焦慮大幅轉化為好奇與信心。',
+                intent: '為新角色建立相應的人際支持網絡與溝通能力。'
+              }
+            ],
+            focusPills: ['角色轉換適應', '哀悼舊角色', '新角色期待校準', '人際同盟建立', '身分認同過渡'],
+            observations: [
+              '許多產後憂鬱或退休憂鬱的本質，都是「未能哀悼舊角色失落」與「缺乏新角色支持系統」的雙重人際危機。'
+            ],
+            closingReminders: [
+              '肯定案主在人生重大轉折期願意尋求協助的智慧，提醒「任何新角色都需要時間練習」。',
+              '確認本週一項連結新角色支持資源的小行動。'
+            ],
+            pauseAlert: '若新手父母出現嚴重產後憂鬱伴隨傷害自己或嬰兒的念頭，必須立即啟動精神科醫療與家庭緊急支持介入！',
+            practicalTip: '協助案主列出「舊角色的優缺點」與「新角色的機會與挑戰」對照表，能迅速幫助大腦完成角色心理交接。'
+          },
+          {
+            code: '09-3',
+            title: '03 人際衝突與溝通僵局中的委屈憤怒',
+            emotionTag: '憤怒與委屈',
+            context: '案主與伴侶、主管或父母在「誰該付出多少、彼此期望不一致」上陷入長期冷戰或激烈爭吵，雙方各執一詞、互不相讓，案主感到深深的委屈與憤怒。',
+            stages: [
+              {
+                stage: '第一階段：定位衝突階段（重新協商、僵局、還是瀕臨解體？）',
+                question: '「這段衝突目前是『雙方還在試著爭取改變（重新協商）』，還是『兩個人都累了、用沉默武裝自己（僵局）』？你心裡真正希望這段關係走向哪裡？」',
+                reaction: '案主釐清自己其實不想毀掉關係，而是渴望被尊重與公平對待。',
+                intent: 'IPT 人際衝突評估：明確衝突階段與關係目標。'
+              },
+              {
+                stage: '第二階段：溝通分析（Communication Analysis）拆解失靈對話',
+                question: '「我們把昨天吵架的對話像慢動作重播一樣還原：你說了什麼？你當時心裡真正想傳達的需求是什麼？對方聽到的卻是什麼？」',
+                reaction: '案主驚覺自己用「指責和反諷」包裝了「渴望被關心」，導致對方立刻防衛反擊。',
+                intent: '精準找出溝通中的「雙重訊息」與「讀心術假設」。'
+              },
+              {
+                stage: '第三階段：角色扮演演練直接、清晰的溝通腳本',
+                question: '「如果把『你從來都不在乎這個家！』改寫成直接表達感受與具體請求（『這週加班我好累，我希望週六你能陪我一起分擔家務』），我們現在在這裡演練一次？」',
+                reaction: '案主在角色扮演中體驗到直接表達的力量，信心大增。',
+                intent: '透過行為預演提升溝通效能，打破僵局。'
+              }
+            ],
+            focusPills: ['人際衝突僵局', '溝通分析還原', '雙重訊息拆解', '角色扮演預演', '互惠期待協商'],
+            observations: [
+              '溝通分析時要像電影導演一樣追問逐字逐句的互動細節，往往能立刻發現「心裡想的」與「嘴巴說出來的」之間的巨大落差。'
+            ],
+            closingReminders: [
+              '確認本週要與對方溝通的核心句型，提醒選擇雙方情緒平穩的時機開啟對話。',
+              '肯定案主願意學習建設性溝通而非繼續冷戰的成熟。'
+            ],
+            pauseAlert: '若關係衝突已演變為肢體暴力、精神虐待或重大安全威脅，應優先評估安全隔離與分手保護計畫，而非強求關係妥協。',
+            practicalTip: '在 IPT 中，角色扮演（Role Play）是極其重要的技術，治療師可先示範健康的溝通句型，再讓案主練習並給予正向回饋。'
+          },
+          {
+            code: '09-4',
+            title: '04 人際敏感與長期孤單社交困難',
+            emotionTag: '孤獨與羞愧',
+            context: '案主長期缺乏親密朋友，在社交場合極度緊張、害怕說錯話被討厭，常提前退縮或過度防備，導致長期處於孤立狀態，深信自己「缺乏社交天分」。',
+            stages: [
+              {
+                stage: '第一階段：探索過往關係中的人際敏感循環',
+                question: '「回顧你過去幾段無疾而終的友誼，通常是在哪一個時間點、因為什麼小插曲，讓你決定『算了，還是退回一個人比較安全』？」',
+                reaction: '案主發現自己常把對方的無心之言解讀為「嫌棄我」，於是先發制人斷絕聯絡。',
+                intent: '辨識人際敏感（Interpersonal Sensitivity）導致的自我應驗孤立。'
+              },
+              {
+                stage: '第二階段：利用諮商關係作為「此時此地的人際實驗室」',
+                question: '「在我們這幾次的互動裡，當你覺得緊張或擔心我怎麼看你時，你願意試著當場告訴我嗎？我們一起看看在安全關係裡表達不安會發生什麼事。」',
+                reaction: '案主在諮商室中練習表達微小的社交不安，體驗到被接納與理解的溫暖。',
+                intent: '透過此時此地的歷程回饋，降低人際焦慮並建立基礎社交信心。'
+              },
+              {
+                stage: '第三階段：設計階梯式真實社交接觸行動',
+                question: '「這週我們先不強迫交知心好友，而是從低壓力的『興趣共享活動』（如讀書會、運動社團）開始，演練一個自然開啟對話的開場白，好嗎？」',
+                reaction: '案主掌握了具體的傾聽與提問技巧，願意踏出舒適圈一步。',
+                intent: '將諮商室裡的安全互動經驗類化到真實社交環境。'
+              }
+            ],
+            focusPills: ['人際敏感與缺損', '此時此地歷程回饋', '自我應驗孤立', '社交技能預演', '階梯式連結'],
+            observations: [
+              '對於人際缺損（Interpersonal Deficits）的案主，治療關係本身就是最重要且最直接的社交練習場。'
+            ],
+            closingReminders: [
+              '肯定案主在諮商關係中展現的真誠與勇敢嘗試。',
+              '確認本週一項低壓力的現實社交參與計畫。'
+            ],
+            pauseAlert: '若社交退縮伴隨嚴重泛自閉症光譜特質困擾或精神病性負性症狀，需結合專科評估與結構化社交訓練資源。',
+            practicalTip: '治療師在與人際敏感案主工作時，適當的真誠回饋（例如：「剛剛你分享這段故事時，我覺得你非常有幽默感，跟你聊天很愉快」）能帶來極大的正向增強。'
+          },
+          {
+            code: '09-5',
+            title: '05 依附創傷在諮商室此時此地的重演',
+            emotionTag: '恐懼與委屈',
+            context: '案主在成長過程中經歷過照顧者的冷漠、反覆無常或背叛，導致進入任何親密或助人關係時，都會無意識地測試對方、害怕被拋棄或突然築起高牆，連在諮商室裡也陷入相同的防備與焦慮。',
+            stages: [
+              {
+                stage: '第一階段：溫柔進行「歷程評論（Process Comment）」照見重演',
+                question: '「我注意到剛剛當我們靠近你最受傷的那段記憶時，你突然說『其實講這些也沒用，反正老師你也只是在工作而已』。你是不是也有點擔心，連我也會像過去的大人一樣敷衍或離棄你？」',
+                reaction: '案主先是震驚被看穿，隨後眼眶泛紅，承認自己因為太怕再次受傷才先推開治療師。',
+                intent: 'Teyber 人際歷程核心技術：溫柔點破此時此地的依附防衛重演。'
+              },
+              {
+                stage: '第二階段：提供不同於舊客體的「矯正性情緒體驗」',
+                question: '「謝謝你願意把這份擔心說出來，沒有直接轉身離開。在這裡，我不會因為你防備或生氣就放棄你，我們可以慢慢來，照你覺得安全的距離走。」',
+                reaction: '案主經驗到治療師既不反擊也不退縮的穩定承接，舊有的依附創傷腳本開始改寫。',
+                intent: '以穩定、真誠且不報復的關係回應，提供矯正性情緒體驗（Corrective Emotional Experience）。'
+              },
+              {
+                stage: '第三階段：將新的關係信任模板延伸至生活',
+                question: '「既然在這裡你體驗到『表達恐懼與不信任，關係不但沒毀滅反而更真實了』，在你的生活裡，有沒有哪一個人也值得你給他一點點認識真實你的機會？」',
+                reaction: '案主逐步學會辨識安全對象，建立健康的新依附關係。',
+                intent: '將諮商室內的依附修復類化到現實人際系統。'
+              }
+            ],
+            focusPills: ['依附創傷重演', '歷程評論', '矯正性情緒體驗', '關係測試動力', '安全基地建立'],
+            observations: [
+              '當案主突然想中斷諮商、遲到或質疑治療師時，往往正是核心依附創傷被觸發的關鍵時刻，治療師若能穩住自己並溫和討論，療效最為深遠。'
+            ],
+            closingReminders: [
+              '再次肯定案主今天沒有選擇逃跑，而是在關係裡誠實面對恐懼的巨大勇氣。',
+              '重申下週約定的時間，提供可預測的安全感。'
+            ],
+            pauseAlert: '若案主在創傷重演中出現強烈解離閃回或急性自傷衝動，需立即暫停深層歷程探討，優先執行感官著陸與安全保護。',
+            practicalTip: '在人際歷程取向中，案主「測試治療師」並不是阻抗，而是他內在渴望尋找一個「這一次不會再傷害我的人」的希望訊號。'
+          }
+        ]
+      },
+
+      // -----------------------------------------------------------------------
+      // 學派 10：焦點解決短期治療 (SFBT)
+      // -----------------------------------------------------------------------
+      {
+        id: 'sfbt',
+        shortName: '10 焦點解決(SFBT)',
+        fullName: '焦點解決短期治療 (SFBT)',
+        engName: 'Solution-Focused Brief Therapy (Steve de Shazer & Insoo Kim Berg)',
+        coreFocus: '不花時間分析問題成因，而是聚焦於「想要的美好未來、例外經驗、因應策略與內在資源」，透過奇蹟問句、例外問句與量尺問句激發快速且正向的微改變。',
+        keyConcepts: ['奇蹟問句', '例外經驗', '量尺問句', '因應問句', '讚美與一小步'],
+        topics: [
+          {
+            code: '10-1',
+            title: '01 陷入問題泥淖的無助與絕望感',
+            emotionTag: '無力與絕望',
+            context: '案主覺得自己「每天都被問題淹沒、完全看不到出口」，談起困擾時充滿無力感，深信必須先花好幾年查出所有童年原因才能好起來。',
+            stages: [
+              {
+                stage: '第一階段：奇蹟問句（Miracle Question）建構偏好未來',
+                question: '「假設今天晚上你睡著後，發生了一個奇蹟，把困擾你的這個大問題全都帶走了。明天早上醒來，你第一個會注意到哪一個小小的不同，讓你發現奇蹟發生了？」',
+                reaction: '案主眼神往上轉，開始微笑描繪「我會平靜地起床泡杯茶、主動跟家人打招呼、專心完成一件小事」。',
+                intent: '繞過問題泥淖，具體建構正向可觀察的未來生活畫面。'
+              },
+              {
+                stage: '第二階段：發掘「例外經驗（Exception Questions）」',
+                question: '「在過去這兩週這麼辛苦的日子裡，有沒有哪怕只有十分鐘，奇蹟畫面裡的某個小片段其實已經出現過了？當時你是怎麼做到的？」',
+                reaction: '案主驚訝想起「禮拜四早上出門曬太陽時，心情真的平靜了半小時！」。',
+                intent: '證明「奇蹟已經發生過了」，追問細節喚醒自我效能感。'
+              },
+              {
+                stage: '第三階段：量尺問句（Scaling Questions）與一小步行動',
+                question: '「如果 10 分代表奇蹟完全實現，1 分代表最糟，你現在在幾分？從現在的 3 分走到 4 分，這週你打算多做一點什麼？」',
+                reaction: '案主感受到目標非常具體且不費力，重燃希望與行動力。',
+                intent: 'SFBT 核心原則：有效就多做一點；無效就換個做法。'
+              }
+            ],
+            focusPills: ['奇蹟問句', '例外經驗', '量尺問句', '正向目標建構', '多做一點有效行為'],
+            observations: [
+              '治療師保持「不知情（Not-Knowing）的好奇姿態」，視案主為解決自己問題的專家。',
+              '使用量尺問句時，一定要問「為什麼你已經在 3 分，而不是 1 分？」，喚醒案主已經做對的努力。'
+            ],
+            closingReminders: [
+              '在結尾進行「真誠讚美 + 橋樑 + 家庭作業」：肯定案主在泥淖中依然尋找微光的韌性，邀請觀察本週更多的例外時刻。',
+              '提醒案主：大改變都是從一個不起眼的 0.5 分小步開始的。'
+            ],
+            pauseAlert: '若案主處於急性自殺危機、家暴危險或精神病性發作，必須優先啟動安全防護與危機介入，不可僅進行奇蹟問句幻想。',
+            practicalTip: '問題的成因和解決之道之間往往沒有必然關係——就像你不需要知道火災是怎麼起火的，也能拿起滅火器把火撲滅。'
+          },
+          {
+            code: '10-2',
+            title: '02 親職教養挫折與情緒失控自責',
+            emotionTag: '憤怒與內疚',
+            context: '案主在管教孩子寫功課或生活習慣時經常忍不住吼叫，事後看著孩子害怕的表情又陷入深深的自責與挫敗，覺得自己是個「失敗的父母」。',
+            stages: [
+              {
+                stage: '第一階段：肯定教養背後的愛，並尋找「沒有吼叫的例外時刻」',
+                question: '「你事後這麼自責，正因為你非常愛孩子、希望成為一個溫柔堅定的父母。在過去這一週裡，有沒有哪一次孩子同樣拖拉，但你竟然忍住沒有吼叫、用另一種方式處理成功了？」',
+                reaction: '案主想起「週二晚上我先去廚房喝了一口水，回來笑著陪他看第一題，那天就沒吵架！」。',
+                intent: '將目光從「失控自責」轉向「成功的親職例外經驗」。'
+              },
+              {
+                stage: '第二階段：運用關係問句擴大親子正向循環',
+                question: '「週二晚上你沒有吼叫的時候，孩子臉上的表情和配合度有什麼不一樣？如果孩子現在在這裡，他會說他最喜歡爸爸／媽媽怎麼跟他说话？」',
+                reaction: '案主看見自己的平靜如何直接帶來孩子的合作，重獲教養信心。',
+                intent: '運用「關係問句（Relationship Questions）」從孩子視角強化正向互動。'
+              },
+              {
+                stage: '第三階段：設計「親子和平一週」微實驗',
+                question: '「既然『先去喝口水再回來』這招這麼有效，這週如果再遇到作業卡關，你打算怎麼提前啟動這個魔法暫停鍵？」',
+                reaction: '案主制定了具體的睡前作業儀式，充滿期待回家實驗。',
+                intent: '複製成功例外，建立可持續的正向親子互動。'
+              }
+            ],
+            focusPills: ['親職例外經驗', '關係問句', '去自責化讚美', '成功策略複製', '量尺推進'],
+            observations: [
+              '父母在教養挫折中常背負沉重罪惡感，治療師真誠的讚美（例如：「你每天下班這麼累還堅持陪伴孩子，這份愛非常了不起」）能迅速穩定父母的情緒能量。'
+            ],
+            closingReminders: [
+              '指派「觀察任務」：這週請偷偷記下孩子做對的三件小事，以及自己成功保持冷靜的瞬間。',
+              '提醒案主：沒有完美的父母，只有願意不斷調整方法的「夠好父母」。'
+            ],
+            pauseAlert: '若情緒失控已涉及身體虐待、嚴重體罰傷痕或兒童保護通報風險，必須依法進行兒少安全評估與親職支持資源介入。',
+            practicalTip: '當父母說「我都試過了沒用」時，溫和追問：「在所有試過的方法裡，哪一個曾經哪怕只有 5% 的效果？」從那 5% 開始放大！'
+          },
+          {
+            code: '10-3',
+            title: '03 職場高壓下的焦慮與自我效能低落',
+            emotionTag: '焦慮與自卑',
+            context: '案主面對龐大的業績或專案壓力，每天擔心達不到標準、覺得自己能力不足，陷入高度焦慮與自我懷疑。',
+            stages: [
+              {
+                stage: '第一階段：挖掘「過去類似高壓挑戰的成功資源」',
+                question: '「在你過去的工作或求學經驗裡，一定也遇過像這樣時間很緊、壓力爆表的危機，但最後你竟然過關了！那一次你是怎麼辦到的？」',
+                reaction: '案主回憶起過去拆解任務、尋求同事協助的具體步驟，恐慌感立刻下降。',
+                intent: '挖掘過去成功資源（Past Successes），喚醒勝任感。'
+              },
+              {
+                stage: '第二階段：界定「安全過關 7 分」的具體畫面（W）',
+                question: '「如果這個專案結束後，你給自己打一個『安全過關的 7 分』，這份 7 分的成果需要包含哪三個核心重點就夠了？」',
+                reaction: '案主把模糊龐大的焦慮拆解為清晰的三個工作項目，大腦恢復條理。',
+                intent: '將抽象恐懼轉化為具體可執行的任務指標。'
+              },
+              {
+                stage: '第三階段：啟動「當下第一步」與信心量尺檢核',
+                question: '「現在專案進度在量尺上的幾分？離開這裡之後，你做的哪一件 15 分鐘小事，能立刻把進度往前推進 0.5 分？你對完成這一步的信心有幾分？」',
+                reaction: '案主精神振奮，清晰知道回去要做的第一件事且信心高達 8 分。',
+                intent: '透過「信心量尺」確保第一步小到一定能成功。'
+              }
+            ],
+            focusPills: ['過去成功資源', '量尺推進', '目標具體化', '信心量尺檢核', '即時微行動'],
+            observations: [
+              '當案主信心量尺低於 6 分時，代表第一步設定得太大了，要立刻協助把第一步再縮小一半，直到信心達到 8 分以上。'
+            ],
+            closingReminders: [
+              '將整理好的「三個核心重點與第一步行動」寫在卡片上交給案主。',
+              '給予簡短有力的信任祝福：「你已經準備得比你以為的更充分了！」'
+            ],
+            pauseAlert: '若案主出現急性換氣過度、胸痛眩暈等嚴重恐慌生理發作，應先帶領緩慢腹式呼吸穩定生理，必要時協助就醫。',
+            practicalTip: '治療師在會談中展現的冷靜、條理與信任，能迅速安撫高壓案主的神經過載。'
+          },
+          {
+            code: '10-4',
+            title: '04 感情破裂後的低潮與重建信心',
+            emotionTag: '悲傷與自我懷疑',
+            context: '案主剛經歷分手或被背叛，每天以淚洗面、反覆查看前任動態，覺得自己「再也不會幸福、沒有魅力了」，生活失去重心。',
+            stages: [
+              {
+                stage: '第一階段：運用「因應問句（Coping Questions）」看見失戀韌性',
+                question: '「剛經歷這麼心碎的分手，換作是別人可能早就徹底垮掉了。我很佩服你，在這麼痛的情況下，你是怎麼做到每天依然按時吃飯、今天還走進這個諮商室的？」',
+                reaction: '案主愣住，從「我很可憐」轉向看見「原來我在這麼痛的時候已經撐住了這麼多」。',
+                intent: '透過因應問句在極度悲傷中喚醒內在力量與尊嚴。'
+              },
+              {
+                stage: '第二階段：勾勒「單身重生奇蹟畫面」',
+                question: '「假設三個月後，你已經走出了這段低潮，重新找回了光彩與笑容。那時候的你，每天下班後和週末都在過什麼樣的生活？身邊的朋友會看到你什麼樣的改變？」',
+                reaction: '案主眼神重新亮起，描繪出「去學一直想學的運動、跟好友旅行、重新打扮自己」的畫面。',
+                intent: '將注意力從「已經結束的過去」轉向「充滿可能的未來」。'
+              },
+              {
+                stage: '第三階段：啟動「自我滋養一小步」',
+                question: '「在三個月後那個閃閃發光的畫面裡，哪一件小事是這週你就可以先送給自己的禮物？」',
+                reaction: '案主決定本週預約剪頭髮並約閨蜜吃一頓美食，重拾對生活的熱情。',
+                intent: '以具體自我照顧行動重建自信與魅力。'
+              }
+            ],
+            focusPills: ['因應問句', '重生奇蹟畫面', '自我滋養一小步', '間接讚美技術', '復原力喚醒'],
+            observations: [
+              'SFBT 的「間接讚美」——透過問句讓案主自己說出自己的韌性（例如：「你是怎麼讓自己在這麼難過時還記得照顧好寵物的？」），比直接安慰更有力量。'
+            ],
+            closingReminders: [
+              '肯定案主在情感風暴中展現的真誠與復原力。',
+              '邀請案主本週記錄三個「對自己很好、讓心情稍微亮起來」的瞬間。'
+            ],
+            pauseAlert: '若失戀伴隨強烈自殺企圖、跟蹤騷擾衝動或嚴重自我傷害，需優先執行危機安全防護與法律界線介入。',
+            practicalTip: '失戀初期切忌強迫案主立刻放下，先用「因應問句」肯定他的苦與韌性，等能量回升後再自然導入未來奇蹟畫面。'
+          },
+          {
+            code: '10-5',
+            title: '05 長期慢性壓力中的微光與例外經驗發掘',
+            emotionTag: '疲憊與焦慮',
+            context: '案主長期照顧生病家人或背負沉重房貸與家庭責任，壓力看不到盡頭，覺得「每天都像在跑一場沒有終點的馬拉松，快要喘不過氣了」。',
+            stages: [
+              {
+                stage: '第一階段：見證長期負荷並發掘「縫隙中的微光例外」',
+                question: '「扛著這麼重的擔子走了這麼久，你真的非常不容易。在這樣密不透風的日常裡，有沒有哪怕只有五分鐘的縫隙，你覺得自己稍微喘了一口氣、心裡亮了一點點？」',
+                reaction: '案主想起「每天早上泡咖啡等水滾的那三分鐘、或深夜聽一首老歌的時候」。',
+                intent: '在無法立刻改變外在重擔的情況下，尋找內在喘息的例外時刻。'
+              },
+              {
+                stage: '第二階段：放大並保護「微光資源」',
+                question: '「那三分鐘的咖啡時光幫你充了多少電？除了這個之外，生活裡還有哪些人、事、物是你想繼續保留下去、能幫你撐住這場馬拉松的補給站？」',
+                reaction: '案主盤點出「週日請家人接手兩小時、每週跟好友通一次電話」等重要補給站。',
+                intent: '運用「觀察任務」精神，保護並擴增現有的支持資源。'
+              },
+              {
+                stage: '第三階段：量尺維持與防過勞微調整',
+                question: '「現在你的能量量尺在幾分？這週你打算多保護哪一個小小的補給站，讓能量從 4 分穩穩提升到 5 分？」',
+                reaction: '案主學會把自我照顧視為馬拉松的必要補給，不再覺得休息是罪惡。',
+                intent: '建立可持續的壓力調節與自我照顧微習慣。'
+              }
+            ],
+            focusPills: ['縫隙微光例外', '補給站資源盤點', '因應韌性', '量尺維持', '防過勞微調'],
+            observations: [
+              '面對無法短期消除的慢性現實壓力（如長照負擔），SFBT 不空談「徹底解決問題」，而是務實地放大「喘息微光」與「社會資源連結」。'
+            ],
+            closingReminders: [
+              '向長期承擔責任的案主表達深深的敬意與肯定。',
+              '提醒案主：在照顧所有人之前，每天至少留五分鐘給自己的補給站。'
+            ],
+            pauseAlert: '若照顧者已出現嚴重憂鬱傾向、失眠崩潰或對被照顧者產生傷害衝動，必須立即轉介長照喘息服務、社福資源與身心科醫療！',
+            practicalTip: '治療師要像一位「資源偵探」，在案主疲憊的敘述裡尋找每一個支撐他走過寒冬的微小火種並保護它。'
+          }
+        ]
+      },
+
+      // -----------------------------------------------------------------------
+      // 學派 11：家庭系統治療
+      // -----------------------------------------------------------------------
+      {
+        id: 'family-systems',
+        shortName: '11 家庭系統治療',
+        fullName: '家庭系統治療',
+        engName: 'Family Systems Therapy (Bowen, Minuchin, Satir)',
+        coreFocus: '將個人情緒困擾放回整個家庭互動網絡與代間脈絡中理解，探索三角關係、界線僵化或糾結、自我分化與家庭系統圖（Genogram），鬆動代間重複劇本。',
+        keyConcepts: ['家庭系統圖', '自我分化', '三角關係', '界線（糾結／疏離）', '家庭雕塑與冰山'],
+        topics: [
+          {
+            code: '11-1',
+            title: '01 與父母的情感糾結與界線不清焦慮',
+            emotionTag: '焦慮與委屈',
+            context: '案主覺得跟父親或母親太黏、情緒完全被父母喜怒牽著走，或者一靠近就劇烈吵架只好徹底疏離，每週回家吃飯卻說不上話或像打仗一樣緊繃。',
+            stages: [
+              {
+                stage: '第一階段：繪製三代家庭系統圖（Genogram）看見脈絡',
+                question: '「我們一起把你家三代的關係畫出來。在你的成長過程中，父母各自是怎麼跟他們的父母相處的？家裡誰跟誰最靠近、誰最疏遠？」',
+                reaction: '案主從系統圖中驚訝發現「原來母親對我的控制，跟外婆當年對母親的方式一模一樣」。',
+                intent: '運用三代圖退後一步看全景，把觀察寫成問題而非結論。'
+              },
+              {
+                stage: '第二階段：桌面物件／位置距離評估實驗',
+                question: '「用桌上的三個物件代表父親、母親和你。現在擺出來看看，你和父親的距離如何？你比較想朝哪一位移動，還是想後退半步？」',
+                reaction: '案主調整物件距離後，長舒一口氣說：「退後這十公分，我終於看得到自己了！」',
+                intent: '結合結構派界線概念與桌面排列空間探索，具象化「糾結 vs. 清晰界線」。'
+              },
+              {
+                stage: '第三階段：練習「自我分化（Differentiation of Self）」回應',
+                question: '「當母親又開始焦慮碎念時，怎麼做能讓你既不冷漠斷聯、也不被她的焦慮捲進去，而是穩穩站在成年人的位置上回應？」',
+                reaction: '案主練習用平靜溫和的「我訊息」設下界線，減少情緒反應性。',
+                intent: 'Bowen 自我分化核心訓練：保持情感連結且不失獨立自我。'
+              }
+            ],
+            focusPills: ['三代家庭系統圖', '自我分化', '糾結與疏離界線', '空間距離位置', '代間情緒傳遞'],
+            observations: [
+              '看圖時先把觀察寫成問題（例如：「外公過世那年，母親幾歲？家裡發生了什麼？」），不急著下結論。',
+              '觀察案主在擺放父母物件時，兩位父母彼此之間的距離與視線方向。',
+              '留意案主是否用「完全斷聯（情緒切斷 Emotional Cutoff）」來逃避面對界線功課。'
+            ],
+            closingReminders: [
+              '提醒案主：今天在桌面或圖表上看到的畫面，不代表父母全部的想法，只是我們今天看見的關係線索。',
+              '肯定案主在探索家族脈絡時的勇氣與清晰覺察。'
+            ],
+            pauseAlert: '若案主提及正與父母有激烈的法律、財產訴訟糾紛，或存在肢體暴力威脅，應先回到現實安全與法律資源轉介，不在場上進行深度情感排列。',
+            practicalTip: '若父母一方長年在外地或海外工作，在華人家庭系統圖中，可把「工作地／距離」也標註為一個重要系統元素。'
+          },
+          {
+            code: '11-2',
+            title: '02 家庭三角關係中的夾心餅乾委屈',
+            emotionTag: '委屈與焦慮',
+            context: '父母感情不睦，母親常向案主哭訴父親的不是，父親也私下要案主去勸母親。案主長期擔任家庭的「和事佬、傳聲筒與情緒垃圾桶」，感到快要被撕裂且充滿無力感。',
+            stages: [
+              {
+                stage: '第一階段：繪製家庭「三角關係（Triangulation）」動力圖',
+                question: '「當父母兩個人之間緊張升高時，誰最先轉過頭來找你？你一旦站進他們中間，他們兩個人的衝突是不是就暫時轉移到你身上了？」',
+                reaction: '案主驚覺自己一直用「犧牲自己的平靜」在替父母的婚姻減壓。',
+                intent: '具象化三角關係的系統功能與代價。'
+              },
+              {
+                stage: '第二階段：啟動「去三角化（Detriangulation）」界線練習',
+                question: '「當母親又開始向你抱怨父親時，我們可以怎麼用既尊重她、又不替她當傳聲筒的方式回應？（例如：『媽，聽起來你很委屈，這件事你們夫妻直接談會比透過我更有效』）」',
+                reaction: '案主練習說出去三角化句型，感受到肩上千斤重擔卸了下來。',
+                intent: '具體演練「不選邊站、不傳話、保持雙向溫暖連結」的回應。'
+              },
+              {
+                stage: '第三階段：處理退出後的「不孝內疚感」',
+                question: '「如果你不再當傳聲筒，父母一開始可能會生氣或說你變冷漠。你能忍受那份短暫的內疚，並相信他們兩個成年人有能力處理自己的關係嗎？」',
+                reaction: '案主放下拯救父母的執念，回歸自己的人生軌道。',
+                intent: '恢復結構派強調的「世代界線（Generational Boundary）」。'
+              }
+            ],
+            focusPills: ['三角關係', '去三角化', '親職化兒童', '世代界線', '退出傳聲筒角色'],
+            observations: [
+              '當案主退出三角關係後，父母最初往往會加重壓力試圖把案主拉回去（系統恆定反撲），需提前預告並支持案主穩住。'
+            ],
+            closingReminders: [
+              '將演練好的「去三角化回應句」寫在卡片上，作為下次接到父母訴苦電話時的護身符。',
+              '肯定案主終結代間情緒負荷的勇氣。'
+            ],
+            pauseAlert: '若父母衝突涉及嚴重家庭暴力（如肢體毆打、自殺威脅），必須優先啟動家庭暴力防治與危機救援通報，絕非單純界線議題。',
+            practicalTip: '在華人文化中，直接對父母說「你們的事自己管」容易引發強烈孝道內疚，教導案主「先同理情緒、再溫暖交還責任」最容易成功。'
+          },
+          {
+            code: '11-3',
+            title: '03 跨世代創傷與家族忠誠帶來的罪惡感',
+            emotionTag: '內疚與悲傷',
+            context: '案主在事業或親密關係快要步入佳境時，總會莫名其妙地自我破壞或感到深深的罪惡感，因為原生家庭長年處於辛苦、爭吵或匱乏中，案主潛意識覺得「如果我過得太幸福，就是背叛了受苦的父母」。',
+            stages: [
+              {
+                stage: '第一階段：看見「無形的家族忠誠度（Invisible Loyalty）」',
+                question: '「在你的家族故事裡，大家是不是都過得很辛苦？當你快要擁有輕鬆與幸福時，心裡會不會有一個聲音說『爸媽還在吃苦，我憑什麼這麼快樂』？」',
+                reaction: '案主恍然大悟，哭著說「原來我一直不敢讓自己太順利，是怕跟家裡變得不一樣」。',
+                intent: '照亮跨世代的無形忠誠度牽絆，去病理化自我破壞行為。'
+              },
+              {
+                stage: '第二階段：向家族命運致敬，並將重擔歸位',
+                question: '「父母過去吃的苦是他們那個時代的命運，你可以深深感謝他們的付出，但你不需要透過『讓自己也受苦』來證明你愛他們，對嗎？」',
+                reaction: '案主感受到心靈的鬆綁，理解「活得幸福才是對父母最好的報答」。',
+                intent: '區分「尊重父母的苦難」與「重複父母的苦難」。'
+              },
+              {
+                stage: '第三階段：轉化忠誠度，成為家族新故事的開創者',
+                question: '「如果父母在心靈最深處其實希望看到你幸福快樂，你現在願意允許自己安心地收下這份美好生活，帶著家族的生命力量往前走嗎？」',
+                reaction: '案主卸下隱形罪惡感，重拾前行的喜悅與踏實。',
+                intent: '完成溫柔的世代交接：從「重複痛苦」轉化為「傳承生命力」。'
+              }
+            ],
+            focusPills: ['無形家族忠誠度', '跨世代創傷傳遞', '幸福罪惡感', '命運歸位', '祝福與傳承'],
+            observations: [
+              '在系統工作中，「尊重與不批判原生家庭」是核心倫理——治療師一旦批評案主的父母，案主潛意識的忠誠度反而會啟動來保護父母。'
+            ],
+            closingReminders: [
+              '肯定案主看見了橫跨世代的深層愛意與忠誠，並做出了成熟的轉化。',
+              '提醒案主：你的幸福不會奪走任何人的幸福，反而會成為家族裡一盞溫暖的光。'
+            ],
+            pauseAlert: '若案主因家族創傷引發嚴重解離或急性身心危機，需依創傷知情原則先進行穩定化工作，不急於觸碰深層家族系統動力。',
+            practicalTip: '引導案主在心裡對父母說：「爸爸媽媽，你們辛苦了，我尊重你們的命運；現在請你們祝福我，讓我帶著你們給我的生命，去活出幸福的樣子。」往往能帶來深層釋放。'
+          },
+          {
+            code: '11-4',
+            title: '04 婚姻冷戰與追逃循環的無力感',
+            emotionTag: '焦慮與孤獨',
+            context: '案主在婚姻或長期伴侶關係中陷入典型的「追逃循環（Pursuer-Distancer Pattern）」：一方越焦慮追問「我們現在談清楚」，另一方就越沉默退縮或加班逃避，兩人陷入冰冷的冷戰與深層無力。',
+            stages: [
+              {
+                stage: '第一階段：繪製雙人舞互動循環圖，跳脫單向指責',
+                question: '「我們把你們的互動畫成一個圓圈：當你覺得孤單而提高音量追問時，他感到被指責而轉身沉默；而他一沉默，你又更恐慌而追得更緊。你們兩個人其實都在害怕失去連結，只是保護自己的方式剛好相反，你看到了嗎？」',
+                reaction: '案主停止把伴侶當成冷血敵人，看見兩人共同被困在惡性循環的舞步裡。',
+                intent: '系統觀核心：問題不在某一個人身上，而在兩人之間的「互動循環模式」。'
+              },
+              {
+                stage: '第二階段：潛入薩提爾冰山探索「追逐」或「退縮」底下的脆弱渴望',
+                question: '「在追問的憤怒或冷戰的沉默底下，冰山最深處其實藏著什麼害怕和渴望（例如：害怕我不夠好、渴望被接納與重視）？」',
+                reaction: '案主觸碰到硬殼底下的柔軟渴望，眼眶濕潤。',
+                intent: '連結表層防衛姿態與深層依附渴望。'
+              },
+              {
+                stage: '第三階段：改變自己那一半的舞步，打破系統僵局',
+                question: '「系統中只要有一個人改變了舞步，另一半就無法繼續跳原本的舞。這週你願意試著把『指責追問』換成『軟化表達恐懼與渴望』，看看循環會怎麼改變嗎？」',
+                reaction: '案主掌握了打破僵局的鑰匙，重燃關係修復希望。',
+                intent: '透過單方互動微調引發整個伴侶系統的良性重組。'
+              }
+            ],
+            focusPills: ['追逃互動循環', '系統循環因果', '薩提爾冰山渴望', '軟化表達', '打破冷戰僵局'],
+            observations: [
+              '在系統觀點中，「沒有單純的加害者與受害者」，追逐者的焦慮與逃避者的退縮互為因果、彼此強化。'
+            ],
+            closingReminders: [
+              '肯定案主願意先看清系統全貌並調整自己舞步的智慧。',
+              '提醒案主：軟化表達需要練習，先從一句真誠的「我其實很想你、很在乎我們」開始。'
+            ],
+            pauseAlert: '若冷戰背後涉及嚴重經濟控制、外遇欺瞞或肢體暴力威脅，需客觀評估關係安全與界線，不可單方面要求案主委屈求全。',
+            practicalTip: '在紙上畫出「無限符號（∞）」的追逃循環圖，讓案主親眼看見兩人的情緒如何互相餵養，視覺頓悟效果極佳。'
+          },
+          {
+            code: '11-5',
+            title: '05 離家獨立與分化過程的分離焦慮',
+            emotionTag: '恐懼與內疚',
+            context: '案主到了適婚、出國或搬出去獨立生活的階段，卻在準備離家時出現強烈的焦慮、失眠甚至身體生病，因為潛意識擔心「一旦我離開家，父母就會崩潰、孤單或生病」（家庭離心階段危機）。',
+            stages: [
+              {
+                stage: '第一階段：看見個人症狀在家庭生命周期中的保護功能',
+                question: '「你剛好在準備搬出去獨立的前夕突然焦慮失眠、甚至考慮取消計畫。如果這個焦慮會說話，它是不是在替你擔心：『我走了之後，爸爸媽媽怎麼辦？』」',
+                reaction: '案主點頭落淚，承認自己其實很想飛，但又覺得留下父母很殘忍。',
+                intent: 'Haley 策略派與系統觀：理解個人症狀往往在保護家庭免於面對離巢期的變動。'
+              },
+              {
+                stage: '第二階段：信任父母作為成年人的生命韌性',
+                question: '「你一直把自己當成父母的拐杖，但這會不會也無意間低估了父母走過幾十年風雨的生命力量？他們其實有能力學習適應新的生活階段，對嗎？」',
+                reaction: '案主鬆一口氣，意識到放手讓父母學習獨處也是一種尊重。',
+                intent: '打破「沒有我父母就活不下去」的共生幻想。'
+              },
+              {
+                stage: '第三階段：設計「既有獨立空間、又有定期連結」的新家庭契約',
+                question: '「離家獨立不是拋棄父母，而是把關係升級成『兩個獨立成年家庭之間的溫暖往來』。你打算怎麼規劃搬出去後的定期聯絡與陪伴節奏？」',
+                reaction: '案主規劃了「每週日回家吃一次飯、平日傳照片報平安」的新互動模式，分離焦慮大幅消退。',
+                intent: '順利完成家庭生命周期從「有成年子女的家庭」到「離巢期」的結構重組。'
+              }
+            ],
+            focusPills: ['家庭生命周期', '離巢期焦慮', '共生幻想破除', '自我分化獨立', '新型態家庭連結'],
+            observations: [
+              '當孩子離家時，往往會暴露出父母原本被孩子掩蓋的夫妻空巢議題；協助案主看清這是父母夫妻之間的功課，能大幅減輕案主的內疚。'
+            ],
+            closingReminders: [
+              '祝福案主勇敢展開獨立人生的新篇章，提醒「長大飛翔是對父母養育最好的肯定」。',
+              '確認本週逐步推進獨立計畫的一個具體小步驟。'
+            ],
+            pauseAlert: '若父母出現極端的自殺威脅以阻止子女離家，這屬於嚴重的情緒勒索與危機事件，必須立即引入家庭支持系統與專業危機通報！',
+            practicalTip: '治療師需同時肯定案主「對父母的孝心與牽掛」以及「渴望獨立成長的生命力」，讓這兩股力量不再互相打架。'
+          }
+        ]
+      },
+
+      // -----------------------------------------------------------------------
+      // 學派 12：敘事治療
+      // -----------------------------------------------------------------------
+      {
+        id: 'narrative',
+        shortName: '12 敘事治療',
+        fullName: '敘事治療',
+        engName: 'Narrative Therapy (Michael White & David Epston)',
+        coreFocus: '秉持「人不是問題，問題才是問題」，透過問題外化、解構主流社會論述、尋找生命故事中的「獨特結果（Unique Outcomes）」與重寫故事，找回案主的生命主導權。',
+        keyConcepts: ['問題外化', '獨特結果（閃亮時刻）', '解構主流論述', '重寫生命故事', '外部見證人'],
+        topics: [
+          {
+            code: '12-1',
+            title: '01 被「憂鬱症／失敗者」問題飽和故事定義',
+            emotionTag: '憂鬱與羞愧',
+            context: '案主長期說「我就是個憂鬱症患者、我天生是個失敗者」，把情緒困擾與挫折完全內化為自己的人格缺陷，用厚重的「問題飽和故事（Problem-Saturated Story）」概括了一生。',
+            stages: [
+              {
+                stage: '第一階段：問題外化命名（Externalizing Naming）',
+                question: '「人不是問題，問題才是問題。如果我們把這股總是在你耳邊製造絕望、貼你『失敗者』標籤的東西，當成一個跑進你生活裡搗蛋的『不速之客』，你想幫它取一個什麼名字？」',
+                reaction: '案主眼神一亮，取名為「黑霧怪」，瞬間與負向標籤拉開了呼吸空間。',
+                intent: '透過外化語言將「問題」與「人的本質」分離，解除羞愧與無力。'
+              },
+              {
+                stage: '第二階段：相對影響力提問與尋找「獨特結果（閃亮時刻）」',
+                question: '「這個『黑霧怪』平常都怎麼偷走你的睡眠和自信？反過來問，在過去這一個月裡，有沒有哪怕只有一個小小的瞬間，是你成功抵擋了它、沒有聽它指揮的？」',
+                reaction: '案主想起自己上週在極度低潮中依然準時完成工作並安慰了難過的朋友。',
+                intent: '捕捉「獨特結果（Unique Outcomes）」，打開通往支線新故事的大門。'
+              },
+              {
+                stage: '第三階段：編織「行動景觀」與「認同景觀」豐厚新故事',
+                question: '「你在自己這麼累的時候還願意溫柔陪伴朋友，這說明了你是一個非常重視『信義與愛』的人。如果由你親自為這個新故事書取名，你會給它什麼標題？」',
+                reaction: '案主為新故事命名為《在黑霧中依然點燈的人》，自我認同徹底轉化。',
+                intent: '穿梭編織行動與認同雙景觀，確立案主的生命作者身分（Authorship）。'
+              }
+            ],
+            focusPills: ['問題外化', '問題飽和故事', '獨特結果（閃亮時刻）', '行動與認同景觀', '生命作者身分'],
+            observations: [
+              '治療師在對話中有意識地使用外化語言（不問「你為什麼這麼憂鬱？」，改問「黑霧怪是怎麼說服你放棄出門的？」）。',
+              '觀察案主為新故事命名時，眼神與坐姿明顯變得挺拔有力。'
+            ],
+            closingReminders: [
+              '寫一張「治療信件（Therapeutic Letter）」或核心摘要卡交給案主，用文字見證今天誕生的新故事。',
+              '提醒案主：你的人生故事還在連載中，下一章的筆握在你自己手裡。'
+            ],
+            pauseAlert: '外化技術絕不可用於「免除加害者的暴力責任」（例如不可將暴力行為外化為「憤怒怪獸害他打人」），暴力行為必須由行為人負起百分之百責任！',
+            practicalTip: '敘事治療的「治療信件」極具威力——在會談後寄給案主一封真誠記錄其獨特結果與力量的信，研究顯示一封信的療效往往等同於數次會談。'
+          },
+          {
+            code: '12-2',
+            title: '02 羞恥感與主流社會標準的壓迫',
+            emotionTag: '羞愧與自卑',
+            context: '案主因為年齡、體型、薪資或單身狀態不符合社會主流的「成功人生勝利組」模板，而對自己產生深深的羞愧與自我厭惡，覺得自己「落後、不合格」。',
+            stages: [
+              {
+                stage: '第一階段：解構（Deconstruct）主流文化論述的權力運作',
+                question: '「這套『三十歲前必須買房結婚、必須瘦成紙片人』的評分表是誰訂出來的？誰從你的焦慮和羞愧中賺到了錢或獲得了控制權？」',
+                reaction: '案主恍然大悟，清醒與憤怒取代了原本的自我羞辱。',
+                intent: '受傅柯（Foucault）啟發的解構提問，揭露社會文化論述背後的權力結構。'
+              },
+              {
+                stage: '第二階段：發掘「對抗主流論述的微小抵抗（Resistance）」',
+                question: '「在這麼強大的社會壓力下，你過去有沒有做過哪一個決定，是勇敢拒絕了主流模板、忠於自己內心真正喜歡的？」',
+                reaction: '案主驕傲地想起自己選擇了熱愛但非高薪的領域，或享受獨處時光的片刻。',
+                intent: '將「不合群」重新定義為「清醒的自我忠誠與抵抗」。'
+              },
+              {
+                stage: '第三階段：建立屬於自己的多元價值定義',
+                question: '「如果把外界那張打分數的成績單撕掉，換成你親手設計的『幸福人生標準』，上面最珍貴的三條會寫什麼？」',
+                reaction: '案主寫下「內心平靜、真誠的友情、保有好奇心」，羞愧感徹底消散。',
+                intent: '收回人生的評價主導權，建構充滿尊嚴的新認同論述。'
+              }
+            ],
+            focusPills: ['解構主流論述', '文化權力檢視', '抵抗故事', '自我定義權', '去羞恥化'],
+            observations: [
+              '敘事治療重視社會政治脈絡（Socio-political Context），不將社會結構壓迫造成的痛苦簡化為個人的「心理缺陷」。'
+            ],
+            closingReminders: [
+              '肯定案主看穿文化迷思的智慧與勇氣。',
+              '建議案主本週進行一次「社群媒體大掃除」，取消追蹤那些只會製造焦慮的帳號。'
+            ],
+            pauseAlert: '若外貌羞愧伴隨嚴重飲食障礙（厭食／暴食催吐）或身體畸形恐懼症，需結合精神科與營養醫療團隊共同照護。',
+            practicalTip: '敘事治療師要特別警覺自己是否也在無意間認同了主流中產階級價值觀（如把結婚生子或高薪視為治療成功的指標）。'
+          },
+          {
+            code: '12-3',
+            title: '03 創傷倖存者的自我責備與無力敘事',
+            emotionTag: '內疚與恐懼',
+            context: '案主曾遭遇霸凌、背叛或重大創傷，一直責怪自己「當時為什麼沒有反抗、都是我太軟弱」，把自己定義為「受損的受害者」，覺得人生已經被那段創傷永遠玷污。',
+            stages: [
+              {
+                stage: '第一階段：啟動「雙重故事見證（Double-Storied Testimony）」',
+                question: '「那段經歷真的非常殘酷，你承受了不該承受的痛。但在那段最黑暗的日子裡，你做了哪些連你自己都沒注意到的微小動作，來保護自己的靈魂沒有完全被摧毀？」',
+                reaction: '案主想起當時自己寫日記、保持沉默以求自保、或保護了身邊更弱小的人。',
+                intent: '敘事創傷工作核心：絕不單獨重述創傷細節（避免二次創傷），而是始終將「創傷故事」與「抵抗與倖存智慧」並陳。'
+              },
+              {
+                stage: '第二階段：解構受害者自責，命名「倖存者局內人知識」',
+                question: '「當時你選擇沉默或順從，並不是軟弱，而是你在極端危險下最聰明的求生策略。走過這場風暴後，你對人性與界線有了哪些深刻領悟？」',
+                reaction: '案主從「自責的受害者」轉變為「擁有求生智慧的倖存者」。',
+                intent: '洗刷受害者罪惡感，將痛苦經驗提煉為珍貴的「局內人知識（Insider Knowledge）」。'
+              },
+              {
+                stage: '第三階段：外部見證人儀式（Outsider Witness）與新篇章書寫',
+                question: '「聽完你如何一步步從廢墟中重新站起來的故事，我深受感動。如果把你的經驗寫成一份給其他正在受苦之人的鼓勵手冊，你最想寫在第一頁的一句話是什麼？」',
+                reaction: '案主眼神充滿尊嚴與光芒，徹底改寫了自我認同。',
+                intent: '透過治療師的見證回饋鞏固新認同，將創傷轉化為照亮他人的力量。'
+              }
+            ],
+            focusPills: ['雙重故事見證', '抵抗與求生智慧', '解構受害者自責', '局內人知識', '外部見證人'],
+            observations: [
+              '敘事創傷治療極為安全，因為它不在沒有資源的情況下反覆挖掘創傷畫面，而是先建立「抵抗與價值底座」，再回望風暴。'
+            ],
+            closingReminders: [
+              '邀請案主將今天寫下的「給同路人的一句話」保存在身邊，作為自我力量的象徵。',
+              '給予最深的敬意與祝福，結束這場充滿尊嚴的對話。'
+            ],
+            pauseAlert: '若案主處於急性創傷後壓力症候群（PTSD）閃回、嚴重解離或仍有持續受暴危險，必須優先進行創傷穩定化訓練與人身安全保護。',
+            practicalTip: '敘事治療相信：在每一個受壓迫或創傷的現場，都同時存在著「抵抗（Resistance）」——哪怕只是在心裡暗暗告訴自己「總有一天我要離開這裡」，那都是偉大的生命力。'
+          },
+          {
+            code: '12-4',
+            title: '04 關係背叛後的自我價值崩塌',
+            emotionTag: '羞愧與憤怒',
+            context: '案主在親密關係或摯友關係中遭遇欺瞞與背叛，陷入「一定是我不夠好、不值得被忠誠對待」的自我價值崩塌，覺得自己整個人都被否定了。',
+            stages: [
+              {
+                stage: '第一階段：將「背叛行為的責任」歸還給選擇背叛的人',
+                question: '「當背叛發生時，它最喜歡同時偷走你的『信任感』和『自我價值感』。但背叛是對方在面對誘惑或衝突時做出的選擇，它反映的是他的品格，而不是你的價值，你同意嗎？」',
+                reaction: '案主停下自我貶低，將不屬於自己的羞愧歸還給背叛者。',
+                intent: '外化並解構「被背叛＝我不夠好」的錯誤歸因。'
+              },
+              {
+                stage: '第二階段：重新發掘案主在關係中守護的珍貴價值',
+                question: '「雖然對方沒有守住承諾，但回頭看你在這段關係裡的投入，有哪些是你依然為自己感到驕傲的品質（例如：真誠、善良、願意全心去愛）？」',
+                reaction: '案主眼眶濕潤，看見自己愛人的能力依然純淨完整，並沒有因為對方的背叛而玷污。',
+                intent: '分離「對方的背叛」與「我愛人的能力」，重建核心尊嚴。'
+              },
+              {
+                stage: '第三階段：重寫「帶著智慧與界線重新出發」的新故事',
+                question: '「經歷過這次痛徹心扉的學習，現在的你為自己加上了哪些更清晰的關係界線與自我保護智慧？」',
+                reaction: '案主從「被拋棄的受害者」轉變為「更懂得愛自己與辨識伴侶的成熟作者」。',
+                intent: '將背叛創傷轉化為未來關係的保護力量。'
+              }
+            ],
+            focusPills: ['歸還背叛責任', '守護愛人能力', '自我價值重建', '關係智慧提煉', '重寫信任故事'],
+            observations: [
+              '遭遇背叛的案主常會陷入反覆比對「第三者哪裡比我好」的陷阱，治療師需溫柔引導案主離開這個摧毀自尊的比較戰場。'
+            ],
+            closingReminders: [
+              '肯定案主在心碎中依然保有真誠與尊嚴的珍貴品質。',
+              '提醒案主：失去一個不懂得珍惜你的人，並不是你的損失。'
+            ],
+            pauseAlert: '若背叛事件引發急性自殺意念、報復傷人衝動或嚴重失眠崩潰，需立即啟動危機安全防護與醫療支持。',
+            practicalTip: '協助案主區分「盲目的信任」與「有界線的信任」，讓案主知道未來依然可以去愛，只是這一次會帶著更清醒的眼睛。'
+          },
+          {
+            code: '12-5',
+            title: '05 生命重要他人失落後的「記住」與連結重建',
+            emotionTag: '悲傷與思念',
+            context: '案主在親人離世後陷入深沉哀傷，覺得「如果我慢慢走出來、開始快樂生活，就代表我忘記他、背叛他了」，因此用長期的悲痛來維持與逝者的連結。',
+            stages: [
+              {
+                stage: '第一階段：用「說你好（Saying Hullo Again）」取代強迫「說再見」',
+                question: '「外面的人總叫你要『徹底放下、說再見』，但那樣做是不是讓你覺得好像要把他從生命裡抹掉一樣殘忍？如果我們不需要說再見，而是尋找一個在心裡重新向他『說你好』的方式呢？」',
+                reaction: '案主點頭大哭：「我不想忘記他，我怕我一快樂起來，他就不見了！」',
+                intent: 'Michael White 經典哀傷取向：打破「放下＝遺忘」的二元對立，減輕哀傷者的罪惡感。'
+              },
+              {
+                stage: '第二階段：重組會員（Re-membering Conversations）連結記憶',
+                question: '「雖然他的身體離開了，但他在你生命裡留下的愛、教會你的道理，並沒有消失。在你生命的『人生俱樂部』裡，他帶給你最珍貴的禮物是什麼？」',
+                reaction: '案主微笑流淚，細數逝者教會自己的幽默感、善良與勇氣，感受到他的愛依然活在自己身上。',
+                intent: '將「失去外在陪伴」轉化為「內化永恆的精神連結（Continuing Bonds）」。'
+              },
+              {
+                stage: '第三階段：帶著逝者的愛與祝福繼續活出光彩',
+                question: '「你不需要透過每天哭泣來證明你還愛著他；你每一個真誠微笑、幫助別人的瞬間，都是他在透過你繼續愛這個世界。他現在最希望看到你怎麼度過接下來的每一天？」',
+                reaction: '案主感受到逝者的愛與自己同在，不再需要用痛苦來證明思念。',
+                intent: '完成健康哀悼轉化，讓「好好生活」成為對逝者最深的致敬。'
+              }
+            ],
+            focusPills: ['說你好（Saying Hullo）', '重組會員對話', '持續性連結', '生命俱樂部隱喻', '愛的傳承'],
+            observations: [
+              '傳統心理學常要求喪親者「切斷依附」，而敘事治療認為「與逝者建立新的精神連結」才是更符合人性與文化的療癒之道。'
+            ],
+            closingReminders: [
+              '邀請案主本週寫一封「給心裡那個榮譽會員的回信」，記錄這份愛如何繼續陪伴自己。',
+              '溫柔陪伴案主帶著這份溫暖的連結回到日常。'
+            ],
+            pauseAlert: '若案主出現強烈追隨逝者輕生念頭、幻覺指令或長期無法進食睡眠，需立即啟動自殺危機介入與醫療支持。',
+            practicalTip: 'Michael White 著名的論文《Saying Hullo Again》徹底改寫了現代哀傷諮商——允許案主「重新向逝者說你好」，往往能奇蹟般緩解卡住多年的複雜哀傷。'
+          }
+        ]
+      }
+    ];
+
+    // =========================================================================
+    // 2. 中立引導語句庫與「少用／改用」對照表資料
+    // =========================================================================
+    const NEUTRAL_PHRASES = {
+      group1: [
+        '「你願意探索一下這個部分嗎？不想也沒關係，我們完全照你的步調。」',
+        '「今天這五十分鐘，你可以自己決定要聊到哪裡、停在哪裡。」',
+        '「要不要先從比較外圍的地方慢慢看，再決定要不要往深處走？」',
+        '「這段經歷你想在這裡說出來，還是先留給你自己消化一會兒？」',
+        '「如果我等一下問的問題讓你覺得有點壓力，隨時告訴我，我們就換個方向。」',
+        '「在我們做這個小練習之前，我想先確認一下：你現在覺得準備好了嗎？」'
+      ],
+      group2: [
+        '「此時此刻坐在這裡，你的身體哪裡比較有感覺？」',
+        '「如果用一個詞或一個畫面來形容你現在的狀態，會是什麼？」',
+        '「這個緊繃的感覺，是比剛剛強一點，還是淡一點了？」',
+        '「當你說出這句話的時候，你注意到自己的呼吸還順暢嗎？」',
+        '「我們先不急著分析『為什麼會這樣』，光是陪著這個感覺待幾秒鐘，你注意到什麼？」',
+        '「有些感覺現在不想說、或還說不清楚，也完全可以先不說。」'
+      ],
+      group3: [
+        '「我注意到你現在有點累了，我們先停在這裡喝口水、深呼吸一下，好嗎？」',
+        '「今天我們已經走了很深的一段路，剩下的部分我們可以留到下次再看。」',
+        '「在結束之前，請你先看看四周，感覺一下雙腳踩在地板上的踏實感。」',
+        '「今天看到的這些畫面或想法，只代表此刻的線索，不代表你必須馬上做出所有決定。」',
+        '「離開這裡之後，今晚你打算做哪一件溫柔的小事來照顧自己？」',
+        '「謝謝你今天對我的信任，願意把這麼真實的故事交給我一起陪伴。」'
+      ],
+      compare: [
+        { avoid: '「你為什麼總是這麼焦慮／退縮？」', use: '「是什麼讓你覺得需要這樣保護自己？從什麼時候開始的？」' },
+        { avoid: '「你應該要看開一點、往前看。」', use: '「這份難過對你來說一定很重，你想先在這裡待一會兒嗎？」' },
+        { avoid: '「你這樣做是不是因為你爸爸太嚴格？」', use: '「你成長過程中，家裡的人通常怎麼面對類似的情況？」' },
+        { avoid: '「別哭了，擦擦眼淚堅強一點。」', use: '「在這裡眼淚不需要被趕走，我會一直在這裡陪著你。」' },
+        { avoid: '「我教你，你回家就照我說的這樣做。」', use: '「在你能掌控的範圍內，你覺得哪一小步是你現在願意試試看的？」' }
+      ]
+    };
+
+    // =========================================================================
+    // 3. 應用程式狀態管理 (State)
+    // =========================================================================
+    let state = {
+      activeSchoolIndex: 0,
+      activeTopicIndex: 0,
+      viewMode: 'page', // 'page' (完整手冊書頁) | 'grid' (精簡問答卡片)
+      isSchoolExpanded: false, // false (單行水平滑動) | true (12 學派展開網格)
+      searchQuery: '',
+      emotionFilter: '全部',
+      fontSize: 'standard', // 'standard' | 'large'
+      notesStore: JSON.parse(localStorage.getItem('counseling_ebook_notes_v2') || '{}')
+    };
+
+    const EMOTION_CATEGORIES = [
+      '全部',
+      '焦慮',
+      '憂鬱',
+      '憤怒',
+      '羞愧',
+      '悲傷',
+      '恐懼',
+      '孤獨',
+      '委屈',
+      '內疚',
+      '迷惘',
+      '無力',
+      '麻木'
+    ];
+
+    // =========================================================================
+    // 4. DOM 元素參照
+    // =========================================================================
+    const schoolTabsEl = document.getElementById('schoolTabs');
+    const scrollLeftSchoolBtn = document.getElementById('scrollLeftSchoolBtn');
+    const scrollRightSchoolBtn = document.getElementById('scrollRightSchoolBtn');
+    const toggleExpandSchoolsBtn = document.getElementById('toggleExpandSchoolsBtn');
+    const expandSchoolsIcon = document.getElementById('expandSchoolsIcon');
+    const expandSchoolsLabel = document.getElementById('expandSchoolsLabel');
+    const emotionFiltersEl = document.getElementById('emotionFilters');
+    const schoolOverviewCardEl = document.getElementById('schoolOverviewCard');
+    const topicNavListEl = document.getElementById('topicNavList');
+    const sidebarListTitleEl = document.getElementById('sidebarListTitle');
+    const topicProgressBadgeEl = document.getElementById('topicProgressBadge');
+    const ebookContentAreaEl = document.getElementById('ebookContentArea');
+    const bookPaginationBarEl = document.getElementById('bookPaginationBar');
+    const prevTopicBtn = document.getElementById('prevTopicBtn');
+    const nextTopicBtn = document.getElementById('nextTopicBtn');
+    const prevTopicLabel = document.getElementById('prevTopicLabel');
+    const nextTopicLabel = document.getElementById('nextTopicLabel');
+    const pageNumberIndicator = document.getElementById('pageNumberIndicator');
+    const searchInput = document.getElementById('searchInput');
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
+    const filterStatusBanner = document.getElementById('filterStatusBanner');
+    const filterStatusText = document.getElementById('filterStatusText');
+    const resetAllFiltersBtn = document.getElementById('resetAllFiltersBtn');
+    const toggleModeBtn = document.getElementById('toggleModeBtn');
+    const modeIcon = document.getElementById('modeIcon');
+    const modeLabel = document.getElementById('modeLabel');
+    const toggleFontBtn = document.getElementById('toggleFontBtn');
+    const savedCountBadge = document.getElementById('savedCountBadge');
+    const exportNotesBtn = document.getElementById('exportNotesBtn');
+
+    // =========================================================================
+    // 5. 輔助函式
+    // =========================================================================
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.textContent = msg;
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 2200);
+    }
+
+    function copyTextToClipboard(text) {
+      const cleanText = text.replace(/^[「『]|[」』]$/g, '');
+      const textArea = document.createElement('textarea');
+      textArea.value = cleanText;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-9999px';
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast('已複製引導問句至剪貼簿');
+      } catch (err) {
+        showToast('複製失敗，請手動選取文字');
+      }
+      document.body.removeChild(textArea);
+    }
+
+    function updateSavedNotesCount() {
+      const count = Object.values(state.notesStore).filter(item =>
+        (item.reflection && item.reflection.trim()) ||
+        (item.clientName && item.clientName.trim()) ||
+        (item.tableRows && item.tableRows.some(r => r.role || r.name || r.pos || r.move))
+      ).length;
+      savedCountBadge.textContent = `${count} 筆筆記`;
+    }
+
+    function isFiltering() {
+      return state.searchQuery.trim() !== '' || state.emotionFilter !== '全部';
+    }
+
+    function getFilteredTopics() {
+      const q = state.searchQuery.trim().toLowerCase();
+      const emo = state.emotionFilter;
+      const results = [];
+
+      COUNSELING_DATA.forEach((school, sIdx) => {
+        school.topics.forEach((topic, tIdx) => {
+          const matchEmotion = emo === '全部' || topic.emotionTag.includes(emo) || topic.title.includes(emo);
+          const searchableBlob = [
+            school.fullName,
+            topic.title,
+            topic.emotionTag,
+            topic.context,
+            ...topic.focusPills,
+            ...topic.observations,
+            ...topic.stages.map(s => s.stage + s.question + s.reaction + s.intent)
+          ].join(' ').toLowerCase();
+
+          const matchQuery = !q || searchableBlob.includes(q);
+          if (matchEmotion && matchQuery) {
+            results.push({ school, schoolIndex: sIdx, topic, topicIndex: tIdx });
+          }
+        });
+      });
+      return results;
+    }
+
+    // =========================================================================
+    // 6. 渲染 12 大治療學派分頁（含可視化滑軌、自動置中、展開全覽網格）
+    // =========================================================================
+    function renderSchoolTabs() {
+      if (state.isSchoolExpanded) {
+        schoolTabsEl.className = 'flex-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-1.5 py-0.5';
+        scrollLeftSchoolBtn.classList.add('hidden');
+        scrollRightSchoolBtn.classList.add('hidden');
+        expandSchoolsIcon.textContent = '▤';
+        expandSchoolsLabel.textContent = '單行滑動';
+      } else {
+        schoolTabsEl.className = 'flex-1 flex items-center gap-1.5 overflow-x-auto school-scrollbar pb-1.5 pt-0.5 scroll-smooth';
+        scrollLeftSchoolBtn.classList.remove('hidden');
+        scrollRightSchoolBtn.classList.remove('hidden');
+        expandSchoolsIcon.textContent = '⊞';
+        expandSchoolsLabel.textContent = '展開全覽';
+      }
+
+      schoolTabsEl.innerHTML = COUNSELING_DATA.map((school, idx) => {
+        const isActive = !isFiltering() && state.activeSchoolIndex === idx;
+        return `
+          <button
+            data-school-idx="${idx}"
+            onclick="selectSchool(${idx})"
+            class="${state.isSchoolExpanded ? 'w-full justify-center' : 'shrink-0'} px-2.5 py-1.5 rounded-lg text-[13px] font-medium transition-all flex items-center gap-1 whitespace-nowrap ${
+              isActive
+                ? 'bg-brand-green text-white shadow-xs'
+                : 'bg-white/90 text-brand-ink hover:bg-white border border-[#DCD7CC] hover:border-brand-green/50'
+            }"
+          >
+            <span>${school.shortName}</span>
+          </button>
+        `;
+      }).join('');
+
+      // 單行滑動模式下，自動將當前選中學派平滑置中於可視範圍內
+      if (!state.isSchoolExpanded && !isFiltering()) {
+        requestAnimationFrame(() => {
+          const activeBtn = schoolTabsEl.querySelector(`[data-school-idx="${state.activeSchoolIndex}"]`);
+          if (activeBtn) {
+            const containerWidth = schoolTabsEl.clientWidth;
+            const btnLeft = activeBtn.offsetLeft;
+            const btnWidth = activeBtn.offsetWidth;
+            const targetScroll = btnLeft - (containerWidth / 2) + (btnWidth / 2);
+            schoolTabsEl.scrollTo({ left: Math.max(0, targetScroll), behavior: 'smooth' });
+          }
+        });
+      }
+    }
+
+    function renderEmotionFilters() {
+      emotionFiltersEl.innerHTML = EMOTION_CATEGORIES.map(emo => {
+        const active = state.emotionFilter === emo;
+        return `
+          <button
+            onclick="selectEmotionFilter('${emo}')"
+            class="px-2.5 py-1 rounded-full transition font-medium ${
+              active
+                ? 'bg-brand-green text-white'
+                : 'bg-brand-sand/70 text-brand-ink hover:bg-brand-sandDark'
+            }"
+          >
+            ${emo}
+          </button>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // 7. 渲染左側邊欄（學派理論定位 + 5 大主題目錄）
+    // =========================================================================
+    function renderSidebar() {
+      const school = COUNSELING_DATA[state.activeSchoolIndex];
+
+      schoolOverviewCardEl.innerHTML = `
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold tracking-wider uppercase text-brand-green bg-brand-greenLight px-2.5 py-0.5 rounded-full">
+            第 ${String(state.activeSchoolIndex + 1).padStart(2, '0')} 學派章節
+          </span>
+          <span class="text-xs text-brand-muted">5 個情緒主題</span>
+        </div>
+        <h2 class="font-serif text-lg font-bold text-brand-green leading-snug">
+          ${school.fullName}
+        </h2>
+        <p class="text-[11px] text-brand-muted mb-3 font-medium">${school.engName}</p>
+        <p class="text-xs text-brand-ink leading-relaxed bg-brand-sand/60 p-3 rounded-lg mb-3">
+          ${school.coreFocus}
+        </p>
+        <div class="flex flex-wrap gap-1.5">
+          ${school.keyConcepts.map(c => `
+            <span class="text-[11px] px-2 py-0.5 rounded-md bg-[#F4F1EA] text-brand-muted border border-[#E3DDD2]">
+              #${c}
+            </span>
+          `).join('')}
+        </div>
+      `;
+
+      sidebarListTitleEl.textContent = `${school.shortName.replace(/^\d+\s/, '')}・情緒主題`;
+      topicProgressBadgeEl.textContent = `${state.activeTopicIndex + 1} / ${school.topics.length}`;
+
+      topicNavListEl.innerHTML = school.topics.map((t, idx) => {
+        const isCurrent = !isFiltering() && state.viewMode === 'page' && state.activeTopicIndex === idx;
+        const hasNote = state.notesStore[t.code] && (
+          (state.notesStore[t.code].reflection && state.notesStore[t.code].reflection.trim()) ||
+          (state.notesStore[t.code].tableRows && state.notesStore[t.code].tableRows.some(r => r.role || r.name))
+        );
+        return `
+          <button
+            onclick="selectTopic(${idx})"
+            class="w-full text-left p-3 rounded-xl border transition-all flex items-start justify-between gap-2 ${
+              isCurrent
+                ? 'bg-brand-green text-white border-brand-green shadow-sm'
+                : 'bg-[#FAF8F5] text-brand-ink border-[#E6E2D8] hover:bg-brand-sand/60'
+            }"
+          >
+            <div class="min-w-0">
+              <div class="text-xs font-bold truncate ${isCurrent ? 'text-white' : 'text-brand-green'}">
+                ${t.title}
+              </div>
+              <div class="mt-1 flex items-center gap-1.5">
+                <span class="text-[11px] px-2 py-0.2 rounded-full ${
+                  isCurrent ? 'bg-white/20 text-white' : 'bg-brand-sand text-brand-muted'
+                }">
+                  ${t.emotionTag}
+                </span>
+                ${hasNote ? `<span class="text-[10px] ${isCurrent ? 'text-amber-200' : 'text-brand-green'}" title="已有實務筆記">📝 已記錄</span>` : ''}
+              </div>
+            </div>
+            <span class="text-xs opacity-75 shrink-0 mt-0.5">→</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    // =========================================================================
+    // 8. 渲染單一主題完整出版級書頁
+    // =========================================================================
+    function renderBookPage(school, schoolIdx, topic, topicIdx) {
+      const globalPageNum = schoolIdx * 5 + topicIdx + 1;
+      const savedData = state.notesStore[topic.code] || {
+        date: new Date().toISOString().split('T')[0],
+        clientName: '',
+        reflection: '',
+        tableRows: [
+          { code: 'A', role: '', name: '', pos: '', move: '' },
+          { code: 'B', role: '', name: '', pos: '', move: '' },
+          { code: 'C', role: '', name: '', pos: '', move: '' }
+        ]
+      };
+
+      return `
+        <article class="book-page rounded-2xl p-6 sm:p-10 md:p-12 transition-all">
+          <!-- 頂部出版眉標：所屬學派徽章 ＋ 情緒標籤徽章 -->
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs mb-3">
+            <span class="font-bold tracking-wider text-brand-green bg-brand-greenLight px-3 py-1 rounded-full">
+              ${school.fullName}
+            </span>
+            <span class="px-3 py-1 rounded-full bg-brand-sand text-brand-ink font-medium">
+              情緒標籤：${topic.emotionTag}
+            </span>
+          </div>
+
+          <!-- 主題編號與標題 ＋ 墨綠底色分隔線 -->
+          <header class="pb-3 mb-5 border-b-2 border-brand-green">
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-brand-green tracking-tight">
+              ${topic.title}
+            </h2>
+          </header>
+
+          <!-- 1. 暖沙色「適用情境」說明框 (#EFECE6) -->
+          <section class="bg-brand-sand rounded-xl p-4 sm:p-5 mb-7 text-sm sm:text-base leading-relaxed text-brand-ink">
+            <span class="font-bold text-brand-green mr-2">適用情境</span>
+            <span>${topic.context}</span>
+          </section>
+
+          <!-- 2. 互動式「諮商階段問答與引導圖表」 -->
+          <section class="mb-8">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-bold text-brand-green text-base sm:text-lg flex items-center gap-2">
+                <span>諮商階段問答與引導圖表</span>
+              </h3>
+            </div>
+
+            <div class="rounded-xl overflow-hidden border border-[#DCD7CC]">
+              <!-- 墨綠表頭 -->
+              <div class="bg-brand-green text-white text-xs sm:text-sm font-bold grid grid-cols-12 px-4 py-3">
+                <div class="col-span-12 sm:col-span-3">會談階段</div>
+                <div class="col-span-12 sm:col-span-5 hidden sm:block">諮詢師提問句（可一鍵複製）</div>
+                <div class="col-span-12 sm:col-span-4 hidden sm:block">案主常見情緒回應與治療意圖</div>
+              </div>
+
+              <!-- 階段內容列 -->
+              <div class="divide-y divide-[#E6E2D8] bg-white">
+                ${topic.stages.map((st) => `
+                  <div class="p-4 hover:bg-[#FAF8F5] transition">
+                    <div class="grid grid-cols-12 gap-3 sm:gap-4 items-start">
+                      <!-- 階段名稱 -->
+                      <div class="col-span-12 sm:col-span-3">
+                        <span class="inline-block text-xs font-bold text-brand-green bg-brand-greenLight px-2.5 py-1 rounded-md">
+                          ${st.stage}
+                        </span>
+                      </div>
+
+                      <!-- 諮詢師提問句 + 一鍵複製問句按鈕 -->
+                      <div class="col-span-12 sm:col-span-5 bg-[#FAF8F5] sm:bg-transparent p-3 sm:p-0 rounded-lg">
+                        <div class="text-[11px] font-bold text-brand-green sm:hidden mb-1">諮詢師提問句：</div>
+                        <p class="text-sm text-brand-ink font-medium leading-relaxed">
+                          ${st.question}
+                        </p>
+                        <button
+                          onclick="copyTextToClipboard('${st.question.replace(/'/g, "\\'")}')"
+                          class="no-print mt-2 inline-flex items-center gap-1 text-[11px] font-medium text-brand-green hover:text-white bg-brand-sand/80 hover:bg-brand-green px-2.5 py-1 rounded-md transition"
+                        >
+                          <span>📋 一鍵複製問句</span>
+                        </button>
+                      </div>
+
+                      <!-- 案主常見情緒回應與治療意圖 -->
+                      <div class="col-span-12 sm:col-span-4 text-xs space-y-2 leading-relaxed">
+                        <div class="bg-brand-sand/50 p-2.5 rounded-lg">
+                          <span class="font-bold text-brand-ink">案主常見情緒回應：</span>
+                          <span class="text-brand-muted">${st.reaction}</span>
+                        </div>
+                        <div class="bg-brand-infoBg p-2.5 rounded-lg border-l-2 border-brand-green">
+                          <span class="font-bold text-brand-green">治療意圖：</span>
+                          <span class="text-brand-ink">${st.intent}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+
+          <!-- 3. 可能放進場上的核心議題／角色膠囊標籤 -->
+          <section class="mb-7">
+            <h3 class="font-bold text-brand-green text-base sm:text-lg mb-3">
+              可能放進場上的核心議題／角色
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              ${topic.focusPills.map(pill => `
+                <span class="pill-tag cursor-default px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-[#EFECE6] text-brand-ink border border-[#E0DBD0]">
+                  ${pill}
+                </span>
+              `).join('')}
+            </div>
+          </section>
+
+          <!-- 4. 觀察重點項目清單 -->
+          <section class="mb-7">
+            <h3 class="font-bold text-brand-green text-base sm:text-lg mb-3">
+              觀察重點
+            </h3>
+            <ul class="space-y-2 text-sm sm:text-base text-brand-ink leading-relaxed">
+              ${topic.observations.map(obs => `
+                <li class="flex items-start gap-2.5">
+                  <span class="text-brand-green font-bold mt-1">•</span>
+                  <span>${obs}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </section>
+
+          <!-- 5. 收尾的提醒項目清單 -->
+          <section class="mb-8">
+            <h3 class="font-bold text-brand-green text-base sm:text-lg mb-3">
+              收尾的提醒
+            </h3>
+            <ul class="space-y-2 text-sm sm:text-base text-brand-ink leading-relaxed">
+              ${topic.closingReminders.map(rem => `
+                <li class="flex items-start gap-2.5">
+                  <span class="text-brand-green font-bold mt-1">•</span>
+                  <span>${rem}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </section>
+
+          <!-- 6. 什麼時候暫停或轉介（淺紅警訊盒 #F9ECEA + 墨綠實務註解盒 #EDF2F0） -->
+          <section class="space-y-3 mb-8">
+            <h3 class="font-bold text-brand-green text-base sm:text-lg mb-2">
+              什麼時候暫停或轉介
+            </h3>
+
+            <!-- 淺紅安全警訊盒 -->
+            <div class="bg-brand-alertBg rounded-xl p-4 flex items-start gap-3.5 text-sm leading-relaxed text-brand-ink">
+              <div class="w-6 h-6 rounded-full bg-brand-alertIcon text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                !
+              </div>
+              <p>${topic.pauseAlert}</p>
+            </div>
+
+            <!-- 墨綠實務註解盒 -->
+            <div class="bg-brand-infoBg rounded-xl p-4 flex items-start gap-3.5 text-sm leading-relaxed text-brand-ink">
+              <div class="w-6 h-6 rounded-full bg-brand-green text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                !
+              </div>
+              <p><span class="font-bold text-brand-green">實務註解：</span>${topic.practicalTip}</p>
+            </div>
+          </section>
+
+          <!-- 7. 互動式諮商歷程與位置紀錄表（支援 LocalStorage 自動儲存與匯出文字檔） -->
+          <section class="no-print border-t border-[#E3DDD2] pt-6 mt-6">
+            <details class="group bg-[#FAF8F5] rounded-xl border border-[#DCD7CC] overflow-hidden">
+              <summary class="cursor-pointer px-5 py-3.5 flex items-center justify-between font-bold text-sm text-brand-green select-none hover:bg-brand-sand/50 transition">
+                <div class="flex items-center gap-2">
+                  <span>✍️</span>
+                  <span>互動式諮商歷程與位置紀錄表（自動儲存於本機）</span>
+                </div>
+                <span class="text-xs font-normal text-brand-muted group-open:rotate-180 transition-transform">▼ 展開填寫</span>
+              </summary>
+
+              <div class="p-5 border-t border-[#E3DDD2] bg-white space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                  <div>
+                    <label class="block text-brand-muted mb-1">日期：</label>
+                    <input
+                      type="date"
+                      value="${savedData.date}"
+                      onchange="saveTopicNote('${topic.code}', 'date', this.value)"
+                      class="w-full border-b border-brand-border py-1 focus:outline-none focus:border-brand-green text-brand-ink bg-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-brand-muted mb-1">案主代號／演練夥伴：</label>
+                    <input
+                      type="text"
+                      placeholder="例如：案主 L 先生"
+                      value="${savedData.clientName || ''}"
+                      oninput="saveTopicNote('${topic.code}', 'clientName', this.value)"
+                      class="w-full border-b border-brand-border py-1 focus:outline-none focus:border-brand-green text-brand-ink bg-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-brand-muted mb-1">主題名稱：</label>
+                    <div class="border-b border-brand-border py-1 text-brand-green font-bold truncate">${topic.title}</div>
+                  </div>
+                </div>
+
+                <div class="overflow-x-auto rounded-lg border border-[#DCD7CC]">
+                  <table class="w-full text-xs text-left border-collapse">
+                    <thead>
+                      <tr class="bg-brand-green text-white">
+                        <th class="py-2.5 px-3 w-14">代號</th>
+                        <th class="py-2.5 px-3">代表的角色／探索元素</th>
+                        <th class="py-2.5 px-3">核心情緒／信念</th>
+                        <th class="py-2.5 px-3">開始位置／初始狀態</th>
+                        <th class="py-2.5 px-3">移動後／介入轉化</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#E6E2D8]">
+                      ${savedData.tableRows.map((row, rIdx) => `
+                        <tr>
+                          <td class="p-2 font-bold text-brand-green text-center bg-[#FAF8F5]">${row.code}</td>
+                          <td class="p-1.5">
+                            <input type="text" value="${row.role || ''}" placeholder="如：案主 / 父親 / 焦慮"
+                              oninput="saveTableRow('${topic.code}', ${rIdx}, 'role', this.value)"
+                              class="w-full px-2 py-1 rounded focus:bg-brand-sand/40 focus:outline-none" />
+                          </td>
+                          <td class="p-1.5">
+                            <input type="text" value="${row.name || ''}" placeholder="核心想法或感受"
+                              oninput="saveTableRow('${topic.code}', ${rIdx}, 'name', this.value)"
+                              class="w-full px-2 py-1 rounded focus:bg-brand-sand/40 focus:outline-none" />
+                          </td>
+                          <td class="p-1.5">
+                            <input type="text" value="${row.pos || ''}" placeholder="起初緊繃/距離"
+                              oninput="saveTableRow('${topic.code}', ${rIdx}, 'pos', this.value)"
+                              class="w-full px-2 py-1 rounded focus:bg-brand-sand/40 focus:outline-none" />
+                          </td>
+                          <td class="p-1.5">
+                            <input type="text" value="${row.move || ''}" placeholder="鬆動與新領悟"
+                              oninput="saveTableRow('${topic.code}', ${rIdx}, 'move', this.value)"
+                              class="w-full px-2 py-1 rounded focus:bg-brand-sand/40 focus:outline-none" />
+                          </td>
+                        </tr>
+                      `).join('')}
+                    </tbody>
+                  </table>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-brand-green mb-1.5">諮商師自我照顧與督導省思筆記：</label>
+                  <textarea
+                    rows="3"
+                    placeholder="記錄本次問答演練的觸動、反移情覺察或督導討論重點..."
+                    oninput="saveTopicNote('${topic.code}', 'reflection', this.value)"
+                    class="w-full p-3 text-xs sm:text-sm rounded-xl border border-brand-border bg-[#FAF8F5] focus:bg-white focus:outline-none focus:border-brand-green transition"
+                  >${savedData.reflection || ''}</textarea>
+                </div>
+              </div>
+            </details>
+          </section>
+
+          <!-- 書頁底部頁碼 -->
+          <footer class="mt-10 pt-4 border-t border-[#ECE8DF] text-center text-xs text-brand-muted font-medium tracking-widest">
+            ${String(globalPageNum).padStart(2, '0')}
+          </footer>
+        </article>
+      `;
+    }
+
+    // =========================================================================
+    // 9. 渲染精簡問答卡片網格（卡片模式或搜尋／篩選啟用時使用）
+    // =========================================================================
+    function renderGridCards(items) {
+      if (items.length === 0) {
+        return `
+          <div class="bg-white rounded-2xl p-12 text-center border border-[#E3DDD2]">
+            <div class="text-4xl mb-3">🍃</div>
+            <h3 class="font-serif text-lg font-bold text-brand-green mb-1">找不到符合條件的情緒主題</h3>
+            <p class="text-sm text-brand-muted mb-4">請嘗試更換搜尋關鍵字，或點選下方按鈕恢復全部 60 個主題檢視。</p>
+            <button onclick="resetAllFilters()" class="px-4 py-2 bg-brand-green text-white text-sm rounded-lg hover:bg-brand-greenDark transition">
+              顯示全部主題
+            </button>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          ${items.map(({ school, schoolIndex, topic, topicIndex }) => `
+            <div class="bg-white rounded-xl p-5 border border-[#E3DDD2] hover:border-brand-green hover:shadow-md transition-all flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                  <span class="text-[11px] font-bold text-brand-green bg-brand-greenLight px-2.5 py-0.5 rounded-full">
+                    ${school.shortName}
+                  </span>
+                  <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-brand-sand text-brand-ink font-medium">
+                    ${topic.emotionTag}
+                  </span>
+                </div>
+                <h3
+                  onclick="openSpecificTopic(${schoolIndex}, ${topicIndex})"
+                  class="cursor-pointer font-serif text-lg font-bold text-brand-ink group-hover:text-brand-green transition mb-2"
+                >
+                  ${topic.title}
+                </h3>
+                <p class="text-xs text-brand-muted line-clamp-2 leading-relaxed mb-3">
+                  ${topic.context}
+                </p>
+                <!-- 精簡問答預覽（首階段核心問句 + 一鍵複製） -->
+                <div class="bg-[#FAF8F5] rounded-lg p-3 border border-[#ECE8DF] mb-3 text-xs">
+                  <div class="font-bold text-brand-green mb-1">${topic.stages[0].stage}</div>
+                  <p class="text-brand-ink leading-relaxed mb-1.5">${topic.stages[0].question}</p>
+                  <button
+                    onclick="copyTextToClipboard('${topic.stages[0].question.replace(/'/g, "\\'")}')"
+                    class="text-[11px] text-brand-green hover:underline"
+                  >
+                    📋 複製此問句
+                  </button>
+                </div>
+              </div>
+              <div>
+                <div class="flex flex-wrap gap-1 mb-3">
+                  ${topic.focusPills.slice(0, 3).map(p => `
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#F4F1EA] text-brand-muted">
+                      ${p}
+                    </span>
+                  `).join('')}
+                </div>
+                <div
+                  onclick="openSpecificTopic(${schoolIndex}, ${topicIndex})"
+                  class="cursor-pointer pt-2.5 border-t border-[#ECE8DF] flex items-center justify-between text-xs font-medium text-brand-green"
+                >
+                  <span>翻開完整手冊書頁（含三階段圖表與紀錄表）</span>
+                  <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // 10. 主渲染協調器
+    // =========================================================================
+    function renderApp() {
+      renderSchoolTabs();
+      renderEmotionFilters();
+      renderSidebar();
+      updateSavedNotesCount();
+
+      if (isFiltering()) {
+        const filtered = getFilteredTopics();
+        filterStatusBanner.classList.remove('hidden');
+        filterStatusText.textContent = `跨學派檢索結果：共找到 ${filtered.length} 個符合條件的情緒諮商主題（點擊標題可開啟完整書頁）`;
+        bookPaginationBarEl.classList.add('hidden');
+        ebookContentAreaEl.innerHTML = renderGridCards(filtered);
+        return;
+      }
+
+      filterStatusBanner.classList.add('hidden');
+
+      if (state.viewMode === 'grid') {
+        bookPaginationBarEl.classList.add('hidden');
+        const currentSchool = COUNSELING_DATA[state.activeSchoolIndex];
+        const schoolItems = currentSchool.topics.map((topic, tIdx) => ({
+          school: currentSchool,
+          schoolIndex: state.activeSchoolIndex,
+          topic,
+          topicIndex: tIdx
+        }));
+        ebookContentAreaEl.innerHTML = `
+          <div class="mb-4 flex items-center justify-between">
+            <h2 class="font-serif text-xl font-bold text-brand-green">
+              ${currentSchool.fullName} — 5 大情緒議題精簡問答總覽
+            </h2>
+          </div>
+          ${renderGridCards(schoolItems)}
+        `;
+        return;
+      }
+
+      // 完整手冊書頁模式
+      bookPaginationBarEl.classList.remove('hidden');
+      const school = COUNSELING_DATA[state.activeSchoolIndex];
+      const topic = school.topics[state.activeTopicIndex];
+      ebookContentAreaEl.innerHTML = renderBookPage(school, state.activeSchoolIndex, topic, state.activeTopicIndex);
+
+      const globalIndex = state.activeSchoolIndex * 5 + state.activeTopicIndex;
+      pageNumberIndicator.textContent = `PAGE ${String(globalIndex + 1).padStart(2, '0')} / 60`;
+      prevTopicBtn.disabled = globalIndex === 0;
+      nextTopicBtn.disabled = globalIndex === 59;
+
+      if (globalIndex > 0) {
+        const prevS = Math.floor((globalIndex - 1) / 5);
+        const prevT = (globalIndex - 1) % 5;
+        prevTopicLabel.textContent = `上一頁：${COUNSELING_DATA[prevS].topics[prevT].title.slice(0, 10)}...`;
+      } else {
+        prevTopicLabel.textContent = '已至第一頁';
+      }
+
+      if (globalIndex < 59) {
+        const nextS = Math.floor((globalIndex + 1) / 5);
+        const nextT = (globalIndex + 1) % 5;
+        nextTopicLabel.textContent = `下一頁：${COUNSELING_DATA[nextS].topics[nextT].title.slice(0, 10)}...`;
+      } else {
+        nextTopicLabel.textContent = '已至最後一頁';
+      }
+    }
+
+    // =========================================================================
+    // 11. 互動事件處理函式
+    // =========================================================================
+    window.selectSchool = function(sIdx) {
+      state.activeSchoolIndex = sIdx;
+      state.activeTopicIndex = 0;
+      state.searchQuery = '';
+      state.emotionFilter = '全部';
+      searchInput.value = '';
+      clearSearchBtn.classList.add('hidden');
+      renderApp();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.selectTopic = function(tIdx) {
+      state.activeTopicIndex = tIdx;
+      state.viewMode = 'page';
+      updateModeButtonUI();
+      renderApp();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.openSpecificTopic = function(sIdx, tIdx) {
+      state.activeSchoolIndex = sIdx;
+      state.activeTopicIndex = tIdx;
+      state.searchQuery = '';
+      state.emotionFilter = '全部';
+      state.viewMode = 'page';
+      searchInput.value = '';
+      clearSearchBtn.classList.add('hidden');
+      updateModeButtonUI();
+      renderApp();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.selectEmotionFilter = function(emo) {
+      state.emotionFilter = emo;
+      renderApp();
+    };
+
+    window.resetAllFilters = function() {
+      state.searchQuery = '';
+      state.emotionFilter = '全部';
+      searchInput.value = '';
+      clearSearchBtn.classList.add('hidden');
+      renderApp();
+    };
+
+    window.saveTopicNote = function(code, field, value) {
+      if (!state.notesStore[code]) {
+        state.notesStore[code] = {
+          date: new Date().toISOString().split('T')[0],
+          clientName: '',
+          reflection: '',
+          tableRows: [
+            { code: 'A', role: '', name: '', pos: '', move: '' },
+            { code: 'B', role: '', name: '', pos: '', move: '' },
+            { code: 'C', role: '', name: '', pos: '', move: '' }
+          ]
+        };
+      }
+      state.notesStore[code][field] = value;
+      localStorage.setItem('counseling_ebook_notes_v2', JSON.stringify(state.notesStore));
+      updateSavedNotesCount();
+      renderSidebar();
+    };
+
+    window.saveTableRow = function(code, rIdx, col, value) {
+      if (!state.notesStore[code]) {
+        saveTopicNote(code, 'date', new Date().toISOString().split('T')[0]);
+      }
+      state.notesStore[code].tableRows[rIdx][col] = value;
+      localStorage.setItem('counseling_ebook_notes_v2', JSON.stringify(state.notesStore));
+      updateSavedNotesCount();
+    };
+
+    function updateModeButtonUI() {
+      if (state.viewMode === 'page') {
+        modeIcon.textContent = '📖';
+        modeLabel.textContent = '手冊書頁';
+      } else {
+        modeIcon.textContent = '🗂️';
+        modeLabel.textContent = '問答卡片';
+      }
+    }
+
+    // =========================================================================
+    // 12. 綁定 UI 控制項事件監聽
+    // =========================================================================
+    scrollLeftSchoolBtn.addEventListener('click', () => {
+      schoolTabsEl.scrollBy({ left: -260, behavior: 'smooth' });
+    });
+
+    scrollRightSchoolBtn.addEventListener('click', () => {
+      schoolTabsEl.scrollBy({ left: 260, behavior: 'smooth' });
+    });
+
+    toggleExpandSchoolsBtn.addEventListener('click', () => {
+      state.isSchoolExpanded = !state.isSchoolExpanded;
+      renderSchoolTabs();
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      state.searchQuery = e.target.value;
+      clearSearchBtn.classList.toggle('hidden', !state.searchQuery);
+      renderApp();
+    });
+
+    clearSearchBtn.addEventListener('click', () => {
+      state.searchQuery = '';
+      searchInput.value = '';
+      clearSearchBtn.classList.add('hidden');
+      renderApp();
+    });
+
+    resetAllFiltersBtn.addEventListener('click', resetAllFilters);
+
+    toggleModeBtn.addEventListener('click', () => {
+      state.viewMode = state.viewMode === 'page' ? 'grid' : 'page';
+      updateModeButtonUI();
+      renderApp();
+    });
+
+    toggleFontBtn.addEventListener('click', () => {
+      const htmlEl = document.documentElement;
+      if (state.fontSize === 'standard') {
+        state.fontSize = 'large';
+        htmlEl.classList.remove('font-standard');
+        htmlEl.classList.add('font-large');
+        showToast('已切換為「放大舒適字級」');
+      } else {
+        state.fontSize = 'standard';
+        htmlEl.classList.remove('font-large');
+        htmlEl.classList.add('font-standard');
+        showToast('已切換為「標準出版字級」');
+      }
+    });
+
+    prevTopicBtn.addEventListener('click', () => {
+      const globalIndex = state.activeSchoolIndex * 5 + state.activeTopicIndex;
+      if (globalIndex > 0) {
+        const prev = globalIndex - 1;
+        state.activeSchoolIndex = Math.floor(prev / 5);
+        state.activeTopicIndex = prev % 5;
+        renderApp();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+
+    nextTopicBtn.addEventListener('click', () => {
+      const globalIndex = state.activeSchoolIndex * 5 + state.activeTopicIndex;
+      if (globalIndex < 59) {
+        const next = globalIndex + 1;
+        state.activeSchoolIndex = Math.floor(next / 5);
+        state.activeTopicIndex = next % 5;
+        renderApp();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+
+    // 中立引導語句速查抽屜控制
+    const phrasesDrawer = document.getElementById('phrasesDrawer');
+    document.getElementById('openPhrasesBtn').addEventListener('click', () => {
+      phrasesDrawer.classList.remove('hidden');
+    });
+    document.getElementById('closePhrasesBtn').addEventListener('click', () => {
+      phrasesDrawer.classList.add('hidden');
+    });
+    document.getElementById('phrasesBackdrop').addEventListener('click', () => {
+      phrasesDrawer.classList.add('hidden');
+    });
+
+    function initNeutralPhrasesDrawer() {
+      const renderPhraseList = (arr) => arr.map(p => `
+        <li
+          onclick="copyTextToClipboard('${p.replace(/'/g, "\\'")}')"
+          class="cursor-pointer bg-white hover:bg-brand-sand/70 border border-[#E6E2D8] rounded-lg px-3.5 py-2.5 flex items-center justify-between gap-3 transition group"
+        >
+          <span class="text-brand-ink">• ${p}</span>
+          <span class="text-[11px] text-brand-green opacity-60 group-hover:opacity-100 shrink-0">複製</span>
+        </li>
+      `).join('');
+
+      document.getElementById('phraseGroup1').innerHTML = renderPhraseList(NEUTRAL_PHRASES.group1);
+      document.getElementById('phraseGroup2').innerHTML = renderPhraseList(NEUTRAL_PHRASES.group2);
+      document.getElementById('phraseGroup3').innerHTML = renderPhraseList(NEUTRAL_PHRASES.group3);
+
+      document.getElementById('phraseCompareTable').innerHTML = NEUTRAL_PHRASES.compare.map(row => `
+        <tr class="hover:bg-[#FAF8F5]">
+          <td class="py-2.5 px-3.5 text-brand-muted">${row.avoid}</td>
+          <td onclick="copyTextToClipboard('${row.use.replace(/'/g, "\\'")}')" class="cursor-pointer py-2.5 px-3.5 text-brand-green font-medium hover:underline">
+            ${row.use}
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // 匯出全部實務筆記為 TXT 檔案
+    exportNotesBtn.addEventListener('click', () => {
+      const entries = Object.entries(state.notesStore);
+      if (entries.length === 0) {
+        showToast('目前尚無已儲存的實務筆記');
+        return;
+      }
+
+      let output = '====================================================\n';
+      output += '《十二學派情緒諮商實務引導手冊》— 個人演練與督導筆記備份\n';
+      output += `匯出時間：${new Date().toLocaleString('zh-TW')}\n`;
+      output += '====================================================\n\n';
+
+      entries.forEach(([code, data]) => {
+        output += `【主題編號 ${code}】 日期：${data.date || '未填'} ｜ 案主/夥伴：${data.clientName || '未填'}\n`;
+        if (data.tableRows) {
+          data.tableRows.forEach(r => {
+            if (r.role || r.name || r.pos || r.move) {
+              output += `  - [${r.code}] 元素：${r.role} | 核心：${r.name} | 初始：${r.pos} | 轉化：${r.move}\n`;
+            }
+          });
+        }
+        if (data.reflection) {
+          output += `  省思筆記：\n  ${data.reflection}\n`;
+        }
+        output += '----------------------------------------------------\n\n';
+      });
+
+      const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `諮商實務引導手冊筆記_${new Date().toISOString().split('T')[0]}.txt`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('已匯出全部筆記備份檔');
+    });
+
+    // 鍵盤左右鍵翻頁支援（未在輸入框時）
+    document.addEventListener('keydown', (e) => {
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+      if (e.key === 'ArrowLeft') prevTopicBtn.click();
+      if (e.key === 'ArrowRight') nextTopicBtn.click();
+    });
+
+    // 啟動初始化
+    initNeutralPhrasesDrawer();
+    renderApp();
+  </script>
+</body>
+</html>
